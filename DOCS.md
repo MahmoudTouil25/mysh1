@@ -7,6 +7,9 @@
 | NestJS v11 | Backend framework |
 | TypeScript | Language |
 | xlsx (SheetJS) | Read data from Excel file |
+| @nestjs/jwt | JWT token generation and verification |
+| @nestjs/config | Environment variable management |
+| bcrypt | Admin password hashing |
 
 No database, no ORM. Data lives entirely in `data/mysh.xlsx`.
 
@@ -16,13 +19,30 @@ No database, no ORM. Data lives entirely in `data/mysh.xlsx`.
 
 ```bash
 npm install
-npm run init          # generate data/mysh.xlsx (run once)
-npm run start:dev     # development (watch mode)
-npm run start:prod    # production
-npm run build         # compile only
+npm run generate-hash <your-password>   # generate bcrypt hash for admin password (run once)
+# create .env based on .env.example and paste the hash
+npm run init                            # generate data/mysh.xlsx (run once)
+npm run start:dev                       # development (watch mode)
+npm run start:prod                      # production
+npm run build                           # compile only
 ```
 
 API runs on `http://localhost:3000`
+
+---
+
+## Environment Variables (`.env`)
+
+Copy `.env.example` and fill in:
+
+```
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD_HASH=   # output of: npm run generate-hash <your-password>
+JWT_SECRET=            # long random string
+JWT_EXPIRES_IN=24h
+```
+
+`.env` is gitignored — never commit it.
 
 ---
 
@@ -33,12 +53,19 @@ data/
 └── mysh.xlsx                            # The data file — edit this directly in Excel
 
 scripts/
-└── init-excel.ts                        # Generates mysh.xlsx with categories pre-filled (run once)
+├── init-excel.ts                        # Generates mysh.xlsx with categories pre-filled (run once)
+└── generate-hash.ts                     # Hashes a password for use in .env (run once)
 
 src/
 ├── main.ts                              # Bootstrap — CORS, port
-├── app.module.ts                        # Root module — imports ExcelModule, CategoriesModule, EquipmentModule
-├── app.controller.ts                    # POST /reload — triggers Excel reload without restart
+├── app.module.ts                        # Root module — ConfigModule (global), ExcelModule, Auth, Categories, Equipment
+├── app.controller.ts                    # POST /reload (protected) — triggers Excel reload without restart
+│
+├── auth/
+│   ├── auth.service.ts                  # Validates credentials against .env, signs and returns JWT
+│   ├── auth.controller.ts               # POST /auth/login
+│   ├── auth.module.ts                   # Wires AuthService, JwtModule (async config), exports JwtAuthGuard
+│   └── jwt-auth.guard.ts                # Guard — extracts and verifies Bearer token on protected routes
 │
 ├── excel/
 │   ├── excel.service.ts                 # Reads mysh.xlsx on startup, caches data, exposes reload()
@@ -59,6 +86,7 @@ src/
 
 ## How It Works
 
+### Data flow
 ```
 mysh.xlsx
    ↓ (on startup or POST /reload)
@@ -69,9 +97,20 @@ CategoriesService / EquipmentService (filter cached data)
 Controllers (serve via HTTP)
 ```
 
-1. On startup, `ExcelService.onModuleInit()` reads `data/mysh.xlsx` and caches both sheets
-2. All GET endpoints serve data from that in-memory cache (fast, no I/O per request)
-3. When you update the Excel file, hit `POST /reload` — the cache refreshes instantly without restarting the server
+### Auth flow
+```
+POST /auth/login  { username, password }
+   ↓
+AuthService — compares password against bcrypt hash in .env
+   ↓ (if valid)
+JwtService.sign()  →  { access_token: "eyJ..." }
+   ↓ (client stores token)
+Protected route request with  Authorization: Bearer <token>
+   ↓
+JwtAuthGuard — verifies token signature and expiry
+   ↓ (if valid)
+Route handler executes
+```
 
 ---
 
@@ -113,14 +152,31 @@ Controllers (serve via HTTP)
 
 ## Modules & Their Roles
 
+### `app.module.ts`
+Root module. Imports `ConfigModule.forRoot({ isGlobal: true })` — env vars available everywhere. Imports `ExcelModule`, `AuthModule`, `CategoriesModule`, `EquipmentModule`.
+
+### `auth.module.ts`
+Registers `JwtModule` asynchronously using `ConfigService` (reads `JWT_SECRET` and `JWT_EXPIRES_IN` from `.env`). Exports `JwtAuthGuard` so any module can apply it with `@UseGuards(JwtAuthGuard)`.
+
+### `auth.service.ts`
+- Reads `ADMIN_USERNAME` and `ADMIN_PASSWORD_HASH` from env
+- Compares the incoming password with the stored bcrypt hash
+- On success, signs a JWT with `{ sub: 'admin', username }` as payload
+- Throws `401 Unauthorized` on invalid credentials
+
+### `jwt-auth.guard.ts`
+- Extracts the Bearer token from the `Authorization` header
+- Verifies it using `JwtService.verify()` with the secret from env
+- Throws `401 Unauthorized` if missing, invalid, or expired
+- Attaches the decoded payload to `request.user`
+
 ### `excel.module.ts`
 Decorated with `@Global()` — makes `ExcelService` injectable in every module without explicit imports.
 
 ### `excel.service.ts`
 - `onModuleInit()` — loads the Excel file automatically when the app starts
 - `reload()` — re-reads the file and updates the cache
-- `getCategories()` — returns cached category rows
-- `getEquipment()` — returns cached equipment rows
+- `getCategories()` / `getEquipment()` — return cached rows
 - Logs a warning if `data/mysh.xlsx` is missing (reminder to run `npm run init`)
 
 ### `categories.service.ts`
@@ -142,26 +198,52 @@ Decorated with `@Global()` — makes `ExcelService` injectable in every module w
 
 ## API Endpoints
 
+### Auth
+
+| Method | URL | Auth | Description |
+|--------|-----|------|-------------|
+| POST | `/auth/login` | Public | Login and receive JWT token |
+
+**POST /auth/login — body:**
+```json
+{ "username": "admin", "password": "yourPassword" }
+```
+**Response:**
+```json
+{ "access_token": "eyJ..." }
+```
+
+---
+
 ### General
 
-| Method | URL | Description |
-|--------|-----|-------------|
-| POST | `/reload` | Reload data from Excel without restarting the server |
+| Method | URL | Auth | Description |
+|--------|-----|------|-------------|
+| POST | `/reload` | Required | Reload Excel data without restarting |
+
+**Header for protected routes:**
+```
+Authorization: Bearer <access_token>
+```
+
+---
 
 ### Categories
 
-| Method | URL | Description |
-|--------|-----|-------------|
-| GET | `/categories` | All categories |
-| GET | `/categories/:id` | One category by id |
-| GET | `/categories/:id/children` | Subcategories of a parent |
+| Method | URL | Auth | Description |
+|--------|-----|------|-------------|
+| GET | `/categories` | Public | All categories |
+| GET | `/categories/:id` | Public | One category by id |
+| GET | `/categories/:id/children` | Public | Subcategories of a parent |
+
+---
 
 ### Equipment
 
-| Method | URL | Description |
-|--------|-----|-------------|
-| GET | `/equipment` | All equipment (filterable) |
-| GET | `/equipment/:id` | One equipment by id |
+| Method | URL | Auth | Description |
+|--------|-----|------|-------------|
+| GET | `/equipment` | Public | All equipment (filterable) |
+| GET | `/equipment/:id` | Public | One equipment by id |
 
 **GET /equipment — filter examples:**
 ```
@@ -174,7 +256,7 @@ GET /equipment?categoryId=9&availability=available
 
 ## Enums
 
-These are not enforced by code — they are conventions to follow when filling in the Excel sheet.
+These are conventions to follow when filling in the Excel sheet — not enforced by code.
 
 ### condition
 | Value | Meaning |
@@ -244,17 +326,30 @@ These are not enforced by code — they are conventions to follow when filling i
 
 ## Daily Workflow
 
+### Updating equipment data
 1. Open `data/mysh.xlsx` in Excel
 2. Add or edit rows in the Equipment sheet
 3. Save the file
-4. Send `POST http://localhost:3000/reload`
+4. `POST http://localhost:3000/reload` with Bearer token
 5. API immediately serves the updated data
+
+### Applying the guard to a new protected route
+```typescript
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+
+@UseGuards(JwtAuthGuard)
+@Post('some-admin-action')
+doSomething() { ... }
+```
 
 ---
 
 ## What's Next
 
-- [ ] Authentication (admin vs. client)
+- [x] Equipment listing & categories
+- [x] Excel-based data layer
+- [x] Admin authentication (JWT)
 - [ ] Image upload
 - [ ] Rental requests / booking system
 - [ ] Frontend (Angular)
