@@ -10,6 +10,6 @@ export class AppController {
   @Post('reload')
   reload() {
     this.excelService.reload();
-    return { message: 'Data reloaded from Excel successfully' };
+    return { message: 'Data reloaded from Excel files successfully' };
   }
 }
