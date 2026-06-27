@@ -1,32 +1,6 @@
-const API_URL = import.meta.env.VITE_API_URL;
+import type { Category, Equipment } from '../types/equipment';
 
-export type Category = {
-  id: number;
-  name: string;
-  slug: string;
-  description?: string;
-  parentId?: number | null;
-};
-
-export type Equipment = {
-  id: number;
-  name: string;
-  brand: string;
-  model: string;
-  year: number;
-  categoryId: number;
-  operatingWeight: number;
-  enginePower: number;
-  condition: string;
-  availability: string;
-  dailyRate: number;
-  weeklyRate: number;
-  monthlyRate: number;
-  minimumRentalDays: number;
-  location: string;
-  description?: string;
-  images?: string;
-};
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? '';
 
 async function apiGet<T>(endpoint: string): Promise<T> {
   const response = await fetch(`${API_URL}${endpoint}`);
