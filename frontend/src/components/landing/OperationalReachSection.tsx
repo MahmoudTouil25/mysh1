@@ -9,11 +9,16 @@ export default function OperationalReachSection({
   lang,
 }: OperationalReachSectionProps) {
   const t = landingContent[lang];
+  const isRtl = lang === 'ar';
 
   return (
-    <section id="about" className="bg-white px-4 py-20 md:py-28">
+    <section
+      id="about"
+      dir={isRtl ? 'rtl' : 'ltr'}
+      className="bg-white px-4 py-20 md:py-28"
+    >
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
-        <div>
+        <div className={isRtl ? 'text-right' : 'text-left'}>
           <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#855300]">
             {t.reach.eyebrow}
           </p>
@@ -44,14 +49,17 @@ export default function OperationalReachSection({
             ))}
           </div>
 
-          <div className="mt-5 rounded-3xl bg-[#1B263B] p-6 text-white">
+          <div
+            className={[
+              'mt-5 rounded-3xl bg-[#1B263B] p-6 text-white',
+              isRtl ? 'text-right' : 'text-left',
+            ].join(' ')}
+          >
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#F4D03F]">
-              MYSH Operations
+              {t.reach.operationsTitle}
             </p>
             <p className="mt-3 text-base leading-7 text-white/80">
-              {lang === 'en'
-                ? 'Equipment rental support for contractors, project managers and industrial operators needing reliable machinery access.'
-                : 'دعم تأجير المعدات للمقاولين ومديري المشاريع والمشغلين الصناعيين الذين يحتاجون إلى وصول موثوق للمعدات.'}
+              {t.reach.operationsDescription}
             </p>
           </div>
         </div>

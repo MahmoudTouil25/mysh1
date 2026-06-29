@@ -3,7 +3,7 @@ import type { Lang } from './sharedContent';
 export const landingContent = {
   en: {
     hero: {
-      eyebrow: 'Heavy Equipment Rental & Machinery Trading — Dubai, UAE',
+      eyebrow: 'Heavy Equipment Rental & Machinery Trading - Dubai, UAE',
       title: 'Industrial Power, On Demand.',
       description:
         'Premium heavy machinery, plant equipment and specialized logistics for construction, infrastructure and industrial projects across the UAE.',
@@ -18,16 +18,25 @@ export const landingContent = {
           title: 'Earthmoving Equipment',
           description:
             'High-capacity excavators, loaders and site preparation equipment for demanding construction projects.',
+          image: '/images/services/earthmoving.png',
+          badge: 'Earthmoving',
+          cta: 'Request Equipment',
         },
         {
           title: 'Lifting Solutions',
           description:
             'Mobile cranes, lifting equipment and handling solutions for urban and open-site operations.',
+          image: '/images/services/infrastructure-maintenance.png',
+          badge: 'Lifting',
+          cta: 'Request Equipment',
         },
         {
           title: 'Power Generation',
           description:
             'Generators and mobile power solutions for off-grid operations, temporary sites and backup needs.',
+          image: '/images/services/resilience.png',
+          badge: 'Power',
+          cta: 'Request Equipment',
         },
       ],
       action: 'Explore Fleet',
@@ -42,36 +51,85 @@ export const landingContent = {
         { value: 'UAE', label: 'Rental coverage' },
         { value: 'B2B', label: 'Contractor focused' },
       ],
+      operationsTitle: 'MYSH Operations',
+      operationsDescription:
+        'Equipment rental support for contractors, project managers and industrial operators needing reliable machinery access.',
+    },
+    story: {
+      eyebrow: 'Our Story',
+      title: 'A Legacy of Strength and Reliability',
+      description:
+        'Founded in 1977 with deep roots in Jordan, MYSH began as a vision to revolutionize the industrial landscape. Our journey is defined by unwavering commitment to equipment excellence and operational trust.',
+      image: '/images/story.png',
+      statValue: '47+',
+      statLabel: 'Years of Heritage',
+      primaryCta: 'Read Our Full History',
+      items: [
+        {
+          title: '1977 Origins',
+          description:
+            'Established in Jordan, laying the foundation for heavy industrial specialization.',
+        },
+        {
+          title: 'UAE Expansion',
+          description:
+            "Bringing decades of expertise to the UAE's rapid infrastructure growth.",
+        },
+      ],
+    },
+    deliveryMap: {
+      eyebrow: 'Delivery Map',
+      title: 'Dubai delivery borders for current fleet dispatch.',
+      description:
+        'Our active delivery boundary is focused on Dubai for now, helping the team coordinate equipment movement, site access and dispatch timing with clearer coverage expectations.',
+      mapLabel: 'Dubai delivery boundary',
+      status: 'Current coverage',
+      location: 'Dubai, UAE',
+      note: 'Additional emirates can be reviewed by request.',
+      markers: ['Dubai Hub', 'Jebel Ali', 'Al Qusais'],
+      updateNote:
+        'Delivery coverage can expand as fleet availability and project schedules are confirmed.',
     },
     faq: {
       eyebrow: 'FAQ',
-      title: 'Common Questions',
+      title: 'Frequently Asked Questions',
+      description:
+        'Everything you need to know about our rental process and logistics.',
       items: [
         {
-          question: 'How fast can equipment reach the site?',
+          question: 'How to request a quote?',
           answer:
-            'Equipment availability and delivery timing depend on location, machine type and scheduling. For urgent requests, our team works to coordinate the fastest possible dispatch.',
+            'You can request a quote directly through our website by clicking the Request Quote button, or by contacting our team via WhatsApp. Please provide details about your project location and the specific machinery required.',
         },
         {
-          question: 'Do you provide operators?',
+          question: 'What are your delivery areas?',
           answer:
-            'Operator availability can be arranged depending on the equipment type, project location and rental conditions.',
+            'Current delivery coordination is focused on Dubai, with additional UAE locations reviewed by request depending on equipment availability, site access and schedule.',
         },
         {
-          question: 'What about emergency repairs?',
+          question: 'Do you provide equipment operators?',
           answer:
-            'We can help coordinate emergency support and repair response for eligible equipment issues to reduce downtime.',
+            'Operator support can be arranged for selected equipment depending on machine type, project location, availability and rental conditions.',
         },
       ],
+    },
+    cta: {
+      title: 'Ready to Power Your Next Project?',
+      description:
+        'Contact our experts today for a customized quote or technical consultation. We are available 24/7 to support your operational needs.',
+      whatsappCta: 'Message on WhatsApp',
+      emailCta: 'Send an Email',
+      whatsappHref: '#contact',
+      emailHref: 'mailto:info@mysh.com',
     },
   },
 
   ar: {
     hero: {
-      eyebrow: 'تأجير المعدات الثقيلة وتجارة الآلات — دبي، الإمارات',
-      title: 'قوة صناعية جاهزة عند الطلب.',
+      eyebrow: 'تأجير المعدات الثقيلة وتجارة الآلات - دبي، الإمارات',
+      title: 'قوة صناعية عند الطلب.',
       description:
-        'معدات ثقيلة وآلات وحلول لوجستية متخصصة لمشاريع البناء والبنية التحتية والمشاريع الصناعية في الإمارات.',
+        'معدات ثقيلة وآلات وحلول لوجستية متخصصة لمشاريع البناء والبنية التحتية والمشاريع الصناعية في دولة الإمارات.',
       primaryCta: 'طلب عرض سعر',
       secondaryCta: 'عرض المعدات',
     },
@@ -83,16 +141,25 @@ export const landingContent = {
           title: 'معدات الحفر وتجهيز المواقع',
           description:
             'حفارات ولوادر ومعدات عالية القدرة لأعمال تجهيز المواقع والمشاريع الإنشائية الكبيرة.',
+          image: '/images/services/earthmoving.png',
+          badge: 'تحريك التربة',
+          cta: 'طلب المعدات',
         },
         {
           title: 'حلول الرفع',
           description:
             'رافعات ومعدات رفع وحلول مناولة للمواقع الحضرية والمشاريع المفتوحة.',
+          image: '/images/services/infrastructure-maintenance.png',
+          badge: 'رفع',
+          cta: 'طلب المعدات',
         },
         {
           title: 'توليد الطاقة',
           description:
             'مولدات وحلول طاقة متنقلة للمواقع المؤقتة والتشغيل خارج الشبكة واحتياجات الطوارئ.',
+          image: '/images/services/resilience.png',
+          badge: 'طاقة',
+          cta: 'طلب المعدات',
         },
       ],
       action: 'استكشف الأسطول',
@@ -107,27 +174,76 @@ export const landingContent = {
         { value: 'الإمارات', label: 'نطاق التأجير' },
         { value: 'B2B', label: 'موجه للمقاولين' },
       ],
+      operationsTitle: 'عمليات MYSH',
+      operationsDescription:
+        'دعم تأجير المعدات للمقاولين ومديري المشاريع والمشغلين الصناعيين الذين يحتاجون إلى وصول موثوق للمعدات.',
+    },
+    story: {
+      eyebrow: 'قصتنا',
+      title: 'إرث من القوة والموثوقية',
+      description:
+        'تأسست MYSH عام 1977 بجذور راسخة في الأردن، وانطلقت برؤية لتطوير مشهد المعدات الصناعية. تقوم رحلتنا على الالتزام الدائم بجودة المعدات والثقة التشغيلية.',
+      image: '/images/story.png',
+      statValue: '47+',
+      statLabel: 'عاماً من الخبرة',
+      primaryCta: 'اقرأ تاريخنا الكامل',
+      items: [
+        {
+          title: 'بدايات 1977',
+          description:
+            'تأسست في الأردن، لتضع أساساً قوياً للتخصص في المعدات الصناعية الثقيلة.',
+        },
+        {
+          title: 'التوسع في الإمارات',
+          description:
+            'نقل عقود من الخبرة لدعم نمو البنية التحتية السريع في دولة الإمارات.',
+        },
+      ],
+    },
+    deliveryMap: {
+      eyebrow: 'خريطة التوصيل',
+      title: 'حدود التوصيل الحالية داخل دبي.',
+      description:
+        'نركز نطاق التوصيل الحالي على دبي في هذه المرحلة لمساعدة الفريق على تنسيق حركة المعدات والوصول إلى المواقع ومواعيد الإرسال بوضوح أكبر.',
+      mapLabel: 'حدود التوصيل في دبي',
+      status: 'التغطية الحالية',
+      location: 'دبي، الإمارات',
+      note: 'يمكن مراجعة التوصيل إلى إمارات أخرى حسب الطلب.',
+      markers: ['مركز دبي', 'جبل علي', 'القصيص'],
+      updateNote:
+        'يتم تحديث نطاق التوصيل تدريجياً حسب توفر الأسطول وجدولة المشاريع.',
     },
     faq: {
       eyebrow: 'الأسئلة الشائعة',
-      title: 'أسئلة شائعة',
+      title: 'الأسئلة الأكثر تكراراً',
+      description:
+        'كل ما تحتاج إلى معرفته عن عملية التأجير والخدمات اللوجستية.',
       items: [
         {
-          question: 'ما هي سرعة وصول المعدات إلى الموقع؟',
+          question: 'كيف أطلب عرض سعر؟',
           answer:
-            'يعتمد وقت توفر المعدات ووصولها على الموقع ونوع المعدة وجدولة الطلب، ونعمل على تنسيق أسرع إرسال ممكن للطلبات العاجلة.',
+            'يمكنك طلب عرض سعر مباشرة من الموقع عبر زر طلب عرض سعر أو التواصل مع فريقنا عبر واتساب. يرجى تزويدنا بموقع المشروع ونوع المعدات المطلوبة.',
         },
         {
-          question: 'هل توفرون مشغلين للمعدات؟',
+          question: 'ما هي مناطق التوصيل؟',
           answer:
-            'يمكن توفير المشغلين حسب نوع المعدة وموقع المشروع وشروط التأجير.',
+            'يركز تنسيق التوصيل حالياً على دبي، ويمكن مراجعة المواقع الأخرى داخل الإمارات حسب توفر المعدات وإمكانية الوصول إلى الموقع والجدول الزمني.',
         },
         {
-          question: 'ماذا عن الأعطال الطارئة؟',
+          question: 'هل توفرون مشغلي معدات؟',
           answer:
-            'يمكننا المساعدة في تنسيق الدعم الطارئ والاستجابة للإصلاحات لتقليل توقف المعدات.',
+            'يمكن ترتيب دعم المشغلين لبعض أنواع المعدات حسب نوع الآلة وموقع المشروع والتوفر وشروط التأجير.',
         },
       ],
+    },
+    cta: {
+      title: 'هل أنت جاهز لدعم مشروعك القادم؟',
+      description:
+        'تواصل مع خبرائنا اليوم للحصول على عرض مخصص أو استشارة فنية. نحن متاحون لدعم احتياجاتك التشغيلية.',
+      whatsappCta: 'راسلنا عبر واتساب',
+      emailCta: 'أرسل بريداً إلكترونياً',
+      whatsappHref: '#contact',
+      emailHref: 'mailto:info@mysh.com',
     },
   },
 } satisfies Record<Lang, unknown>;

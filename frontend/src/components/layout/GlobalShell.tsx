@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import type { Lang } from '@/i18n/sharedContent';
+import { LanguageProvider } from '@/i18n/LanguageContext';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import FloatingWhatsApp from '@/components/common/FloatingWhatsApp';
@@ -15,11 +16,13 @@ export default function GlobalShell({ children }: GlobalShellProps) {
   const dir = lang === 'ar' ? 'rtl' : 'ltr';
 
   return (
-    <div lang={lang} dir={dir} className="min-h-screen bg-[#F8F9FA]">
-      <Navbar lang={lang} setLang={setLang} />
-      <main>{children}</main>
-      <Footer lang={lang} />
-      <FloatingWhatsApp lang={lang} />
-    </div>
+    <LanguageProvider value={{ lang, setLang }}>
+      <div lang={lang} dir={dir} className="min-h-screen bg-[#F8F9FA]">
+        <Navbar lang={lang} setLang={setLang} />
+        <main>{children}</main>
+        <Footer lang={lang} />
+        <FloatingWhatsApp lang={lang} />
+      </div>
+    </LanguageProvider>
   );
 }

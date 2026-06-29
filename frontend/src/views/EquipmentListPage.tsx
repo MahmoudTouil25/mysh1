@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import type { Category, Equipment } from '../types/equipment';
 import { getCategories, getEquipment } from '../services/api';
 import type { Lang } from '../i18n/sharedContent';
+import { useLanguage } from '../i18n/LanguageContext';
 import { equipmentContent } from '../i18n/equipmentContent';
 
 import { useEquipmentFilters } from '../hooks/useEquipmentFilters';
@@ -18,7 +19,7 @@ import EquipmentGrid from '../components/equipment/EquipmentGrid';
 import EquipmentList from '../components/equipment/EquipmentList';
 
 type EquipmentListPageProps = {
-  lang: Lang;
+  lang?: Lang;
   initialEquipment?: Equipment[];
   initialCategories?: Category[];
 };
@@ -26,10 +27,11 @@ type EquipmentListPageProps = {
 const EQUIPMENT_PAGE_SIZE = 6;
 
 export default function EquipmentListPage({
-  lang,
+  lang: fallbackLang = 'en',
   initialEquipment = [],
   initialCategories = [],
 }: EquipmentListPageProps) {
+  const { lang } = useLanguage(fallbackLang);
   const t = equipmentContent[lang];
 
   const [equipment, setEquipment] = useState<Equipment[]>(initialEquipment);

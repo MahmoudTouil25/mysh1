@@ -12,7 +12,18 @@ export default function ServicesHero({ lang }: ServicesHeroProps) {
     <section className="relative overflow-hidden bg-[#0E2A2C] px-4 pb-20 pt-32 text-white">
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(244,208,63,0.16),transparent_34%),linear-gradient(180deg,rgba(14,42,44,0.92),rgba(14,42,44,1))]"
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/mysh-fleet-rental-service.png')" }}
+      />
+
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-[#062D31]/65"
+      />
+
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(244,208,63,0.16),transparent_34%),linear-gradient(180deg,rgba(6,45,49,0.36),rgba(6,45,49,0.88))]"
       />
 
       <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
@@ -54,7 +65,7 @@ export default function ServicesHero({ lang }: ServicesHeroProps) {
           <div className="relative rounded-[2rem] border border-white/15 bg-white/5 p-4 shadow-[0_24px_80px_rgba(0,0,0,0.25)] backdrop-blur">
             <div className="overflow-hidden rounded-3xl bg-[#DEE3E5]">
               <img
-                src="/images/services/services-hero.jpg"
+                src="/images/mysh-fleet-rental-service.png"
                 alt={t.hero.highlightedTitle}
                 className="h-[430px] w-full object-cover opacity-90"
               />

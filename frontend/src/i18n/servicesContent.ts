@@ -95,7 +95,7 @@ export const servicesContent: Record<Lang, ServicesContent> = {
           title: 'Marine & Port Projects',
           description:
             'Heavy equipment rental for port development, quay works, coastal construction, marine infrastructure and waterfront project operations.',
-          image: '/images/services/marine-projects.jpg',
+          image: '/images/services/marine-projects.png',
           badge: 'Marine',
           cta: 'Request Equipment',
         },
@@ -103,7 +103,7 @@ export const servicesContent: Record<Lang, ServicesContent> = {
           title: 'Airport & Aviation Infrastructure',
           description:
             'Machinery rental support for airport expansion, runway works, terminal infrastructure, ground preparation and aviation-related construction projects.',
-          image: '/images/services/airport-infrastructure.jpg',
+          image: '/images/services/airport-infrastructure.png',
           badge: 'Airports',
           cta: 'Request Equipment',
         },
@@ -111,7 +111,7 @@ export const servicesContent: Record<Lang, ServicesContent> = {
           title: 'Rail, Bridge & Road Infrastructure',
           description:
             'Equipment rental for infrastructure maintenance and civil works including rails, bridges, roads, access routes and transport networks.',
-          image: '/images/services/infrastructure-maintenance.jpg',
+          image: '/images/services/infrastructure-maintenance.png',
           badge: 'Infrastructure',
           cta: 'Request Equipment',
         },
@@ -119,7 +119,7 @@ export const servicesContent: Record<Lang, ServicesContent> = {
           title: 'Excavation Works',
           description:
             'Excavators, loaders and supporting machinery for trenching, foundation works, digging, site preparation and deep excavation operations.',
-          image: '/images/services/excavation.jpg',
+          image: '/images/services/excavation.png',
           badge: 'Excavation',
           cta: 'Request Equipment',
         },
@@ -127,7 +127,7 @@ export const servicesContent: Record<Lang, ServicesContent> = {
           title: 'Earthmoving Operations',
           description:
             'Rental equipment for land clearing, grading, backfilling, soil movement, site leveling and large-scale earthworks.',
-          image: '/images/services/earthmoving.jpg',
+          image: '/images/services/earthmoving.png',
           badge: 'Earthmoving',
           cta: 'Request Equipment',
         },
@@ -135,18 +135,11 @@ export const servicesContent: Record<Lang, ServicesContent> = {
           title: 'Road Maintenance',
           description:
             'Machinery support for road repair, asphalt works, compaction, resurfacing, shoulder maintenance and route rehabilitation.',
-          image: '/images/services/road-maintenance.jpg',
+          image: '/images/services/road-maintenance.png',
           badge: 'Roads',
           cta: 'Request Equipment',
         },
-        {
-          title: 'Marine Operations Support',
-          description:
-            'Equipment rental for marine-side logistics, material handling, maintenance access, coastal site support and operational project needs.',
-          image: '/images/services/marine-operations.jpg',
-          badge: 'Operations',
-          cta: 'Request Equipment',
-        },
+        
       ],
     },
 
@@ -155,7 +148,7 @@ export const servicesContent: Record<Lang, ServicesContent> = {
       title: 'Equipment rental support for demanding environments.',
       description:
         'From marine sites and airport zones to road networks and excavation projects, MYSH helps contractors access the right equipment for complex operational conditions.',
-      image: '/images/services/resilience.jpg',
+      image: '/images/services/resilience.png',
       statValue: 'UAE',
       statLabel: 'Project sector coverage',
       strengths: [
@@ -279,7 +272,7 @@ export const servicesContent: Record<Lang, ServicesContent> = {
           title: 'المشاريع البحرية والموانئ',
           description:
             'تأجير معدات ثقيلة لأعمال تطوير الموانئ والأرصفة والإنشاءات الساحلية والبنية التحتية البحرية ومشاريع الواجهات المائية.',
-          image: '/images/services/marine-projects.jpg',
+          image: '/images/services/marine-projects.png',
           badge: 'بحري',
           cta: 'طلب المعدات',
         },
@@ -287,7 +280,7 @@ export const servicesContent: Record<Lang, ServicesContent> = {
           title: 'المطارات والبنية التحتية الجوية',
           description:
             'دعم تأجير المعدات لمشاريع توسعة المطارات وأعمال المدارج والبنية التحتية للمحطات وتجهيز المواقع المرتبطة بالطيران.',
-          image: '/images/services/airport-infrastructure.jpg',
+          image: '/images/services/airport-infrastructure.png',
           badge: 'مطارات',
           cta: 'طلب المعدات',
         },
@@ -295,7 +288,7 @@ export const servicesContent: Record<Lang, ServicesContent> = {
           title: 'البنية التحتية للسكك والجسور والطرق',
           description:
             'تأجير معدات لصيانة البنية التحتية والأعمال المدنية بما يشمل السكك والجسور والطرق ومسارات الوصول وشبكات النقل.',
-          image: '/images/services/infrastructure-maintenance.jpg',
+          image: '/images/services/infrastructure-maintenance.png',
           badge: 'بنية تحتية',
           cta: 'طلب المعدات',
         },
@@ -303,7 +296,7 @@ export const servicesContent: Record<Lang, ServicesContent> = {
           title: 'أعمال الحفر',
           description:
             'حفارات ولوادر ومعدات مساندة لحفر الخنادق والأساسات وتجهيز المواقع وأعمال الحفر العميق.',
-          image: '/images/services/excavation.jpg',
+          image: '/images/services/excavation.png',
           badge: 'حفر',
           cta: 'طلب المعدات',
         },
@@ -311,7 +304,7 @@ export const servicesContent: Record<Lang, ServicesContent> = {
           title: 'عمليات تحريك التربة',
           description:
             'معدات تأجير لأعمال تنظيف الأراضي والتسوية والردم وتحريك التربة وتجهيز المواقع والأعمال الترابية واسعة النطاق.',
-          image: '/images/services/earthmoving.jpg',
+          image: '/images/services/earthmoving.png',
           badge: 'تحريك التربة',
           cta: 'طلب المعدات',
         },
@@ -319,18 +312,11 @@ export const servicesContent: Record<Lang, ServicesContent> = {
           title: 'صيانة الطرق',
           description:
             'دعم بالمعدات لأعمال إصلاح الطرق والأسفلت والدمك وإعادة التأهيل وصيانة المسارات والكتف الجانبي للطريق.',
-          image: '/images/services/road-maintenance.jpg',
+          image: '/images/services/road-maintenance.png',
           badge: 'طرق',
           cta: 'طلب المعدات',
         },
-        {
-          title: 'دعم العمليات البحرية',
-          description:
-            'تأجير معدات للخدمات اللوجستية بجانب البحر ومناولة المواد والوصول للصيانة ودعم المواقع الساحلية واحتياجات التشغيل.',
-          image: '/images/services/marine-operations.jpg',
-          badge: 'عمليات',
-          cta: 'طلب المعدات',
-        },
+        
       ],
     },
 
@@ -339,7 +325,7 @@ export const servicesContent: Record<Lang, ServicesContent> = {
       title: 'دعم تأجير المعدات للبيئات التشغيلية الصعبة.',
       description:
         'من المواقع البحرية ومناطق المطارات إلى شبكات الطرق ومشاريع الحفر، تساعد MYSH المقاولين في الوصول إلى المعدات المناسبة للظروف التشغيلية المعقدة.',
-      image: '/images/services/resilience.jpg',
+      image: '/images/services/resilience.png',
       statValue: 'الإمارات',
       statLabel: 'تغطية قطاعات المشاريع',
       strengths: [

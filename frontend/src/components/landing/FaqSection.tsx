@@ -10,20 +10,25 @@ type FaqSectionProps = {
 
 export default function FaqSection({ lang }: FaqSectionProps) {
   const t = landingContent[lang];
+  const isRtl = lang === 'ar';
   const baseId = useId();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="bg-[#F5FAFC] px-4 py-20 md:py-28">
+    <section
+      id="faq"
+      dir={isRtl ? 'rtl' : 'ltr'}
+      className="bg-[#062D31] px-4 py-16 text-white md:py-24"
+    >
       <div className="mx-auto max-w-3xl">
         <header className="mb-10 text-center">
-          <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#855300]">
-            {t.faq.eyebrow}
-          </p>
-
-          <h2 className="mt-3 text-3xl font-black tracking-[-0.03em] text-[#1B263B] md:text-5xl">
+          <h2 className="text-2xl font-black tracking-[-0.01em] text-white md:text-4xl">
             {t.faq.title}
           </h2>
+
+          <p className="mx-auto mt-3 max-w-xl text-sm font-medium leading-6 text-white/62">
+            {t.faq.description}
+          </p>
         </header>
 
         <div className="space-y-3">
@@ -35,7 +40,7 @@ export default function FaqSection({ lang }: FaqSectionProps) {
             return (
               <article
                 key={item.question}
-                className="overflow-hidden rounded-2xl border border-[#C2C7C9] bg-white shadow-sm"
+                className="overflow-hidden rounded-lg border border-white/5 bg-[#143A3E] shadow-[0_10px_28px_rgba(0,0,0,0.16)]"
               >
                 <button
                   id={buttonId}
@@ -47,20 +52,23 @@ export default function FaqSection({ lang }: FaqSectionProps) {
                       current === index ? null : index,
                     )
                   }
-                  className="flex w-full items-center justify-between gap-4 p-5 text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1B263B] focus-visible:ring-inset"
+                  className={[
+                    'flex min-h-14 w-full items-center justify-between gap-4 px-5 py-4 text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4D03F] focus-visible:ring-inset',
+                    isRtl ? 'flex-row-reverse text-right' : 'text-left',
+                  ].join(' ')}
                 >
-                  <span className="text-base font-extrabold text-[#1B263B]">
+                  <span className="text-sm font-extrabold text-white md:text-base">
                     {item.question}
                   </span>
 
                   <span
                     aria-hidden="true"
                     className={[
-                      'grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#F8F9FA] text-[#1B263B] transition',
-                      isOpen ? 'rotate-45' : '',
+                      'grid h-5 w-5 shrink-0 place-items-center text-white/85 transition',
+                      isOpen ? 'rotate-180' : '',
                     ].join(' ')}
                   >
-                    +
+                    <span className="h-2 w-2 rotate-45 border-b-2 border-r-2 border-current" />
                   </span>
                 </button>
 
@@ -69,9 +77,12 @@ export default function FaqSection({ lang }: FaqSectionProps) {
                     id={panelId}
                     role="region"
                     aria-labelledby={buttonId}
-                    className="px-5 pb-5"
+                    className={[
+                      'border-t border-white/6 px-5 pb-5 pt-4',
+                      isRtl ? 'text-right' : 'text-left',
+                    ].join(' ')}
                   >
-                    <p className="text-base leading-7 text-[#5C677D]">
+                    <p className="text-sm leading-6 text-white/68">
                       {item.answer}
                     </p>
                   </div>

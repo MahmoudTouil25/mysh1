@@ -4,6 +4,7 @@
 
 import type { Category } from '../types/equipment';
 import type { Lang } from '../i18n/sharedContent';
+import { useLanguage } from '../i18n/LanguageContext';
 import { equipmentContent } from '../i18n/equipmentContent';
 import { equipmentDetailContent } from '../i18n/equipmentDetailContent';
 import { useEquipmentDetail } from '../hooks/useEquipmentDetail';
@@ -16,7 +17,7 @@ import EquipmentRelatedSection from '../components/equipmentDetail/EquipmentRela
 
 
 type EquipmentDetailPageProps = {
-  lang: Lang;
+  lang?: Lang;
   equipmentId?: string | number;
 };
 
@@ -29,9 +30,10 @@ function getCurrentPageUrl(): string | undefined {
 }
 
 export default function EquipmentDetailPage({
-  lang,
+  lang: fallbackLang = 'en',
   equipmentId,
 }: EquipmentDetailPageProps) {
+  const { lang } = useLanguage(fallbackLang);
   const listText = equipmentContent[lang];
   const detailText = equipmentDetailContent[lang];
 

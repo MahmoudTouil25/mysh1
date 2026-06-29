@@ -1,8 +1,39 @@
 import type { Metadata } from 'next';
+import {
+  IBM_Plex_Sans_Arabic,
+  Inter,
+  Noto_Kufi_Arabic,
+  Sora,
+} from 'next/font/google';
 import './globals.css';
 import GlobalShell from '@/components/layout/GlobalShell';
 import { organizationSchema } from '@/lib/schema';
 import { absoluteUrl, siteConfig } from '@/lib/seo';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const sora = Sora({
+  subsets: ['latin'],
+  variable: '--font-sora',
+  display: 'swap',
+});
+
+const notoKufiArabic = Noto_Kufi_Arabic({
+  subsets: ['arabic'],
+  variable: '--font-noto-kufi-arabic',
+  display: 'swap',
+});
+
+const ibmPlexSansArabic = IBM_Plex_Sans_Arabic({
+  subsets: ['arabic'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-ibm-plex-sans-arabic',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -39,7 +70,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body
+        className={`${inter.variable} ${sora.variable} ${notoKufiArabic.variable} ${ibmPlexSansArabic.variable}`}
+      >
         <GlobalShell>{children}</GlobalShell>
         <script
           type="application/ld+json"

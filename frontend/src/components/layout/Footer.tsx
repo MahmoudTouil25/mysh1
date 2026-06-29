@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Lang } from '../../i18n/sharedContent';
 import { sharedContent } from '../../i18n/sharedContent';
 
@@ -9,6 +10,7 @@ type FooterProps = {
 export default function Footer({ lang }: FooterProps) {
   const t = sharedContent[lang];
   const year = new Date().getFullYear();
+  const isRtl = lang === 'ar';
 
   const footerSections = [
     {
@@ -16,8 +18,8 @@ export default function Footer({ lang }: FooterProps) {
       items: [
         { label: t.footer.services, href: '/services' },
         { label: t.footer.equipment, href: '/equipment' },
-        { label: 'Projects', href: '/projects' },
-        { label: 'Blog', href: '/blog' },
+        { label: t.nav.projects, href: '/projects' },
+        { label: t.nav.blog, href: '/blog' },
       ],
     },
     {
@@ -30,26 +32,28 @@ export default function Footer({ lang }: FooterProps) {
   ];
 
   return (
-    <footer id="contact" className="bg-[#DEE3E5] px-4 py-12 md:py-16">
+    <footer
+      id="contact"
+      dir={isRtl ? 'rtl' : 'ltr'}
+      className={[
+        'bg-[#DEE3E5] px-4 py-12 md:py-16',
+        isRtl ? 'text-right' : 'text-left',
+      ].join(' ')}
+    >
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.4fr_1fr] lg:grid-cols-[1.6fr_1fr]">
         <div>
           <Link
             href="/"
             aria-label="MYSH homepage"
-            className="inline-flex items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1B263B]"
+            className="inline-flex rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1B263B]"
           >
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#1B263B] text-lg font-black text-[#F4D03F]">
-              M
-            </div>
-
-            <div>
-              <span className="block text-xl font-extrabold text-[#1B263B]">
-                MYSH
-              </span>
-              <span className="text-sm font-semibold text-[#5C677D]">
-                Heavy Equipment Rental
-              </span>
-            </div>
+            <Image
+              src="/logo-mysh-Footer.png"
+              alt="MYSH Heavy Equipment Rental"
+              width={96}
+              height={96}
+              className="h-24 w-24 object-contain"
+            />
           </Link>
 
           <p className="mt-5 max-w-md text-base leading-7 text-[#424849]">

@@ -1,13 +1,64 @@
 @import "tailwindcss";
 
+:root {
+  --font-body: var(--font-inter), Arial, Helvetica, sans-serif;
+  --font-heading: var(--font-sora), var(--font-inter), Arial, Helvetica,
+    sans-serif;
+  --font-numbers: var(--font-inter), Arial, Helvetica, sans-serif;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
+  font-family: var(--font-body);
+  font-feature-settings: "kern";
+  text-rendering: optimizeLegibility;
 }
 
 * {
   box-sizing: border-box;
+}
+
+[lang='en'] {
+  --font-body: var(--font-inter), Arial, Helvetica, sans-serif;
+  --font-heading: var(--font-sora), var(--font-inter), Arial, Helvetica,
+    sans-serif;
+  --font-numbers: var(--font-inter), Arial, Helvetica, sans-serif;
+}
+
+[lang='ar'] {
+  --font-body: var(--font-ibm-plex-sans-arabic), var(--font-inter), Arial,
+    Helvetica, sans-serif;
+  --font-heading: var(--font-noto-kufi-arabic),
+    var(--font-ibm-plex-sans-arabic), Arial, Helvetica, sans-serif;
+  --font-numbers: var(--font-inter), Arial, Helvetica, sans-serif;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+time,
+data,
+code,
+kbd,
+samp,
+.tabular-nums {
+  font-family: var(--font-numbers);
 }

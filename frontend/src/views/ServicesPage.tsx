@@ -1,4 +1,7 @@
+'use client';
+
 import type { Lang } from '../i18n/sharedContent';
+import { useLanguage } from '../i18n/LanguageContext';
 
 import ServicesHero from '../components/services/ServicesHero';
 import ServicesSpecializations from '../components/services/ServicesSpecializations';
@@ -8,10 +11,12 @@ import ServicesFaq from '../components/services/ServicesFaq';
 import ServicesCTA from '../components/services/ServicesCTA';
 
 type ServicesPageProps = {
-  lang: Lang;
+  lang?: Lang;
 };
 
-export default function ServicesPage({ lang }: ServicesPageProps) {
+export default function ServicesPage({ lang: fallbackLang = 'en' }: ServicesPageProps) {
+  const { lang } = useLanguage(fallbackLang);
+
   return (
     <div
       id="services"

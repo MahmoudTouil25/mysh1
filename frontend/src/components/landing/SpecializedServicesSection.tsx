@@ -5,21 +5,26 @@ type SpecializedServicesSectionProps = {
   lang: Lang;
 };
 
-const imagePaths = [
-  '/images/service-earthmoving.jpg',
-  '/images/service-lifting.jpg',
-  '/images/service-power.jpg',
-];
-
 export default function SpecializedServicesSection({
   lang,
 }: SpecializedServicesSectionProps) {
   const t = landingContent[lang];
+  const isRtl = lang === 'ar';
+  const services = t.services.items;
 
   return (
-    <section id="services" className="bg-[#F8F9FA] px-4 py-20 md:py-28">
+    <section
+      id="services"
+      dir={isRtl ? 'rtl' : 'ltr'}
+      className="bg-[#F8F9FA] px-4 py-20 md:py-28"
+    >
       <div className="mx-auto max-w-7xl">
-        <header className="mb-10 max-w-2xl">
+        <header
+          className={[
+            'mb-10 max-w-2xl',
+            isRtl ? 'text-right' : 'text-left',
+          ].join(' ')}
+        >
           <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#855300]">
             {t.services.eyebrow}
           </p>
@@ -30,19 +35,24 @@ export default function SpecializedServicesSection({
         </header>
 
         <div className="grid gap-6 md:grid-cols-3">
-          {t.services.items.map((service, index) => (
+          {services.map((service) => (
             <article
               key={service.title}
               className="group overflow-hidden rounded-3xl border border-[#C2C7C9]/70 bg-white shadow-[0_16px_40px_rgba(27,38,59,0.08)] transition hover:-translate-y-1 hover:shadow-[0_22px_55px_rgba(27,38,59,0.14)]"
             >
-              <div
-                className="h-56 bg-[#DEE3E5] bg-cover bg-center transition duration-500 group-hover:scale-[1.03]"
-                style={{ backgroundImage: `url(${imagePaths[index]})` }}
-                role="img"
-                aria-label={service.title}
-              />
+              <div className="relative h-56 overflow-hidden bg-[#DEE3E5]">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                />
 
-              <div className="p-6">
+                <span className="absolute end-4 top-4 rounded-full bg-[#DCEEEF] px-3 py-1 text-xs font-black uppercase text-[#1B263B] shadow-sm">
+                  {service.badge}
+                </span>
+              </div>
+
+              <div className={['p-6', isRtl ? 'text-right' : 'text-left'].join(' ')}>
                 <h3 className="text-2xl font-black tracking-[-0.02em] text-[#1B263B]">
                   {service.title}
                 </h3>
@@ -52,10 +62,10 @@ export default function SpecializedServicesSection({
                 </p>
 
                 <a
-                  href="#equipment"
+                  href="/services"
                   className="mt-6 inline-flex items-center gap-2 text-sm font-extrabold text-[#1B263B]"
                 >
-                  {t.services.action}
+                  {service.cta}
                   <span aria-hidden="true">{lang === 'ar' ? '←' : '→'}</span>
                 </a>
               </div>

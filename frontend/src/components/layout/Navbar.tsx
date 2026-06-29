@@ -21,6 +21,7 @@ export default function Navbar({ lang, setLang }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const t = sharedContent[lang];
+  const isRtl = lang === 'ar';
 
   const navLinks: NavLinkItem[] = [
     { label: t.nav.home, href: '/' },
@@ -45,25 +46,29 @@ export default function Navbar({ lang, setLang }: NavbarProps) {
   const getMobileLinkClass = (href: string) =>
     [
       'rounded-xl px-3 py-3 text-sm font-semibold transition hover:bg-white/10 hover:text-white',
+      isRtl ? 'text-right' : 'text-left',
       pathname === href ? 'bg-white/10 text-white' : 'text-white/85',
     ].join(' ');
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4">
+    <header
+      dir={isRtl ? 'rtl' : 'ltr'}
+      className="fixed inset-x-0 top-0 z-50 px-4 pt-4"
+    >
       <div className="mx-auto max-w-7xl">
         <nav
           aria-label="Primary navigation"
           className="
             relative overflow-hidden
             rounded-2xl
-            border border-white/20
-            bg-white/10
-            shadow-[0_8px_32px_rgba(0,0,0,0.18)]
+            border border-white/18
+            bg-[#062D31]/45
+            shadow-[0_8px_32px_rgba(6,45,49,0.28)]
             backdrop-blur-2xl
-            supports-[backdrop-filter]:bg-white/10
+            supports-[backdrop-filter]:bg-[#062D31]/38
           "
         >
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/18 via-white/8 to-transparent" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/20 via-[#062D31]/12 to-transparent" />
 
           <div className="relative z-10 flex min-h-16 items-center justify-between gap-4 px-4 md:px-6">
             <Link
