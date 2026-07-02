@@ -103,7 +103,9 @@ export function groupEquipmentByName(equipment: Equipment[]): Equipment[] {
     }
   });
 
-  return Array.from(equipmentByName.values());
+  return Array.from(equipmentByName.values()).sort((firstItem, secondItem) =>
+    firstItem.name.localeCompare(secondItem.name),
+  );
 }
 
 export function hasActiveEquipmentFilters(filters: EquipmentFilters): boolean {
@@ -176,11 +178,12 @@ export function filterEquipment(
 
     const matchesAvailability =
       filters.availability.length === 0 ||
-      filters.availability.includes(item.availability);
+      (item.availability !== undefined &&
+        filters.availability.includes(item.availability));
 
     const matchesCondition =
       filters.condition.length === 0 ||
-      filters.condition.includes(item.condition);
+      (item.condition !== undefined && filters.condition.includes(item.condition));
 
     const matchesLocation =
       selectedLocation === '' ||

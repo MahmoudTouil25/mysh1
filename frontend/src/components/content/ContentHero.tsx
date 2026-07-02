@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 type ContentHeroProps = {
   eyebrow: string;
   title: string;
@@ -17,14 +19,17 @@ export default function ContentHero({
     <header className="relative isolate overflow-hidden bg-[#1B263B] px-4 pb-16 pt-36 text-white">
       {imageSrc && (
         <>
-          <img
+          <Image
             src={imageSrc}
             alt={imageAlt ?? ''}
             aria-hidden={imageAlt ? undefined : true}
-            className="absolute inset-0 -z-30 h-full w-full object-cover"
+            fill
+            priority
+            sizes="100vw"
+            className="absolute inset-0 -z-30 object-cover"
           />
           <div className="absolute inset-0 -z-20 bg-[#062D31]/65" />
-          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#062D31]/35 via-[#062D31]/45 to-[#062D31]/85" />
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(244,208,63,0.16),transparent_34%),linear-gradient(180deg,rgba(6,45,49,0.36),rgba(6,45,49,0.88))]" />
         </>
       )}
 

@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import JsonLd from '@/components/content/JsonLd';
 import { equipmentCatalog } from '@/content/equipment';
+import EquipmentDetailPage from '@/views/EquipmentDetailPage';
 import { buildMetadata } from '@/lib/seo';
 import { breadcrumbSchema, productSchema } from '@/lib/schema';
 import { findBySlug } from '@/lib/slugs';
@@ -16,6 +17,10 @@ export function generateStaticParams() {
   return equipmentCatalog.map((item) => ({ slug: item.slug }));
 }
 
+function isEquipmentId(value: string): boolean {
+  return /^\d+$/.test(value);
+}
+
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
@@ -23,6 +28,18 @@ export async function generateMetadata({
   const item = findBySlug(equipmentCatalog, slug);
 
   if (!item) {
+    if (isEquipmentId(slug)) {
+      return buildMetadata({
+        slug,
+        title: 'Equipment Details',
+        metaTitle: 'Equipment Details | MYSH',
+        metaDescription:
+          'View MYSH equipment details, availability and rental support information.',
+        image: '/images/hero-equipment.jpg',
+        path: `/equipment/${slug}`,
+      });
+    }
+
     return {};
   }
 
@@ -31,6 +48,11 @@ export async function generateMetadata({
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
+
+  if (isEquipmentId(slug)) {
+    return <EquipmentDetailPage lang="en" equipmentId={slug} />;
+  }
+
   const item = findBySlug(equipmentCatalog, slug);
 
   if (!item) {
@@ -43,6 +65,13 @@ export default async function Page({ params }: PageProps) {
         candidate.categoryId === item.categoryId && candidate.slug !== item.slug,
     )
     .slice(0, 3);
+  const fallbackText = 'Not specified';
+  const formatOptionalNumber = (
+    value: number | undefined,
+    suffix: string,
+  ): string => {
+    return Number.isFinite(value) ? `${value} ${suffix}` : fallbackText;
+  };
 
   return (
     <article className="bg-[#F8F9FA] px-4 pb-20 pt-32 text-[#1B263B]">
@@ -76,10 +105,19 @@ export default async function Page({ params }: PageProps) {
               {item.description}
             </p>
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              <Spec label="Location" value={item.location} />
-              <Spec label="Operating weight" value={`${item.operatingWeight} t`} />
-              <Spec label="Engine power" value={`${item.enginePower} kW`} />
-              <Spec label="Minimum rental" value={`${item.minimumRentalDays} days`} />
+              <Spec label="Location" value={item.location || fallbackText} />
+              <Spec
+                label="Operating weight"
+                value={formatOptionalNumber(item.operatingWeight, 't')}
+              />
+              <Spec
+                label="Engine power"
+                value={formatOptionalNumber(item.enginePower, 'kW')}
+              />
+              <Spec
+                label="Minimum rental"
+                value={formatOptionalNumber(item.minimumRentalDays, 'days')}
+              />
             </div>
           </div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-[#DEE3E5] shadow-sm">

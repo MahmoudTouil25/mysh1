@@ -50,10 +50,17 @@ export function articleSchema(post: BlogPost) {
     headline: post.title,
     description: post.metaDescription,
     image: absoluteUrl(post.image),
-    datePublished: post.date,
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt ?? post.publishedAt,
     author: {
       '@type': 'Organization',
+      name: post.author ?? siteConfig.shortName,
+      url: siteConfig.url,
+    },
+    publisher: {
+      '@type': 'Organization',
       name: siteConfig.shortName,
+      url: siteConfig.url,
     },
   };
 }
@@ -86,8 +93,14 @@ export function projectSchema(project: ProjectItem) {
     name: project.title,
     description: project.metaDescription,
     image: absoluteUrl(project.image),
+    dateCreated: project.date,
     locationCreated: project.location,
-    about: project.sector,
+    about: project.category,
+    provider: {
+      '@type': 'Organization',
+      name: siteConfig.shortName,
+      url: siteConfig.url,
+    },
   };
 }
 

@@ -43,10 +43,21 @@ type EquipmentContent = {
     monthly: string;
     requestQuote: string;
     viewDetails: string;
+    addFavorite: string;
+    removeFavorite: string;
     location: string;
     weight: string;
     power: string;
     noImage: string;
+  };
+  favoritesCart: {
+    title: string;
+    empty: string;
+    itemCount: string;
+    itemCountSingular: string;
+    remove: string;
+    clear: string;
+    requestSelected: string;
   };
   tags: {
     search: string;
@@ -114,10 +125,21 @@ export const equipmentContent: Record<Lang, EquipmentContent>  = {
       monthly: 'month',
       requestQuote: 'Request Quote',
       viewDetails: 'View Details',
+      addFavorite: 'Add to favorites',
+      removeFavorite: 'Remove from favorites',
       location: 'Location',
       weight: 'Weight',
       power: 'Power',
       noImage: 'No image',
+    },
+    favoritesCart: {
+      title: 'Favorites Cart',
+      empty: 'Select equipment with the heart icon to add it here.',
+      itemCount: 'items selected',
+      itemCountSingular: 'item selected',
+      remove: 'Remove',
+      clear: 'Clear cart',
+      requestSelected: 'Request selected',
     },
     tags: {
       search: 'Search',
@@ -220,10 +242,21 @@ export const equipmentContent: Record<Lang, EquipmentContent>  = {
       monthly: 'الشهر',
       requestQuote: 'طلب عرض سعر',
       viewDetails: 'عرض التفاصيل',
+      addFavorite: 'إضافة إلى المفضلة',
+      removeFavorite: 'إزالة من المفضلة',
       location: 'الموقع',
       weight: 'الوزن',
       power: 'القوة',
       noImage: 'لا توجد صورة',
+    },
+    favoritesCart: {
+      title: 'سلة المفضلة',
+      empty: 'اختر المعدات باستخدام أيقونة القلب لإضافتها هنا.',
+      itemCount: 'معدات محددة',
+      itemCountSingular: 'معدة محددة',
+      remove: 'إزالة',
+      clear: 'تفريغ السلة',
+      requestSelected: 'طلب المحدد',
     },
     tags: {
       search: 'بحث',

@@ -28,12 +28,12 @@ export default function EquipmentGrid({
     return t.categories[category.name] ?? category.name;
   };
 
-  const getAvailabilityLabel = (value: string): string => {
-    return t.availability[value] ?? value;
+  const getAvailabilityLabel = (value?: string): string => {
+    return value ? t.availability[value] ?? value : '';
   };
 
-  const getConditionLabel = (value: string): string => {
-    return t.condition[value] ?? value;
+  const getConditionLabel = (value?: string): string => {
+    return value ? t.condition[value] ?? value : '';
   };
 
   return (

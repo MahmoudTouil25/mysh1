@@ -3,6 +3,7 @@ import type { Lang } from '../../i18n/sharedContent';
 import { equipmentContent } from '../../i18n/equipmentContent';
 import { getFirstEquipmentImage } from '../../utils/equipmentFilters';
 import Link from 'next/link';
+import EquipmentFavoriteButton from './EquipmentFavoriteButton';
 
 type EquipmentCardProps = {
   lang: Lang;
@@ -23,6 +24,19 @@ export default function EquipmentCard({
 }: EquipmentCardProps) {
   const t = equipmentContent[lang];
   const image = getFirstEquipmentImage(item.images);
+  const fallbackText = lang === 'ar' ? 'غير محدد' : 'Not specified';
+  const rateFallbackText = lang === 'ar' ? 'اطلب السعر' : 'Request rate';
+
+  const formatOptionalNumber = (
+    value: number | undefined,
+    suffix: string,
+  ): string => {
+    return Number.isFinite(value) ? `${value} ${suffix}` : fallbackText;
+  };
+
+  const formatOptionalCurrency = (value: number | undefined): string => {
+    return Number.isFinite(value) ? formatCurrency(Number(value)) : rateFallbackText;
+  };
 
   return (
     <article
@@ -42,9 +56,17 @@ export default function EquipmentCard({
           </div>
         )}
 
-        <span className="absolute end-4 top-4 rounded-full bg-[#F4D03F] px-3 py-1 text-xs font-black text-[#1B263B] shadow-sm">
-          {availabilityLabel}
-        </span>
+        {availabilityLabel && (
+          <span className="absolute end-4 top-4 rounded-full bg-[#F4D03F] px-3 py-1 text-xs font-black text-[#1B263B] shadow-sm">
+            {availabilityLabel}
+          </span>
+        )}
+
+        <EquipmentFavoriteButton
+          lang={lang}
+          item={item}
+          className="absolute start-4 top-4"
+        />
       </div>
 
       <div className="p-5">
@@ -61,20 +83,32 @@ export default function EquipmentCard({
         </p>
 
         <div className="mt-4 grid grid-cols-2 gap-2">
-          <Spec label={t.card.location} value={item.location} />
-          <Spec label={t.card.weight} value={`${item.operatingWeight} t`} />
-          <Spec label={t.card.power} value={`${item.enginePower} kW`} />
-          <Spec label={t.filters.condition} value={conditionLabel} />
+          <Spec label={t.card.location} value={item.location || fallbackText} />
+          <Spec
+            label={t.card.weight}
+            value={formatOptionalNumber(item.operatingWeight, 't')}
+          />
+          <Spec
+            label={t.card.power}
+            value={formatOptionalNumber(item.enginePower, 'kW')}
+          />
+          <Spec
+            label={t.filters.condition}
+            value={conditionLabel || fallbackText}
+          />
         </div>
 
         <div className="mt-5 rounded-2xl bg-[#F8F9FA] p-4">
           <p className="text-lg font-black text-[#1B263B]">
-            {formatCurrency(item.dailyRate)} / {t.card.daily}
+            {formatOptionalCurrency(item.dailyRate)}
+            {Number.isFinite(item.dailyRate) ? ` / ${t.card.daily}` : ''}
           </p>
 
-          <p className="mt-1 text-sm font-semibold text-[#5C677D]">
-            {formatCurrency(item.monthlyRate)} / {t.card.monthly}
-          </p>
+          {Number.isFinite(item.monthlyRate) && (
+            <p className="mt-1 text-sm font-semibold text-[#5C677D]">
+              {formatCurrency(Number(item.monthlyRate))} / {t.card.monthly}
+            </p>
+          )}
         </div>
 
         <div className="mt-5 grid grid-cols-2 gap-3">

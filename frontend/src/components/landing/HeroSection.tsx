@@ -13,30 +13,18 @@ export default function HeroSection({ lang }: HeroSectionProps) {
       id="home"
       className="relative isolate min-h-[760px] overflow-hidden bg-[#0E2A2C] px-4 pt-28 text-white md:min-h-[820px] md:pt-36"
     >
-      {/* Background image */}
-<div
-  aria-hidden="true"
-  className="absolute inset-0 z-0 bg-cover bg-center opacity-50"
-  style={{ backgroundImage: "url('/images/hero-equipment.jpg')" }}
-/>
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 z-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/hero-equipment.jpg')" }}
+      />
 
-{/* Main dark teal overlay */}
-<div
-  aria-hidden="true"
-  className="absolute inset-0 z-[1] bg-[#0E2A2C]/35"
-/>
+      <div aria-hidden="true" className="absolute inset-0 z-[1] bg-[#062D31]/65" />
 
-{/* Cinematic gradient */}
-<div
-  aria-hidden="true"
-  className="absolute inset-0 z-[2] bg-gradient-to-b from-[#0E2A2C]/20 via-[#0E2A2C]/35 to-[#0E2A2C]/85"
-/>
-
-{/* Soft vignette */}
-<div
-  aria-hidden="true"
-  className="absolute inset-0 z-[3] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.06)_0%,rgba(14,42,44,0)_45%,rgba(14,42,44,0.22)_100%)]"
-/>
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 z-[2] bg-[radial-gradient(circle_at_top_right,rgba(244,208,63,0.16),transparent_34%),linear-gradient(180deg,rgba(6,45,49,0.36),rgba(6,45,49,0.88))]"
+      />
 
       <div className="relative z-10 mx-auto flex min-h-[620px] max-w-7xl items-center justify-center">
         <div className="mx-auto max-w-[350px] text-center md:max-w-3xl">

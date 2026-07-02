@@ -1,5 +1,84 @@
 import type { Lang } from './sharedContent';
 
+type LandingContent = {
+  hero: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    primaryCta: string;
+    secondaryCta: string;
+  };
+  services: {
+    eyebrow: string;
+    title: string;
+    action: string;
+    items: {
+      title: string;
+      description: string;
+      image: string;
+      badge: string;
+      cta: string;
+    }[];
+  };
+  trust: {
+    clients: {
+      eyebrow: string;
+      title: string;
+      description: string;
+      items: string[];
+    };
+    brands: {
+      eyebrow: string;
+      title: string;
+      description: string;
+      items: string[];
+    };
+  };
+  reach: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    stats: { value: string; label: string }[];
+    operationsTitle: string;
+    operationsDescription: string;
+  };
+  story: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    image: string;
+    statValue: string;
+    statLabel: string;
+    primaryCta: string;
+    items: { title: string; description: string }[];
+  };
+  deliveryMap: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    mapLabel: string;
+    status: string;
+    location: string;
+    note: string;
+    markers: string[];
+    updateNote: string;
+  };
+  faq: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    items: { question: string; answer: string }[];
+  };
+  cta: {
+    title: string;
+    description: string;
+    whatsappCta: string;
+    emailCta: string;
+    whatsappHref: string;
+    emailHref: string;
+  };
+};
+
 export const landingContent = {
   en: {
     hero: {
@@ -13,6 +92,7 @@ export const landingContent = {
     services: {
       eyebrow: 'Our Fleet',
       title: 'Specialized Services',
+      action: 'Explore Fleet',
       items: [
         {
           title: 'Earthmoving Equipment',
@@ -39,7 +119,27 @@ export const landingContent = {
           cta: 'Request Equipment',
         },
       ],
-      action: 'Explore Fleet',
+    },
+    trust: {
+      clients: {
+        eyebrow: 'Trusted Clients',
+        title: 'Chosen by project teams that need dependable site support.',
+        description:
+          'MYSH supports contractors, industrial operators and infrastructure teams with practical rental coordination and fleet access.',
+        items: [
+          'Infrastructure contractors',
+          'Industrial operators',
+          'Road maintenance teams',
+          'Marine and logistics projects',
+        ],
+      },
+      brands: {
+        eyebrow: 'Equipment Brands',
+        title: 'Fleet brands ready for demanding construction work.',
+        description:
+          'Our equipment selection includes proven heavy machinery brands used across earthmoving, hauling, excavation and site preparation.',
+        items: ['CAT', 'KOMATSU', 'VOLVO', 'SANY', 'HITACHI'],
+      },
     },
     reach: {
       eyebrow: 'Operational Reach',
@@ -116,7 +216,7 @@ export const landingContent = {
     cta: {
       title: 'Ready to Power Your Next Project?',
       description:
-        'Contact our experts today for a customized quote or technical consultation. We are available 24/7 to support your operational needs.',
+        'Contact our experts today for a customized quote or technical consultation. We are available to support your operational needs.',
       whatsappCta: 'Message on WhatsApp',
       emailCta: 'Send an Email',
       whatsappHref: '#contact',
@@ -129,18 +229,19 @@ export const landingContent = {
       eyebrow: 'تأجير المعدات الثقيلة وتجارة الآلات - دبي، الإمارات',
       title: 'قوة صناعية عند الطلب.',
       description:
-        'معدات ثقيلة وآلات وحلول لوجستية متخصصة لمشاريع البناء والبنية التحتية والمشاريع الصناعية في دولة الإمارات.',
+        'معدات ثقيلة وحلول تشغيل ولوجستيات متخصصة لمشاريع البناء والبنية التحتية والصناعة في دولة الإمارات.',
       primaryCta: 'طلب عرض سعر',
       secondaryCta: 'عرض المعدات',
     },
     services: {
       eyebrow: 'أسطولنا',
       title: 'خدمات متخصصة',
+      action: 'استكشف الأسطول',
       items: [
         {
-          title: 'معدات الحفر وتجهيز المواقع',
+          title: 'معدات تحريك التربة',
           description:
-            'حفارات ولوادر ومعدات عالية القدرة لأعمال تجهيز المواقع والمشاريع الإنشائية الكبيرة.',
+            'حفارات ولوادر ومعدات تجهيز مواقع عالية القدرة لمشاريع البناء والأعمال الثقيلة.',
           image: '/images/services/earthmoving.png',
           badge: 'تحريك التربة',
           cta: 'طلب المعدات',
@@ -148,9 +249,9 @@ export const landingContent = {
         {
           title: 'حلول الرفع',
           description:
-            'رافعات ومعدات رفع وحلول مناولة للمواقع الحضرية والمشاريع المفتوحة.',
+            'رافعات ومعدات رفع ومناولة للمواقع الحضرية والمشاريع المفتوحة ومتطلبات التشغيل الثقيلة.',
           image: '/images/services/infrastructure-maintenance.png',
-          badge: 'رفع',
+          badge: 'الرفع',
           cta: 'طلب المعدات',
         },
         {
@@ -158,17 +259,37 @@ export const landingContent = {
           description:
             'مولدات وحلول طاقة متنقلة للمواقع المؤقتة والتشغيل خارج الشبكة واحتياجات الطوارئ.',
           image: '/images/services/resilience.png',
-          badge: 'طاقة',
+          badge: 'الطاقة',
           cta: 'طلب المعدات',
         },
       ],
-      action: 'استكشف الأسطول',
+    },
+    trust: {
+      clients: {
+        eyebrow: 'عملاؤنا',
+        title: 'اختيار فرق المشاريع التي تحتاج إلى دعم موثوق في الموقع.',
+        description:
+          'تدعم MYSH المقاولين والمشغلين الصناعيين وفرق البنية التحتية من خلال تنسيق عملي للتأجير وإتاحة الأسطول.',
+        items: [
+          'مقاولو البنية التحتية',
+          'المشغلون الصناعيون',
+          'فرق صيانة الطرق',
+          'مشاريع النقل البحري واللوجستيات',
+        ],
+      },
+      brands: {
+        eyebrow: 'علامات المعدات',
+        title: 'علامات أسطول جاهزة لأعمال البناء الثقيلة.',
+        description:
+          'يشمل أسطولنا علامات معدات ثقيلة موثوقة لأعمال الحفر والنقل وتحريك التربة وتجهيز المواقع.',
+        items: ['CAT', 'KOMATSU', 'VOLVO', 'SANY', 'HITACHI'],
+      },
     },
     reach: {
       eyebrow: 'نطاق التشغيل',
-      title: 'حلول مهيأة لمواقع المشاريع السريعة في الإمارات.',
+      title: 'جاهزون لمواقع المشاريع السريعة في الإمارات.',
       description:
-        'من عملياتنا في دبي إلى مواقع البناء والمناطق الصناعية ومشاريع البنية التحتية، تدعم MYSH الوصول السريع والمنظم للمعدات.',
+        'من عمليات دبي إلى مواقع البناء والمناطق الصناعية ومشاريع البنية التحتية، تدعم MYSH وصولا منظما وموثوقا للمعدات.',
       stats: [
         { value: 'دبي', label: 'قاعدة التشغيل' },
         { value: 'الإمارات', label: 'نطاق التأجير' },
@@ -176,22 +297,22 @@ export const landingContent = {
       ],
       operationsTitle: 'عمليات MYSH',
       operationsDescription:
-        'دعم تأجير المعدات للمقاولين ومديري المشاريع والمشغلين الصناعيين الذين يحتاجون إلى وصول موثوق للمعدات.',
+        'دعم تأجير المعدات للمقاولين ومديري المشاريع والمشغلين الصناعيين الذين يحتاجون إلى وصول موثوق للآلات.',
     },
     story: {
       eyebrow: 'قصتنا',
       title: 'إرث من القوة والموثوقية',
       description:
-        'تأسست MYSH عام 1977 بجذور راسخة في الأردن، وانطلقت برؤية لتطوير مشهد المعدات الصناعية. تقوم رحلتنا على الالتزام الدائم بجودة المعدات والثقة التشغيلية.',
+        'تأسست MYSH عام 1977 بجذور راسخة في الأردن، وانطلقت برؤية لتطوير قطاع المعدات الصناعية. تقوم رحلتنا على الالتزام بجودة المعدات والثقة التشغيلية.',
       image: '/images/story.png',
       statValue: '47+',
-      statLabel: 'عاماً من الخبرة',
+      statLabel: 'عاما من الخبرة',
       primaryCta: 'اقرأ تاريخنا الكامل',
       items: [
         {
           title: 'بدايات 1977',
           description:
-            'تأسست في الأردن، لتضع أساساً قوياً للتخصص في المعدات الصناعية الثقيلة.',
+            'تأسست في الأردن لتضع أساسا قويا للتخصص في المعدات الصناعية الثقيلة.',
         },
         {
           title: 'التوسع في الإمارات',
@@ -204,30 +325,30 @@ export const landingContent = {
       eyebrow: 'خريطة التوصيل',
       title: 'حدود التوصيل الحالية داخل دبي.',
       description:
-        'نركز نطاق التوصيل الحالي على دبي في هذه المرحلة لمساعدة الفريق على تنسيق حركة المعدات والوصول إلى المواقع ومواعيد الإرسال بوضوح أكبر.',
+        'يركز نطاق التوصيل الحالي على دبي لمساعدة الفريق على تنسيق حركة المعدات والوصول إلى المواقع ومواعيد الإرسال بوضوح أكبر.',
       mapLabel: 'حدود التوصيل في دبي',
       status: 'التغطية الحالية',
       location: 'دبي، الإمارات',
-      note: 'يمكن مراجعة التوصيل إلى إمارات أخرى حسب الطلب.',
+      note: 'يمكن مراجعة التوصيل إلى إمارات أخرى عند الطلب.',
       markers: ['مركز دبي', 'جبل علي', 'القصيص'],
       updateNote:
-        'يتم تحديث نطاق التوصيل تدريجياً حسب توفر الأسطول وجدولة المشاريع.',
+        'يمكن توسيع نطاق التوصيل حسب توفر الأسطول وجدولة المشاريع.',
     },
     faq: {
       eyebrow: 'الأسئلة الشائعة',
-      title: 'الأسئلة الأكثر تكراراً',
+      title: 'الأسئلة الأكثر تكرارا',
       description:
         'كل ما تحتاج إلى معرفته عن عملية التأجير والخدمات اللوجستية.',
       items: [
         {
           question: 'كيف أطلب عرض سعر؟',
           answer:
-            'يمكنك طلب عرض سعر مباشرة من الموقع عبر زر طلب عرض سعر أو التواصل مع فريقنا عبر واتساب. يرجى تزويدنا بموقع المشروع ونوع المعدات المطلوبة.',
+            'يمكنك طلب عرض سعر من خلال زر طلب عرض سعر أو التواصل مع فريقنا عبر واتساب. يرجى تزويدنا بموقع المشروع ونوع المعدات المطلوبة.',
         },
         {
           question: 'ما هي مناطق التوصيل؟',
           answer:
-            'يركز تنسيق التوصيل حالياً على دبي، ويمكن مراجعة المواقع الأخرى داخل الإمارات حسب توفر المعدات وإمكانية الوصول إلى الموقع والجدول الزمني.',
+            'يركز تنسيق التوصيل حاليا على دبي، ويمكن مراجعة المواقع الأخرى داخل الإمارات حسب توفر المعدات وإمكانية الوصول والجدول الزمني.',
         },
         {
           question: 'هل توفرون مشغلي معدات؟',
@@ -237,13 +358,13 @@ export const landingContent = {
       ],
     },
     cta: {
-      title: 'هل أنت جاهز لدعم مشروعك القادم؟',
+      title: 'جاهز لدعم مشروعك القادم؟',
       description:
-        'تواصل مع خبرائنا اليوم للحصول على عرض مخصص أو استشارة فنية. نحن متاحون لدعم احتياجاتك التشغيلية.',
+        'تواصل مع خبرائنا للحصول على عرض مخصص أو استشارة فنية تناسب احتياجاتك التشغيلية.',
       whatsappCta: 'راسلنا عبر واتساب',
-      emailCta: 'أرسل بريداً إلكترونياً',
+      emailCta: 'أرسل بريدا إلكترونيا',
       whatsappHref: '#contact',
       emailHref: 'mailto:info@mysh.com',
     },
   },
-} satisfies Record<Lang, unknown>;
+} satisfies Record<Lang, LandingContent>;

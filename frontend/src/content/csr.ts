@@ -6,7 +6,7 @@ export const csrContent: CsrContent = {
   metaTitle: 'CSR | MYSH Heavy Equipment Rental UAE',
   metaDescription:
     'MYSH CSR commitments for responsible equipment rental, safer worksites, efficient fleet use and community-minded operations in the UAE.',
-  image: '/images/hero-equipment.jpg',
+  image: '/csr-hero-section.png',
   eyebrow: 'Responsible Rental Operations',
   excerpt:
     'MYSH supports responsible equipment rental practices that prioritize safer coordination, efficient machinery use and long-term trust with UAE contractors.',

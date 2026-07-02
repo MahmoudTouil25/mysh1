@@ -21,6 +21,19 @@ export default function EquipmentDetailHero({
   formatCurrency,
 }: EquipmentDetailHeroProps) {
   const t = equipmentDetailContent[lang];
+  const fallbackText = lang === 'ar' ? 'غير محدد' : 'Not specified';
+  const rateFallbackText = lang === 'ar' ? 'اطلب السعر' : 'Request rate';
+
+  const formatOptionalNumber = (
+    value: number | undefined,
+    suffix: string,
+  ): string => {
+    return Number.isFinite(value) ? `${value} ${suffix}` : fallbackText;
+  };
+
+  const formatOptionalCurrency = (value: number | undefined): string => {
+    return Number.isFinite(value) ? formatCurrency(Number(value)) : rateFallbackText;
+  };
 
   return (
     <section className="grid gap-8 lg:grid-cols-[1fr_0.95fr] lg:items-start">
@@ -31,8 +44,8 @@ export default function EquipmentDetailHero({
 
         <div className="mt-4 flex flex-wrap items-center gap-2">
           {categoryLabel && <Badge>{categoryLabel}</Badge>}
-          <Badge>{availabilityLabel}</Badge>
-          <Badge>{conditionLabel}</Badge>
+          {availabilityLabel && <Badge>{availabilityLabel}</Badge>}
+          {conditionLabel && <Badge>{conditionLabel}</Badge>}
         </div>
 
         <h1 className="mt-5 text-4xl font-black leading-[1.05] tracking-[-0.04em] text-[#1B263B] md:text-6xl">
@@ -62,27 +75,30 @@ export default function EquipmentDetailHero({
           <SpecCard label={t.specs.year} value={equipment.year} />
           <SpecCard
             label={t.specs.operatingWeight}
-            value={`${equipment.operatingWeight} t`}
+            value={formatOptionalNumber(equipment.operatingWeight, 't')}
           />
           <SpecCard
             label={t.specs.enginePower}
-            value={`${equipment.enginePower} kW`}
+            value={formatOptionalNumber(equipment.enginePower, 'kW')}
           />
-          <SpecCard label={t.specs.location} value={equipment.location} />
+          <SpecCard
+            label={t.specs.location}
+            value={equipment.location || fallbackText}
+          />
         </div>
 
         <div className="mt-6 grid gap-3 rounded-[2rem] border border-[#C2C7C9]/70 bg-white p-5 shadow-sm sm:grid-cols-3">
           <PriceCard
             label={t.specs.dailyRate}
-            value={formatCurrency(equipment.dailyRate)}
+            value={formatOptionalCurrency(equipment.dailyRate)}
           />
           <PriceCard
             label={t.specs.weeklyRate}
-            value={formatCurrency(equipment.weeklyRate)}
+            value={formatOptionalCurrency(equipment.weeklyRate)}
           />
           <PriceCard
             label={t.specs.monthlyRate}
-            value={formatCurrency(equipment.monthlyRate)}
+            value={formatOptionalCurrency(equipment.monthlyRate)}
           />
         </div>
       </div>

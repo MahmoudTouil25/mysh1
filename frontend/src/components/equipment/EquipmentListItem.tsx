@@ -3,6 +3,7 @@ import type { Lang } from '../../i18n/sharedContent';
 import { equipmentContent } from '../../i18n/equipmentContent';
 import { getFirstEquipmentImage } from '../../utils/equipmentFilters';
 import Link from 'next/link';
+import EquipmentFavoriteButton from './EquipmentFavoriteButton';
 
 type EquipmentListItemProps = {
   lang: Lang;
@@ -23,6 +24,17 @@ export default function EquipmentListItem({
 }: EquipmentListItemProps) {
   const t = equipmentContent[lang];
   const image = getFirstEquipmentImage(item.images);
+  const fallbackText = lang === 'ar' ? 'غير محدد' : 'Not specified';
+  const rateFallbackText = lang === 'ar' ? 'اطلب السعر' : 'Request rate';
+  const detailPills = [
+    availabilityLabel,
+    conditionLabel,
+    item.location,
+    Number.isFinite(item.operatingWeight)
+      ? `${item.operatingWeight} t`
+      : undefined,
+    Number.isFinite(item.enginePower) ? `${item.enginePower} kW` : undefined,
+  ].filter((value): value is string => Boolean(value));
 
   return (
     <article
@@ -57,22 +69,30 @@ export default function EquipmentListItem({
         </p>
 
         <div className="mt-4 flex flex-wrap gap-2">
-          <Pill>{availabilityLabel}</Pill>
-          <Pill>{conditionLabel}</Pill>
-          <Pill>{item.location}</Pill>
-          <Pill>{item.operatingWeight} t</Pill>
-          <Pill>{item.enginePower} kW</Pill>
+          {detailPills.length > 0 ? (
+            detailPills.map((value) => <Pill key={value}>{value}</Pill>)
+          ) : (
+            <Pill>{fallbackText}</Pill>
+          )}
         </div>
       </div>
 
       <div className="md:text-end">
+        <div className="mb-3 flex justify-end">
+          <EquipmentFavoriteButton lang={lang} item={item} />
+        </div>
+
         <p className="text-lg font-black text-[#1B263B]">
-          {formatCurrency(item.dailyRate)}
+          {Number.isFinite(item.dailyRate)
+            ? formatCurrency(Number(item.dailyRate))
+            : rateFallbackText}
         </p>
 
-        <p className="text-sm font-semibold text-[#5C677D]">
-          / {t.card.daily}
-        </p>
+        {Number.isFinite(item.dailyRate) && (
+          <p className="text-sm font-semibold text-[#5C677D]">
+            / {t.card.daily}
+          </p>
+        )}
 
         <div className="mt-4 flex flex-wrap gap-3 md:justify-end">
           <Link

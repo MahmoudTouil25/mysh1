@@ -1,8 +1,8 @@
 import type { MetadataRoute } from 'next';
-import { blogPosts } from '@/content/blog';
+import { blogPosts } from '@/data/blog';
 import { equipmentCatalog } from '@/content/equipment';
 import { events } from '@/content/events';
-import { projects } from '@/content/projects';
+import { projects } from '@/data/projects';
 import { services } from '@/content/services';
 import { siteConfig } from '@/lib/seo';
 
@@ -20,17 +20,37 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/projects',
   ];
 
+  const baseRoutes = staticRoutes.map((route) => ({
+    route,
+    lastModified: now,
+  }));
+
   const dynamicRoutes = [
-    ...services.map((item) => `/services/${item.slug}`),
-    ...equipmentCatalog.map((item) => `/equipment/${item.slug}`),
-    ...blogPosts.map((item) => `/blog/${item.slug}`),
-    ...events.map((item) => `/events/${item.slug}`),
-    ...projects.map((item) => `/projects/${item.slug}`),
+    ...services.map((item) => ({
+      route: `/services/${item.slug}`,
+      lastModified: now,
+    })),
+    ...equipmentCatalog.map((item) => ({
+      route: `/equipment/${item.slug}`,
+      lastModified: now,
+    })),
+    ...blogPosts.map((item) => ({
+      route: `/blog/${item.slug}`,
+      lastModified: new Date(item.updatedAt ?? item.publishedAt),
+    })),
+    ...events.map((item) => ({
+      route: `/events/${item.slug}`,
+      lastModified: new Date(item.date),
+    })),
+    ...projects.map((item) => ({
+      route: `/projects/${item.slug}`,
+      lastModified: new Date(item.date),
+    })),
   ];
 
-  return [...staticRoutes, ...dynamicRoutes].map((route) => ({
+  return [...baseRoutes, ...dynamicRoutes].map(({ route, lastModified }) => ({
     url: `${siteConfig.url}${route}`,
-    lastModified: now,
+    lastModified,
     changeFrequency: route === '/' ? 'weekly' : 'monthly',
     priority: route === '/' ? 1 : 0.7,
   }));

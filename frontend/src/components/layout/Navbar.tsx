@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { Lang } from '../../i18n/sharedContent';
 import { sharedContent } from '../../i18n/sharedContent';
+import { useEquipmentFavorites } from '../../contexts/EquipmentFavoritesContext';
 import LanguageToggle from '../common/LanguageToggle';
 
 type NavbarProps = {
@@ -22,6 +23,7 @@ export default function Navbar({ lang, setLang }: NavbarProps) {
   const pathname = usePathname();
   const t = sharedContent[lang];
   const isRtl = lang === 'ar';
+  const { favoriteCount } = useEquipmentFavorites();
 
   const navLinks: NavLinkItem[] = [
     { label: t.nav.home, href: '/' },
@@ -100,6 +102,19 @@ export default function Navbar({ lang, setLang }: NavbarProps) {
               <LanguageToggle lang={lang} setLang={setLang} />
 
               <Link
+                href="/equipment#equipment-favorites-cart"
+                aria-label={`${t.nav.cart}: ${favoriteCount}`}
+                className="relative inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+              >
+                <CartIcon />
+                {favoriteCount > 0 && (
+                  <span className="absolute -right-1 -top-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-[#F4D03F] px-1 text-[11px] font-black text-[#1B263B]">
+                    {favoriteCount}
+                  </span>
+                )}
+              </Link>
+
+              <Link
                 href="/contact"
                 className="inline-flex min-h-10 items-center justify-center rounded-full bg-[#F4D03F] px-5 text-sm font-extrabold text-[#1B263B] transition hover:brightness-95"
               >
@@ -109,6 +124,20 @@ export default function Navbar({ lang, setLang }: NavbarProps) {
 
             <div className="flex items-center gap-2 md:hidden">
               <LanguageToggle lang={lang} setLang={setLang} />
+
+              <Link
+                href="/equipment#equipment-favorites-cart"
+                aria-label={`${t.nav.cart}: ${favoriteCount}`}
+                onClick={closeMobileMenu}
+                className="relative inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+              >
+                <CartIcon />
+                {favoriteCount > 0 && (
+                  <span className="absolute -right-1 -top-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-[#F4D03F] px-1 text-[11px] font-black text-[#1B263B]">
+                    {favoriteCount}
+                  </span>
+                )}
+              </Link>
 
               <button
                 type="button"
@@ -172,5 +201,24 @@ export default function Navbar({ lang, setLang }: NavbarProps) {
         </nav>
       </div>
     </header>
+  );
+}
+
+function CartIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="h-5 w-5"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="8" cy="21" r="1" />
+      <circle cx="19" cy="21" r="1" />
+      <path d="M2.5 3h2.2l2.5 12.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.4L22 8H6" />
+    </svg>
   );
 }

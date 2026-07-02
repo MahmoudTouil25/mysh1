@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import type { Category, Equipment } from '../types/equipment';
+import type { Category, Equipment, EquipmentFilters } from '../types/equipment';
 import { getCategories, getEquipment } from '../services/api';
 import type { Lang } from '../i18n/sharedContent';
 import { useLanguage } from '../i18n/LanguageContext';
@@ -17,6 +17,7 @@ import EquipmentResultsHeader from '../components/equipment/EquipmentResultsHead
 import EquipmentEmptyState from '../components/equipment/EquipmentEmptyState';
 import EquipmentGrid from '../components/equipment/EquipmentGrid';
 import EquipmentList from '../components/equipment/EquipmentList';
+import EquipmentFavoritesCart from '../components/equipment/EquipmentFavoritesCart';
 
 type EquipmentListPageProps = {
   lang?: Lang;
@@ -102,23 +103,68 @@ export default function EquipmentListPage({
     1,
     Math.ceil(groupedFilteredEquipment.length / EQUIPMENT_PAGE_SIZE),
   );
+  const safeCurrentPage = Math.min(currentPage, totalPages);
 
   const paginatedEquipment = useMemo(() => {
-    const startIndex = (currentPage - 1) * EQUIPMENT_PAGE_SIZE;
+    const startIndex = (safeCurrentPage - 1) * EQUIPMENT_PAGE_SIZE;
 
     return groupedFilteredEquipment.slice(
       startIndex,
       startIndex + EQUIPMENT_PAGE_SIZE,
     );
-  }, [currentPage, groupedFilteredEquipment]);
+  }, [safeCurrentPage, groupedFilteredEquipment]);
 
-  useEffect(() => {
+  const resetCurrentPage = () => {
     setCurrentPage(1);
-  }, [filters]);
+  };
 
-  useEffect(() => {
-    setCurrentPage((page) => Math.min(page, totalPages));
-  }, [totalPages]);
+  const handleSearchChange = (value: string) => {
+    resetCurrentPage();
+    setSearch(value);
+  };
+
+  const handleCategoryChange = (value: number | null) => {
+    resetCurrentPage();
+    setCategoryId(value);
+  };
+
+  const handleAvailabilityToggle = (value: string) => {
+    resetCurrentPage();
+    toggleAvailability(value);
+  };
+
+  const handleConditionToggle = (value: string) => {
+    resetCurrentPage();
+    toggleCondition(value);
+  };
+
+  const handleLocationChange = (value: string) => {
+    resetCurrentPage();
+    setLocation(value);
+  };
+
+  const handleMinDailyRateChange = (value: string) => {
+    resetCurrentPage();
+    setMinDailyRate(value);
+  };
+
+  const handleMaxDailyRateChange = (value: string) => {
+    resetCurrentPage();
+    setMaxDailyRate(value);
+  };
+
+  const handleClearAllFilters = () => {
+    resetCurrentPage();
+    clearAllFilters();
+  };
+
+  const handleRemoveFilter = (
+    type: keyof EquipmentFilters,
+    value?: string | number,
+  ) => {
+    resetCurrentPage();
+    removeFilter(type, value);
+  };
 
   const formatCurrency = (value: number): string => {
     return new Intl.NumberFormat(lang === 'ar' ? 'ar-AE' : 'en-AE', {
@@ -177,7 +223,7 @@ export default function EquipmentListPage({
         <EquipmentToolbar
           lang={lang}
           searchValue={filters.search}
-          onSearchChange={setSearch}
+          onSearchChange={handleSearchChange}
           viewMode={viewMode}
           onViewModeChange={setViewMode}
           onToggleFilters={toggleMobileFilters}
@@ -189,9 +235,11 @@ export default function EquipmentListPage({
           filters={filters}
           categoriesById={categoriesById}
           hasFilters={hasFilters}
-          onRemoveFilter={removeFilter}
-          onClearAll={clearAllFilters}
+          onRemoveFilter={handleRemoveFilter}
+          onClearAll={handleClearAllFilters}
         />
+
+        <EquipmentFavoritesCart lang={lang} formatCurrency={formatCurrency} />
 
         <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
           <EquipmentFilterPanel
@@ -201,13 +249,13 @@ export default function EquipmentListPage({
             locations={locations}
             isMobileOpen={isMobileFiltersOpen}
             hasFilters={hasFilters}
-            onClearAll={clearAllFilters}
-            onCategoryChange={setCategoryId}
-            onAvailabilityToggle={toggleAvailability}
-            onConditionToggle={toggleCondition}
-            onLocationChange={setLocation}
-            onMinDailyRateChange={setMinDailyRate}
-            onMaxDailyRateChange={setMaxDailyRate}
+            onClearAll={handleClearAllFilters}
+            onCategoryChange={handleCategoryChange}
+            onAvailabilityToggle={handleAvailabilityToggle}
+            onConditionToggle={handleConditionToggle}
+            onLocationChange={handleLocationChange}
+            onMinDailyRateChange={handleMinDailyRateChange}
+            onMaxDailyRateChange={handleMaxDailyRateChange}
           />
 
           <section>
@@ -221,7 +269,7 @@ export default function EquipmentListPage({
               <EquipmentEmptyState
                 lang={lang}
                 hasFilters={hasFilters}
-                onClearAll={clearAllFilters}
+                onClearAll={handleClearAllFilters}
               />
             ) : viewMode === 'grid' ? (
               <EquipmentGrid
@@ -241,7 +289,7 @@ export default function EquipmentListPage({
 
             {groupedFilteredEquipment.length > EQUIPMENT_PAGE_SIZE && (
               <EquipmentPagination
-                currentPage={currentPage}
+                currentPage={safeCurrentPage}
                 totalPages={totalPages}
                 onPageChange={setCurrentPage}
               />

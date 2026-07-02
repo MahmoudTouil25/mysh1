@@ -4,6 +4,7 @@ export type SeoFields = {
   metaTitle: string;
   metaDescription: string;
   image: string;
+  imageAlt?: string;
 };
 
 export type ContentBlock = {
@@ -12,11 +13,19 @@ export type ContentBlock = {
 };
 
 export type BlogPost = SeoFields & {
+  description: string;
   excerpt: string;
-  date: string;
-  author: string;
+  publishedAt: string;
+  updatedAt?: string;
+  readingTime?: string;
+  author?: string;
   category: string;
-  content: ContentBlock[];
+  imageAlt: string;
+  content: {
+    intro: string;
+    sections: ContentBlock[];
+    conclusion?: string;
+  };
 };
 
 export type EventItem = SeoFields & {
@@ -28,11 +37,20 @@ export type EventItem = SeoFields & {
 };
 
 export type ProjectItem = SeoFields & {
+  description: string;
   excerpt: string;
+  category: string;
   location: string;
-  sector: string;
-  completion: string;
-  content: ContentBlock[];
+  clientType?: string;
+  imageAlt: string;
+  date: string;
+  equipmentUsed: string[];
+  content: {
+    overview: string;
+    challenge: string;
+    solution: string;
+    result: string;
+  };
 };
 
 export type CsrContent = SeoFields & {

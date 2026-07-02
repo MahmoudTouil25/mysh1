@@ -12,6 +12,7 @@ export const sharedContent = {
       about: 'About',
       contact: 'Contact',
       quote: 'Request Quote',
+      cart: 'Favorites cart',
       openMenu: 'Open menu',
       closeMenu: 'Close menu',
       changeLanguage: 'Change language',
@@ -40,10 +41,11 @@ export const sharedContent = {
       services: 'الخدمات',
       projects: 'المشاريع',
       blog: 'المدونة',
-      csr: 'CSR',
+      csr: 'المسؤولية المجتمعية',
       about: 'من نحن',
       contact: 'اتصل بنا',
       quote: 'طلب عرض سعر',
+      cart: 'سلة المفضلة',
       openMenu: 'فتح القائمة',
       closeMenu: 'إغلاق القائمة',
       changeLanguage: 'تغيير اللغة',
@@ -64,4 +66,4 @@ export const sharedContent = {
       label: 'تواصل معنا عبر واتساب',
     },
   },
-};
+} satisfies Record<Lang, Record<string, unknown>>;

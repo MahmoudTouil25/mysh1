@@ -1,12 +1,21 @@
 import type { Category, Equipment } from '../types/equipment';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? '';
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001';
 
 async function apiGet<T>(endpoint: string): Promise<T> {
-  const response = await fetch(`${API_URL}${endpoint}`);
+  const url = `${API_URL.replace(/\/$/, '')}${endpoint}`;
+  const response = await fetch(url);
+  const contentType = response.headers.get('content-type') ?? '';
 
   if (!response.ok) {
-    throw new Error(`API error: ${response.status}`);
+    throw new Error(`API error ${response.status} while fetching ${url}`);
+  }
+
+  if (!contentType.includes('application/json')) {
+    throw new Error(
+      `Expected JSON from ${url}, received ${contentType || 'unknown content type'}`,
+    );
   }
 
   return response.json();

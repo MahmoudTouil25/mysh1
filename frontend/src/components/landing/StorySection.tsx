@@ -28,7 +28,7 @@ export default function StorySection({ lang }: StorySectionProps) {
               <div
                 aria-hidden="true"
                 className={[
-                  'absolute inset-y-0 w-[49%] bg-[#283437]/65 grayscale backdrop-saturate-0',
+                  'absolute inset-y-0 w-[0%] bg-[#283437]/65 grayscale backdrop-saturate-0',
                   isRtl ? 'right-0' : 'left-0',
                 ].join(' ')}
               />
@@ -36,7 +36,7 @@ export default function StorySection({ lang }: StorySectionProps) {
               <div
                 aria-hidden="true"
                 className={[
-                  'absolute top-0 h-full w-[47%] bg-[#F5FAFC]',
+                  'absolute top-0 h-full w-[0%] bg-[#F5FAFC]',
                   isRtl
                     ? 'left-0 [clip-path:polygon(0_0,100%_0,0_100%)]'
                     : 'right-0 [clip-path:polygon(100%_0,100%_100%,0_100%)]',

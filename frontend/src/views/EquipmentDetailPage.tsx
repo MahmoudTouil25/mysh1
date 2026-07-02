@@ -59,12 +59,12 @@ export default function EquipmentDetailPage({
     return listText.categories[categoryValue.name] ?? categoryValue.name;
   };
 
-  const getAvailabilityLabel = (value: string): string => {
-    return listText.availability[value] ?? value;
+  const getAvailabilityLabel = (value?: string): string => {
+    return value ? listText.availability[value] ?? value : '';
   };
 
-  const getConditionLabel = (value: string): string => {
-    return listText.condition[value] ?? value;
+  const getConditionLabel = (value?: string): string => {
+    return value ? listText.condition[value] ?? value : '';
   };
 
   const formatCurrency = (value: number): string => {

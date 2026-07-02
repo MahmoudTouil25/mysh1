@@ -32,7 +32,9 @@ export function buildMetadata({
   const imageUrl = absoluteUrl(image);
 
   return {
-    title: metaTitle || title,
+    title: {
+      absolute: metaTitle || title,
+    },
     description: metaDescription,
     alternates: {
       canonical: path,
@@ -50,6 +52,12 @@ export function buildMetadata({
         },
       ],
       type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: metaTitle || title,
+      description: metaDescription,
+      images: [imageUrl],
     },
   };
 }

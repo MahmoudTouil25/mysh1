@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import EquipmentListPage from '@/views/EquipmentListPage';
-import { equipmentCatalog, equipmentCategories } from '@/content/equipment';
 import { buildMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
@@ -14,11 +13,5 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function Page() {
-  return (
-    <EquipmentListPage
-      lang="en"
-      initialEquipment={equipmentCatalog}
-      initialCategories={equipmentCategories}
-    />
-  );
+  return <EquipmentListPage lang="en" />;
 }
