@@ -16,6 +16,12 @@ export type Equipment = {
   location?: string;
   description?: string;
   images?: string;
+  'Operating weight kg'?: string | number;
+  'Engine power kW'?: string | number;
+  'Engine power HP'?: string | number;
+  'Payload / Load t'?: string | number;
+  'Body/Bucket/Blade capacity'?: string | number;
+  'Max speed km/h'?: string | number;
 };
 
 export type Category = {
@@ -30,9 +36,7 @@ export type ViewMode = 'grid' | 'list';
 export type EquipmentFilters = {
   search: string;
   categoryId: number | null;
-  availability: string[];
-  condition: string[];
-  location: string;
-  minDailyRate: string;
-  maxDailyRate: string;
+  brand: string;
+  model: string;
+  operatingWeight: string;
 };

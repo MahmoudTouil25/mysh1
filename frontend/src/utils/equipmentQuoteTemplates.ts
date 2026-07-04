@@ -1,12 +1,19 @@
 import type { Lang } from '../i18n/sharedContent';
 import type { Equipment } from '../types/equipment';
 
+export type EquipmentRentalMode = 'dates' | 'period';
+
 export type EquipmentQuoteFormValues = {
   fullName: string;
   phone: string;
   email: string;
   projectLocation: string;
-  rentalDuration: string;
+  rentalMode: EquipmentRentalMode;
+  startDate: string;
+  endDate: string;
+  periodMonths: string;
+  periodWeeks: string;
+  periodDays: string;
   message: string;
 };
 
@@ -15,7 +22,12 @@ export const emptyEquipmentQuoteFormValues: EquipmentQuoteFormValues = {
   phone: '',
   email: '',
   projectLocation: '',
-  rentalDuration: '',
+  rentalMode: 'dates',
+  startDate: '',
+  endDate: '',
+  periodMonths: '1',
+  periodWeeks: '0',
+  periodDays: '0',
   message: '',
 };
 
@@ -45,6 +57,71 @@ function hasValue(value: string): boolean {
 
 function formatEquipmentLine(equipment: Equipment): string {
   return `${equipment.brand} ${equipment.model} - ${equipment.name}`;
+}
+
+function parseDurationPart(value: string, fallbackValue: number): number {
+  const numericValue = Number.parseInt(value, 10);
+
+  return Number.isFinite(numericValue) && numericValue >= 0
+    ? numericValue
+    : fallbackValue;
+}
+
+function formatPeriodPart(
+  value: number,
+  singularLabel: string,
+  pluralLabel: string,
+): string | null {
+  if (value <= 0) {
+    return null;
+  }
+
+  return `${value} ${value === 1 ? singularLabel : pluralLabel}`;
+}
+
+function buildRentalDurationSummary({
+  lang,
+  formValues,
+}: Pick<BuildQuoteTemplateParams, 'lang' | 'formValues'>): string {
+  if (formValues.rentalMode === 'dates') {
+    const startDate = cleanValue(formValues.startDate);
+    const endDate = cleanValue(formValues.endDate);
+
+    if (startDate && endDate) {
+      return lang === 'ar'
+        ? `من ${startDate} إلى ${endDate}`
+        : `From ${startDate} to ${endDate}`;
+    }
+
+    if (startDate) {
+      return lang === 'ar' ? `تبدأ في ${startDate}` : `Starts on ${startDate}`;
+    }
+
+    if (endDate) {
+      return lang === 'ar' ? `تنتهي في ${endDate}` : `Ends on ${endDate}`;
+    }
+
+    return '';
+  }
+
+  const months = Math.max(1, parseDurationPart(formValues.periodMonths, 1));
+  const weeks = parseDurationPart(formValues.periodWeeks, 0);
+  const days = parseDurationPart(formValues.periodDays, 0);
+
+  const parts =
+    lang === 'ar'
+      ? [
+          formatPeriodPart(months, 'شهر', 'أشهر'),
+          formatPeriodPart(weeks, 'أسبوع', 'أسابيع'),
+          formatPeriodPart(days, 'يوم', 'أيام'),
+        ]
+      : [
+          formatPeriodPart(months, 'month', 'months'),
+          formatPeriodPart(weeks, 'week', 'weeks'),
+          formatPeriodPart(days, 'day', 'days'),
+        ];
+
+  return parts.filter((part): part is string => Boolean(part)).join(', ');
 }
 
 export function buildEquipmentQuoteSubject({
@@ -99,8 +176,13 @@ export function buildEquipmentQuoteMessage({
       lines.push(`موقع المشروع: ${cleanValue(formValues.projectLocation)}`);
     }
 
-    if (hasValue(formValues.rentalDuration)) {
-      lines.push(`مدة الإيجار: ${cleanValue(formValues.rentalDuration)}`);
+    const rentalDurationSummary = buildRentalDurationSummary({
+      lang,
+      formValues,
+    });
+
+    if (hasValue(rentalDurationSummary)) {
+      lines.push(`مدة الإيجار: ${rentalDurationSummary}`);
     }
 
     if (hasValue(formValues.message)) {
@@ -151,8 +233,13 @@ export function buildEquipmentQuoteMessage({
     lines.push(`Project location: ${cleanValue(formValues.projectLocation)}`);
   }
 
-  if (hasValue(formValues.rentalDuration)) {
-    lines.push(`Rental duration: ${cleanValue(formValues.rentalDuration)}`);
+  const rentalDurationSummary = buildRentalDurationSummary({
+    lang,
+    formValues,
+  });
+
+  if (hasValue(rentalDurationSummary)) {
+    lines.push(`Rental duration: ${rentalDurationSummary}`);
   }
 
   if (hasValue(formValues.message)) {

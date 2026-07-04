@@ -57,7 +57,7 @@ export class ExcelService implements OnModuleInit {
 
   private load(): void {
     const categoriesPath = path.join(process.cwd(), 'data', 'mysh.xlsx');
-    const equipmentPath = path.join(process.cwd(), 'data', 'equipments.xlsx');
+    const equipmentPath = path.join(process.cwd(), 'data', 'equipments1.xlsx');
 
     // Parse and validate both workbooks before replacing the active cache.
     const categories = this.loadCategories(categoriesPath);

@@ -11,10 +11,14 @@ export default function ServicesCTA({ lang }: ServicesCTAProps) {
   return (
     <section className="px-4 pb-20">
       <div className="mx-auto max-w-7xl">
-        <div className="relative overflow-hidden rounded-[2rem] bg-[#1B263B] p-8 text-white shadow-[0_24px_70px_rgba(27,38,59,0.22)] md:p-10 lg:p-12">
+        <div className="relative overflow-hidden rounded-[2rem] bg-[#062D31] p-8 text-white shadow-[0_24px_70px_rgba(6,45,49,0.28)] md:p-10 lg:p-12">
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(244,208,63,0.18),transparent_36%)]"
+            className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(244,208,63,0.24),transparent_38%)]"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#071B1E] to-transparent"
           />
 
           <div className="relative z-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">

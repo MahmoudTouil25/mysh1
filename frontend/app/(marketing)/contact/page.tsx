@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import ContactPage from '@/components/contact/ContactPage';
 import { buildMetadata } from '@/lib/seo';
 
@@ -13,5 +14,9 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function Page() {
-  return <ContactPage />;
+  return (
+    <Suspense>
+      <ContactPage />
+    </Suspense>
+  );
 }

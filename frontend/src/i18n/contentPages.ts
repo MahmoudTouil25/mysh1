@@ -80,7 +80,7 @@ export const blogLabels = {
     heroEyebrow: 'Blog',
     heroTitle: 'Heavy equipment rental insights for Dubai and the UAE.',
     heroDescription:
-      'Professional guidance for contractors comparing machinery, rental timing, fleet support and project-ready equipment options.',
+      'Good rental practice is good business  for you and for the UAE. Fewer idle machines, safer sites and honest partnerships are how we measure our impact.',
     readArticle: 'Read Article',
     home: 'Home',
     blog: 'Blog',
@@ -101,7 +101,7 @@ export const blogLabels = {
     heroEyebrow: 'المدونة',
     heroTitle: 'رؤى حول تأجير المعدات الثقيلة في دبي والإمارات.',
     heroDescription:
-      'إرشادات مهنية للمقاولين حول اختيار المعدات وتوقيت التأجير ودعم الأسطول وتجهيز المشاريع.',
+      'الممارسة السليمة في التأجير مصلحة مشتركة لك وللإمارات. معدات أقل توقفاً، ومواقع أكثر أماناً، وشراكات صادقة هكذا نقيس أثرنا.',
     readArticle: 'قراءة المقال',
     home: 'الرئيسية',
     blog: 'المدونة',
@@ -125,7 +125,7 @@ export const projectLabels = {
     heroEyebrow: 'Projects',
     heroTitle: 'Equipment rental project support across the UAE.',
     heroDescription:
-      'Case-study style examples of how MYSH supports contractors with machinery rental planning for infrastructure, industrial and earthmoving scopes.',
+      'See how contractors across the UAE plan, mobilize and deliver with MYSH behind them from infrastructure and industrial scopes to large-scale earthmoving.',
     viewProject: 'View Project',
     home: 'Home',
     projects: 'Projects',
@@ -150,7 +150,7 @@ export const projectLabels = {
     heroEyebrow: 'المشاريع',
     heroTitle: 'دعم مشاريع تأجير المعدات في الإمارات.',
     heroDescription:
-      'أمثلة بأسلوب دراسات حالة توضح كيف تدعم MYSH المقاولين في تخطيط تأجير المعدات لمشاريع البنية التحتية والصناعة وتحريك التربة.',
+      'اطّلع على تجارب المقاولين في مختلف أنحاء الإمارات في التخطيط والتجهيز والتنفيذ تمشي إلى جانبهم من نطاقات البنية التحتية والمشاريع الصناعية إلى أعمال تحريك التربة الكبرى.',
     viewProject: 'عرض المشروع',
     home: 'الرئيسية',
     projects: 'المشاريع',
@@ -177,7 +177,7 @@ const blogTranslations: Record<string, BlogTranslation> = {
   'heavy-equipment-rental-dubai': {
     title: 'تأجير المعدات الثقيلة في دبي: ما الذي يجب أن يعرفه المقاولون',
     description:
-      'دليل عملي للمقاولين حول تخطيط تأجير المعدات الثقيلة في دبي لمشاريع البناء والبنية التحتية والصناعة.',
+      'خبرات ميدانية من فريق يتعامل مع المعدات في مختلف أنحاء الإمارات يومياً مكتوبة لنوفّرعليك المال ووقت التوقف والتردد في قرارات التأجير القادمة.',
     excerpt:
       'نقاط تخطيط أساسية للمقاولين عند مقارنة خيارات التأجير وتوقيت النقل ودعم الأسطول في دبي.',
     category: 'تخطيط التأجير',

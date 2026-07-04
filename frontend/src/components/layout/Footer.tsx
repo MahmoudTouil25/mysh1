@@ -56,7 +56,7 @@ export default function Footer({ lang }: FooterProps) {
             />
           </Link>
 
-          <p className="mt-5 max-w-md text-base leading-7 text-[#424849]">
+          <p className="mt-5 max-w-prose text-body text-[#424849]">
             {t.footer.description}
           </p>
         </div>
@@ -67,7 +67,7 @@ export default function Footer({ lang }: FooterProps) {
         >
           {footerSections.map((section) => (
             <div key={section.title}>
-              <h2 className="text-xs font-extrabold uppercase tracking-[0.14em] text-[#1B263B]/60">
+              <h2 className="text-eyebrow uppercase text-[#1B263B]/60">
                 {section.title}
               </h2>
 
@@ -76,7 +76,7 @@ export default function Footer({ lang }: FooterProps) {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="text-sm font-semibold text-[#424849] transition hover:text-[#1B263B]"
+                      className="text-body-sm font-medium text-[#424849] transition hover:text-[#1B263B]"
                     >
                       {item.label}
                     </Link>
@@ -89,7 +89,7 @@ export default function Footer({ lang }: FooterProps) {
       </div>
 
       <div className="mx-auto mt-10 max-w-7xl border-t border-[#C2C7C9] pt-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#424849]">
+        <p className="text-eyebrow uppercase text-[#424849]">
           © {year} MYSH Industrial Equipment Rental. {t.footer.rights}
         </p>
       </div>

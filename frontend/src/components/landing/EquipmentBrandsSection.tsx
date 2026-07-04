@@ -1,5 +1,7 @@
+import Image from 'next/image';
 import type { Lang } from '../../i18n/sharedContent';
 import { landingContent } from '../../i18n/landingContent';
+import SectionHeading from '../ui/SectionHeading';
 
 type EquipmentBrandsSectionProps = {
   lang: Lang;
@@ -10,43 +12,53 @@ export default function EquipmentBrandsSection({
 }: EquipmentBrandsSectionProps) {
   const t = landingContent[lang];
   const isRtl = lang === 'ar';
+  const logos = [
+    { name: 'CAT', src: '/logos/cat.svg', width: 132, height: 48 },
+    { name: 'KOMATSU', src: '/logos/komatsu.svg', width: 156, height: 48 },
+    { name: 'VOLVO', src: '/logos/volvo.svg', width: 144, height: 48 },
+    { name: 'SANY', src: '/logos/sany.svg', width: 132, height: 48 },
+    { name: 'HITACHI', src: '/logos/hitachi.svg', width: 150, height: 48 },
+  ];
 
   return (
     <section
       dir={isRtl ? 'rtl' : 'ltr'}
       aria-labelledby="equipment-brands-title"
-      className="bg-[#062D31] px-4 py-16 text-white md:py-24"
+      className="relative overflow-hidden border-t border-white/10 bg-[#062D31] px-4 py-section-mobile text-white md:py-section"
     >
-      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(244,208,63,0.16),transparent_34%),linear-gradient(180deg,rgba(255,255,255,0.08),rgba(6,45,49,0))]"
+      />
+
+      <div className="relative mx-auto max-w-7xl">
         <header className={isRtl ? 'text-right' : 'text-left'}>
-          <p className="text-xs font-extrabold uppercase text-[#F4D03F]">
-            {t.trust.brands.eyebrow}
-          </p>
-          <h2
+          <SectionHeading
             id="equipment-brands-title"
-            className="mt-3 max-w-2xl text-3xl font-black leading-tight md:text-5xl"
-          >
-            {t.trust.brands.title}
-          </h2>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-white/72 md:text-lg md:leading-8">
-            {t.trust.brands.description}
-          </p>
+            eyebrow={t.trust.brands.eyebrow}
+            title={t.trust.brands.title}
+            subtitle={t.trust.brands.description}
+            inverse
+          />
         </header>
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-5">
-          {t.trust.brands.items.map((brand) => (
-            <BrandTile key={brand} brand={brand} />
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          {logos.map((logo) => (
+            <div
+              key={logo.name}
+              className="group flex min-h-28 items-center justify-center rounded-2xl border border-white/18 bg-white/10 p-5 shadow-[0_16px_40px_rgba(0,0,0,0.16)] backdrop-blur-xl transition-all duration-200 ease-out hover:-translate-y-1 hover:bg-white/14"
+            >
+              <Image
+                src={logo.src}
+                alt={`${logo.name} equipment brand logo`}
+                width={logo.width}
+                height={logo.height}
+                className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-110"
+              />
+            </div>
           ))}
         </div>
       </div>
     </section>
-  );
-}
-
-function BrandTile({ brand }: { brand: string }) {
-  return (
-    <article className="grid min-h-28 place-items-center rounded-lg border border-white/14 bg-white text-center shadow-[0_18px_45px_rgba(0,0,0,0.16)]">
-      <span className="px-3 text-xl font-black text-[#062D31]">{brand}</span>
-    </article>
   );
 }

@@ -17,7 +17,6 @@ import EquipmentResultsHeader from '../components/equipment/EquipmentResultsHead
 import EquipmentEmptyState from '../components/equipment/EquipmentEmptyState';
 import EquipmentGrid from '../components/equipment/EquipmentGrid';
 import EquipmentList from '../components/equipment/EquipmentList';
-import EquipmentFavoritesCart from '../components/equipment/EquipmentFavoritesCart';
 
 type EquipmentListPageProps = {
   lang?: Lang;
@@ -64,7 +63,10 @@ export default function EquipmentListPage({
   const {
     filters,
     filteredEquipment,
-    locations,
+    brands,
+    models,
+    operatingWeights,
+    filterCategories,
     categoriesById,
 
     viewMode,
@@ -78,11 +80,9 @@ export default function EquipmentListPage({
 
     setSearch,
     setCategoryId,
-    toggleAvailability,
-    toggleCondition,
-    setLocation,
-    setMinDailyRate,
-    setMaxDailyRate,
+    setBrand,
+    setModel,
+    setOperatingWeight,
 
     clearAllFilters,
     removeFilter,
@@ -128,29 +128,19 @@ export default function EquipmentListPage({
     setCategoryId(value);
   };
 
-  const handleAvailabilityToggle = (value: string) => {
+  const handleBrandChange = (value: string) => {
     resetCurrentPage();
-    toggleAvailability(value);
+    setBrand(value);
   };
 
-  const handleConditionToggle = (value: string) => {
+  const handleModelChange = (value: string) => {
     resetCurrentPage();
-    toggleCondition(value);
+    setModel(value);
   };
 
-  const handleLocationChange = (value: string) => {
+  const handleOperatingWeightChange = (value: string) => {
     resetCurrentPage();
-    setLocation(value);
-  };
-
-  const handleMinDailyRateChange = (value: string) => {
-    resetCurrentPage();
-    setMinDailyRate(value);
-  };
-
-  const handleMaxDailyRateChange = (value: string) => {
-    resetCurrentPage();
-    setMaxDailyRate(value);
+    setOperatingWeight(value);
   };
 
   const handleClearAllFilters = () => {
@@ -160,10 +150,9 @@ export default function EquipmentListPage({
 
   const handleRemoveFilter = (
     type: keyof EquipmentFilters,
-    value?: string | number,
   ) => {
     resetCurrentPage();
-    removeFilter(type, value);
+    removeFilter(type);
   };
 
   const formatCurrency = (value: number): string => {
@@ -239,23 +228,21 @@ export default function EquipmentListPage({
           onClearAll={handleClearAllFilters}
         />
 
-        <EquipmentFavoritesCart lang={lang} formatCurrency={formatCurrency} />
-
         <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
           <EquipmentFilterPanel
             lang={lang}
             filters={filters}
-            categories={categories}
-            locations={locations}
+            categories={filterCategories}
+            brands={brands}
+            models={models}
+            operatingWeights={operatingWeights}
             isMobileOpen={isMobileFiltersOpen}
             hasFilters={hasFilters}
             onClearAll={handleClearAllFilters}
             onCategoryChange={handleCategoryChange}
-            onAvailabilityToggle={handleAvailabilityToggle}
-            onConditionToggle={handleConditionToggle}
-            onLocationChange={handleLocationChange}
-            onMinDailyRateChange={handleMinDailyRateChange}
-            onMaxDailyRateChange={handleMaxDailyRateChange}
+            onBrandChange={handleBrandChange}
+            onModelChange={handleModelChange}
+            onOperatingWeightChange={handleOperatingWeightChange}
           />
 
           <section>

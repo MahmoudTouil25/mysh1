@@ -1,7 +1,15 @@
 import type { Equipment } from '../../types/equipment';
 import type { Lang } from '../../i18n/sharedContent';
 import { equipmentContent } from '../../i18n/equipmentContent';
-import { getFirstEquipmentImage } from '../../utils/equipmentFilters';
+import {
+  formatEquipmentEnginePower,
+  formatEquipmentOperatingWeight,
+  getFirstEquipmentImage,
+} from '../../utils/equipmentFilters';
+import {
+  buildEquipmentContactHref,
+  getEquipmentQuoteDetails,
+} from '../../utils/contactQuote';
 import Link from 'next/link';
 import EquipmentFavoriteButton from './EquipmentFavoriteButton';
 
@@ -20,20 +28,24 @@ export default function EquipmentListItem({
   categoryLabel,
   availabilityLabel,
   conditionLabel,
-  formatCurrency,
 }: EquipmentListItemProps) {
   const t = equipmentContent[lang];
   const image = getFirstEquipmentImage(item.images);
   const fallbackText = lang === 'ar' ? 'غير محدد' : 'Not specified';
-  const rateFallbackText = lang === 'ar' ? 'اطلب السعر' : 'Request rate';
+  const quoteHref = buildEquipmentContactHref(
+    getEquipmentQuoteDetails({
+      item,
+      categoryLabel,
+      availabilityLabel,
+      conditionLabel,
+    }),
+  );
   const detailPills = [
     availabilityLabel,
     conditionLabel,
     item.location,
-    Number.isFinite(item.operatingWeight)
-      ? `${item.operatingWeight} t`
-      : undefined,
-    Number.isFinite(item.enginePower) ? `${item.enginePower} kW` : undefined,
+    formatEquipmentOperatingWeight(item, ''),
+    formatEquipmentEnginePower(item, ''),
   ].filter((value): value is string => Boolean(value));
 
   return (
@@ -81,19 +93,6 @@ export default function EquipmentListItem({
         <div className="mb-3 flex justify-end">
           <EquipmentFavoriteButton lang={lang} item={item} />
         </div>
-
-        <p className="text-lg font-black text-[#1B263B]">
-          {Number.isFinite(item.dailyRate)
-            ? formatCurrency(Number(item.dailyRate))
-            : rateFallbackText}
-        </p>
-
-        {Number.isFinite(item.dailyRate) && (
-          <p className="text-sm font-semibold text-[#5C677D]">
-            / {t.card.daily}
-          </p>
-        )}
-
         <div className="mt-4 flex flex-wrap gap-3 md:justify-end">
           <Link
             href={`/equipment/${'slug' in item ? item.slug : item.id}`}
@@ -103,8 +102,8 @@ export default function EquipmentListItem({
           </Link>
 
           <Link
-            href="/contact"
-            className="inline-flex h-11 items-center justify-center rounded-xl bg-[#F4D03F] px-5 text-sm font-extrabold text-[#1B263B] transition hover:brightness-95"
+            href={quoteHref}
+            className="inline-flex h-11 min-w-[9.5rem] items-center justify-center whitespace-nowrap rounded-xl bg-[#F4D03F] px-5 text-sm font-extrabold text-[#1B263B] transition hover:brightness-95"
           >
             {t.card.requestQuote}
           </Link>

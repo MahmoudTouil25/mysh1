@@ -34,6 +34,17 @@ type LandingContent = {
       items: string[];
     };
   };
+  strength: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    note: string;
+    stats: {
+      value: string;
+      label: string;
+      description: string;
+    }[];
+  };
   reach: {
     eyebrow: string;
     title: string;
@@ -82,8 +93,8 @@ type LandingContent = {
 export const landingContent = {
   en: {
     hero: {
-      eyebrow: 'Heavy Equipment Rental & Machinery Trading - Dubai, UAE',
-      title: 'Industrial Power, On Demand.',
+      eyebrow: 'Heavy Equipment Rental - Dubai, UAE',
+      title: 'Your Partner on Every Site.',
       description:
         'Premium heavy machinery, plant equipment and specialized logistics for construction, infrastructure and industrial projects across the UAE.',
       primaryCta: 'Request Quote',
@@ -105,7 +116,7 @@ export const landingContent = {
         {
           title: 'Lifting Solutions',
           description:
-            'Mobile cranes, lifting equipment and handling solutions for urban and open-site operations.',
+            'Mobile cranes, lifting equipment and handling adapted solutions for urban and open-site operations.',
           image: '/images/services/infrastructure-maintenance.png',
           badge: 'Lifting',
           cta: 'Request Equipment',
@@ -141,6 +152,39 @@ export const landingContent = {
         items: ['CAT', 'KOMATSU', 'VOLVO', 'SANY', 'HITACHI'],
       },
     },
+    strength: {
+      eyebrow: 'Operational Scale',
+      title: 'Built to support demanding project sites.',
+      description:
+        'MYSH supports contractors, industrial operators and infrastructure teams with reliable heavy equipment rental, fleet coordination and field-ready machinery across Dubai and the UAE.',
+      note: 'Fleet scale, responsive coordination and practical site support for B2B project teams.',
+      stats: [
+        {
+          value: '49+',
+          label: 'Years of industry legacy',
+          description:
+            'Established experience supporting heavy equipment operations.',
+        },
+        {
+          value: '30+',
+          label: 'Machines and support units',
+          description:
+            'A rental fleet covering earthmoving, lifting, hauling and site support.',
+        },
+        {
+          value: '4+',
+          label: 'Equipment categories',
+          description:
+            'From excavators and loaders to cranes, trucks, tankers and generators.',
+        },
+        {
+          value: '24/7',
+          label: 'Rental coordination support',
+          description:
+            'Responsive assistance for urgent project needs and mobilization planning.',
+        },
+      ],
+    },
     reach: {
       eyebrow: 'Operational Reach',
       title: 'Built for fast-moving project sites across the UAE.',
@@ -161,7 +205,7 @@ export const landingContent = {
       description:
         'Founded in 1977 with deep roots in Jordan, MYSH began as a vision to revolutionize the industrial landscape. Our journey is defined by unwavering commitment to equipment excellence and operational trust.',
       image: '/images/story.png',
-      statValue: '47+',
+      statValue: '49+',
       statLabel: 'Years of Heritage',
       primaryCta: 'Read Our Full History',
       items: [
@@ -226,8 +270,8 @@ export const landingContent = {
 
   ar: {
     hero: {
-      eyebrow: 'تأجير المعدات الثقيلة وتجارة الآلات - دبي، الإمارات',
-      title: 'قوة صناعية عند الطلب.',
+      eyebrow: 'تأجير المعدات الثقيلة  - دبي، الإمارات',
+      title: 'شريكك في كل موقع.',
       description:
         'معدات ثقيلة وحلول تشغيل ولوجستيات متخصصة لمشاريع البناء والبنية التحتية والصناعة في دولة الإمارات.',
       primaryCta: 'طلب عرض سعر',
@@ -284,6 +328,38 @@ export const landingContent = {
           'يشمل أسطولنا علامات معدات ثقيلة موثوقة لأعمال الحفر والنقل وتحريك التربة وتجهيز المواقع.',
         items: ['CAT', 'KOMATSU', 'VOLVO', 'SANY', 'HITACHI'],
       },
+    },
+    strength: {
+      eyebrow: 'قوة تشغيلية',
+      title: 'جاهزون لدعم مواقع المشاريع الأكثر تطلبا.',
+      description:
+        'تدعم MYSH المقاولين والمشغلين الصناعيين وفرق البنية التحتية من خلال تأجير معدات ثقيلة موثوقة، وتنسيق الأسطول، وتوفير آليات جاهزة للعمل في دبي ودولة الإمارات.',
+      note: 'حجم أسطول موثوق، تنسيق سريع، ودعم عملي لفرق المشاريع.',
+      stats: [
+        {
+          value: '+49',
+          label: 'سنة من الخبرة الصناعية',
+          description: 'خبرة راسخة في دعم عمليات المعدات الثقيلة.',
+        },
+        {
+          value: '+120',
+          label: 'آلة ومعدة دعم',
+          description:
+            'أسطول تأجير يغطي أعمال الحفر، الرفع، النقل، ودعم المواقع.',
+        },
+        {
+          value: '+15',
+          label: 'فئة من المعدات',
+          description:
+            'من الحفارات واللوادر إلى الرافعات، الشاحنات، الصهاريج والمولدات.',
+        },
+        {
+          value: '24/7',
+          label: 'دعم وتنسيق التأجير',
+          description:
+            'استجابة مرنة لاحتياجات المشاريع العاجلة وتخطيط التعبئة.',
+        },
+      ],
     },
     reach: {
       eyebrow: 'نطاق التشغيل',

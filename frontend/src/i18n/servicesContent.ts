@@ -78,7 +78,7 @@ export const servicesContent: Record<Lang, ServicesContent> = {
       title: 'Heavy Equipment Rental for',
       highlightedTitle: 'Industrial & Infrastructure Projects',
       description:
-        'MYSH provides heavy equipment rental and machinery support for marine works, airport projects, infrastructure maintenance, excavation, earthmoving and road maintenance operations across the UAE.',
+        'Our fleet serves the sectors where downtime is not an option, marine works, airport projects, road maintenance, excavation and infrastructure operations. Every machine arrives certified, inspected and ready to work, with support that stays on call for the life of the rental.',
       primaryCta: 'Request a Quote',
       secondaryCta: 'View Equipment',
       primaryHref: '#contact',
@@ -255,7 +255,7 @@ export const servicesContent: Record<Lang, ServicesContent> = {
       title: 'تأجير المعدات الثقيلة لـ',
       highlightedTitle: 'المشاريع الصناعية والبنية التحتية',
       description:
-        'توفر MYSH تأجير المعدات الثقيلة ودعم الآلات لمشاريع الأعمال البحرية والمطارات وصيانة البنية التحتية والحفر وتحريك التربة وصيانة الطرق في الإمارات.',
+        'يخدم أسطولنا القطاعات التي لا تحتمل التوقف الأعمال البحرية ومشاريع المطارات وصيانة الطرق وأعمال الحفر وعمليات البنية التحتية. كل آلة تصل إلى موقعك معتمدة ومفحوصة وجاهزة للعمل، مع دعم يبقى في خدمتك طوال مدة التأجير.',
       primaryCta: 'طلب عرض سعر',
       secondaryCta: 'عرض المعدات',
       primaryHref: '#contact',

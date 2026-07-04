@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 80" role="img" aria-labelledby="title">
+  <title id="title">CAT logo</title>
+  <rect width="220" height="80" rx="10" fill="none"/>
+  <text x="110" y="51" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="900" fill="#0B2B26">CAT</text>
+  <path d="M105 58l14-24 14 24z" fill="#F5B92E"/>
+</svg>

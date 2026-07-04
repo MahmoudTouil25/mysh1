@@ -7,7 +7,6 @@ import OperationalReachSection from './OperationalReachSection';
 import DeliveryMapSection from './DeliveryMapSection';
 import StorySection from './StorySection';
 import FaqSection from './FaqSection';
-import LandingCtaSection from './LandingCtaSection';
 
 type LandingPageProps = {
   lang: Lang;
@@ -17,14 +16,18 @@ export default function LandingPage({ lang }: LandingPageProps) {
   return (
     <>
       <HeroSection lang={lang} />
+      <SpecializedServicesSection lang={lang} />
       <TrustedClientsSection lang={lang} />
       <EquipmentBrandsSection lang={lang} />
       <OperationalReachSection lang={lang} />
+      {/* <DeliveryMapSectionBeta lang={lang} /> */}
+      {/* Original map version kept for rollback/testing:
+      
+      */}
       <DeliveryMapSection lang={lang} />
       <StorySection lang={lang} />
-      <SpecializedServicesSection lang={lang} />
+      
       <FaqSection lang={lang} />
-      <LandingCtaSection lang={lang} />
     </>
   );
 }

@@ -3,6 +3,9 @@
 import { useId, useState } from 'react';
 import type { Lang } from '../../i18n/sharedContent';
 import { landingContent } from '../../i18n/landingContent';
+import { cn } from '../../lib/cn';
+import Card from '../ui/Card';
+import SectionHeading from '../ui/SectionHeading';
 
 type FaqSectionProps = {
   lang: Lang;
@@ -18,18 +21,17 @@ export default function FaqSection({ lang }: FaqSectionProps) {
     <section
       id="faq"
       dir={isRtl ? 'rtl' : 'ltr'}
-      className="bg-[#062D31] px-4 py-16 text-white md:py-24"
+      className="bg-brand-dark px-4 py-section-mobile text-white md:py-section"
     >
       <div className="mx-auto max-w-3xl">
-        <header className="mb-10 text-center">
-          <h2 className="text-2xl font-black tracking-[-0.01em] text-white md:text-4xl">
-            {t.faq.title}
-          </h2>
-
-          <p className="mx-auto mt-3 max-w-xl text-sm font-medium leading-6 text-white/62">
-            {t.faq.description}
-          </p>
-        </header>
+        <SectionHeading
+          eyebrow={t.faq.eyebrow}
+          title={t.faq.title}
+          subtitle={t.faq.description}
+          align="center"
+          inverse
+          className="mb-10"
+        />
 
         <div className="space-y-3">
           {t.faq.items.map((item, index) => {
@@ -38,9 +40,13 @@ export default function FaqSection({ lang }: FaqSectionProps) {
             const panelId = `${baseId}-faq-panel-${index}`;
 
             return (
-              <article
+              <Card
                 key={item.question}
-                className="overflow-hidden rounded-lg border border-white/5 bg-[#143A3E] shadow-[0_10px_28px_rgba(0,0,0,0.16)]"
+                variant="dark"
+                className={cn(
+                  'overflow-hidden transition-colors duration-200 ease-out hover:bg-white/10',
+                  isOpen && 'bg-white/5',
+                )}
               >
                 <button
                   id={buttonId}
@@ -53,18 +59,18 @@ export default function FaqSection({ lang }: FaqSectionProps) {
                     )
                   }
                   className={[
-                    'flex min-h-14 w-full items-center justify-between gap-4 px-5 py-4 text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4D03F] focus-visible:ring-inset',
+                    'flex min-h-14 w-full items-center justify-between gap-4 px-5 py-4 text-start transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow focus-visible:ring-inset',
                     isRtl ? 'flex-row-reverse text-right' : 'text-left',
                   ].join(' ')}
                 >
-                  <span className="text-sm font-extrabold text-white md:text-base">
+                  <span className="text-body-sm font-semibold text-white md:text-body">
                     {item.question}
                   </span>
 
                   <span
                     aria-hidden="true"
                     className={[
-                      'grid h-5 w-5 shrink-0 place-items-center text-white/85 transition',
+                      'grid h-5 w-5 shrink-0 place-items-center text-white/85 transition-transform duration-300',
                       isOpen ? 'rotate-180' : '',
                     ].join(' ')}
                   >
@@ -72,22 +78,29 @@ export default function FaqSection({ lang }: FaqSectionProps) {
                   </span>
                 </button>
 
-                {isOpen && (
-                  <div
-                    id={panelId}
-                    role="region"
-                    aria-labelledby={buttonId}
-                    className={[
-                      'border-t border-white/6 px-5 pb-5 pt-4',
-                      isRtl ? 'text-right' : 'text-left',
-                    ].join(' ')}
-                  >
-                    <p className="text-sm leading-6 text-white/68">
-                      {item.answer}
-                    </p>
+                <div
+                  className={cn(
+                    'grid transition-[grid-template-rows] duration-300 ease-out',
+                    isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]',
+                  )}
+                >
+                  <div className="overflow-hidden">
+                    <div
+                      id={panelId}
+                      role="region"
+                      aria-labelledby={buttonId}
+                      className={[
+                        'border-t border-white/6 px-5 pb-5 pt-4',
+                        isRtl ? 'text-right' : 'text-left',
+                      ].join(' ')}
+                    >
+                      <p className="text-body-sm text-white/68">
+                        {item.answer}
+                      </p>
+                    </div>
                   </div>
-                )}
-              </article>
+                </div>
+              </Card>
             );
           })}
         </div>

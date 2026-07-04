@@ -1,7 +1,15 @@
 import type { Equipment } from '../../types/equipment';
 import type { Lang } from '../../i18n/sharedContent';
 import { equipmentContent } from '../../i18n/equipmentContent';
-import { getFirstEquipmentImage } from '../../utils/equipmentFilters';
+import {
+  formatEquipmentEnginePower,
+  formatEquipmentOperatingWeight,
+  getFirstEquipmentImage,
+} from '../../utils/equipmentFilters';
+import {
+  buildEquipmentContactHref,
+  getEquipmentQuoteDetails,
+} from '../../utils/contactQuote';
 import Link from 'next/link';
 import EquipmentFavoriteButton from './EquipmentFavoriteButton';
 
@@ -20,23 +28,18 @@ export default function EquipmentCard({
   categoryLabel,
   availabilityLabel,
   conditionLabel,
-  formatCurrency,
 }: EquipmentCardProps) {
   const t = equipmentContent[lang];
   const image = getFirstEquipmentImage(item.images);
   const fallbackText = lang === 'ar' ? 'غير محدد' : 'Not specified';
-  const rateFallbackText = lang === 'ar' ? 'اطلب السعر' : 'Request rate';
-
-  const formatOptionalNumber = (
-    value: number | undefined,
-    suffix: string,
-  ): string => {
-    return Number.isFinite(value) ? `${value} ${suffix}` : fallbackText;
-  };
-
-  const formatOptionalCurrency = (value: number | undefined): string => {
-    return Number.isFinite(value) ? formatCurrency(Number(value)) : rateFallbackText;
-  };
+  const quoteHref = buildEquipmentContactHref(
+    getEquipmentQuoteDetails({
+      item,
+      categoryLabel,
+      availabilityLabel,
+      conditionLabel,
+    }),
+  );
 
   return (
     <article
@@ -86,42 +89,31 @@ export default function EquipmentCard({
           <Spec label={t.card.location} value={item.location || fallbackText} />
           <Spec
             label={t.card.weight}
-            value={formatOptionalNumber(item.operatingWeight, 't')}
+            value={formatEquipmentOperatingWeight(item, fallbackText)}
           />
           <Spec
             label={t.card.power}
-            value={formatOptionalNumber(item.enginePower, 'kW')}
+            value={formatEquipmentEnginePower(item, fallbackText)}
           />
           <Spec
-            label={t.filters.condition}
+            label={t.card.condition}
             value={conditionLabel || fallbackText}
           />
         </div>
 
-        <div className="mt-5 rounded-2xl bg-[#F8F9FA] p-4">
-          <p className="text-lg font-black text-[#1B263B]">
-            {formatOptionalCurrency(item.dailyRate)}
-            {Number.isFinite(item.dailyRate) ? ` / ${t.card.daily}` : ''}
-          </p>
+        
 
-          {Number.isFinite(item.monthlyRate) && (
-            <p className="mt-1 text-sm font-semibold text-[#5C677D]">
-              {formatCurrency(Number(item.monthlyRate))} / {t.card.monthly}
-            </p>
-          )}
-        </div>
-
-        <div className="mt-5 grid grid-cols-2 gap-3">
+        <div className="mt-5 grid grid-cols-[0.85fr_1.15fr] gap-3">
           <Link
             href={`/equipment/${'slug' in item ? item.slug : item.id}`}
-            className="inline-flex h-11 items-center justify-center rounded-xl border border-[#1B263B]/20 px-4 text-sm font-extrabold text-[#1B263B] transition hover:border-[#1B263B]"
+            className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-xl border border-[#1B263B]/20 px-3 text-sm font-extrabold text-[#1B263B] transition hover:border-[#1B263B]"
           >
             {t.card.viewDetails}
           </Link>
 
           <Link
-            href="/contact"
-            className="inline-flex h-11 items-center justify-center rounded-xl bg-[#F4D03F] px-4 text-sm font-extrabold text-[#1B263B] transition hover:brightness-95"
+            href={quoteHref}
+            className="inline-flex h-11 min-w-[9.5rem] items-center justify-center whitespace-nowrap rounded-xl bg-[#F4D03F] px-5 text-sm font-extrabold text-[#1B263B] transition hover:brightness-95"
           >
             {t.card.requestQuote}
           </Link>

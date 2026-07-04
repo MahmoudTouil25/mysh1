@@ -4,17 +4,17 @@ import {
   defaultEquipmentFilters,
   filterEquipment,
   getActiveEquipmentFilterCount,
-  getUniqueEquipmentLocations,
+  getUniqueEquipmentBrands,
+  getUniqueEquipmentModels,
+  getUniqueEquipmentOperatingWeights,
+  groupEquipmentByName,
   hasActiveEquipmentFilters,
-  toggleStringFilterValue,
 } from '../utils/equipmentFilters';
 import type { EquipmentFilters, ViewMode } from '../types/equipment';
 
 function createDefaultFilters(): EquipmentFilters {
   return {
     ...defaultEquipmentFilters,
-    availability: [],
-    condition: [],
   };
 }
 
@@ -38,9 +38,25 @@ export function useEquipmentFilters({
     return filterEquipment(equipment, filters);
   }, [equipment, filters]);
 
-  const locations = useMemo(() => {
-    return getUniqueEquipmentLocations(equipment);
+  const brands = useMemo(() => {
+    return getUniqueEquipmentBrands(equipment);
   }, [equipment]);
+
+  const models = useMemo(() => {
+    return getUniqueEquipmentModels(equipment);
+  }, [equipment]);
+
+  const operatingWeights = useMemo(() => {
+    return getUniqueEquipmentOperatingWeights(equipment);
+  }, [equipment]);
+
+  const filterCategories = useMemo(() => {
+    const displayedCategoryIds = new Set(
+      groupEquipmentByName(equipment).map((item) => item.categoryId),
+    );
+
+    return categories.filter((category) => displayedCategoryIds.has(category.id));
+  }, [categories, equipment]);
 
   const categoriesById = useMemo(() => {
     return new Map(categories.map((category) => [category.id, category]));
@@ -69,60 +85,24 @@ export function useEquipmentFilters({
     updateFilters({ categoryId });
   };
 
-  const toggleAvailability = (value: string) => {
-    setFilters((currentFilters) => ({
-      ...currentFilters,
-      availability: toggleStringFilterValue(
-        currentFilters.availability,
-        value,
-      ),
-    }));
+  const setBrand = (brand: string) => {
+    updateFilters({ brand });
   };
 
-  const toggleCondition = (value: string) => {
-    setFilters((currentFilters) => ({
-      ...currentFilters,
-      condition: toggleStringFilterValue(currentFilters.condition, value),
-    }));
+  const setModel = (model: string) => {
+    updateFilters({ model });
   };
 
-  const setLocation = (location: string) => {
-    updateFilters({ location });
-  };
-
-  const setMinDailyRate = (minDailyRate: string) => {
-    updateFilters({ minDailyRate });
-  };
-
-  const setMaxDailyRate = (maxDailyRate: string) => {
-    updateFilters({ maxDailyRate });
+  const setOperatingWeight = (operatingWeight: string) => {
+    updateFilters({ operatingWeight });
   };
 
   const clearAllFilters = () => {
     setFilters(createDefaultFilters());
   };
 
-  const removeFilter = (
-    type: keyof EquipmentFilters,
-    value?: string | number,
-  ) => {
+  const removeFilter = (type: keyof EquipmentFilters) => {
     setFilters((currentFilters) => {
-      if (type === 'availability' && typeof value === 'string') {
-        return {
-          ...currentFilters,
-          availability: currentFilters.availability.filter(
-            (item) => item !== value,
-          ),
-        };
-      }
-
-      if (type === 'condition' && typeof value === 'string') {
-        return {
-          ...currentFilters,
-          condition: currentFilters.condition.filter((item) => item !== value),
-        };
-      }
-
       return {
         ...currentFilters,
         [type]: createDefaultFilters()[type],
@@ -148,7 +128,10 @@ export function useEquipmentFilters({
     updateFilters,
 
     filteredEquipment,
-    locations,
+    brands,
+    models,
+    operatingWeights,
+    filterCategories,
     categoriesById,
 
     viewMode,
@@ -165,11 +148,9 @@ export function useEquipmentFilters({
 
     setSearch,
     setCategoryId,
-    toggleAvailability,
-    toggleCondition,
-    setLocation,
-    setMinDailyRate,
-    setMaxDailyRate,
+    setBrand,
+    setModel,
+    setOperatingWeight,
 
     clearAllFilters,
     removeFilter,

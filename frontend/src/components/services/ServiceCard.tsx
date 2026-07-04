@@ -24,11 +24,7 @@ export default function ServiceCard({ lang, service, href }: ServiceCardProps) {
       </div>
 
       <div className="p-5">
-        <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-[#F8F9FA] text-[#1B263B]">
-          <span aria-hidden="true" className="text-lg">
-            ⚙
-          </span>
-        </div>
+        
 
         <h3 className="text-xl font-black leading-tight text-[#1B263B]">
           {service.title}

@@ -5,6 +5,7 @@ import type { Lang } from '../../i18n/sharedContent';
 import { equipmentContent } from '../../i18n/equipmentContent';
 import { useEquipmentFavorites } from '../../contexts/EquipmentFavoritesContext';
 import { getFirstEquipmentImage } from '../../utils/equipmentFilters';
+import { buildFavoritesContactHref } from '../../utils/contactQuote';
 
 type EquipmentFavoritesCartProps = {
   lang: Lang;
@@ -54,7 +55,7 @@ export default function EquipmentFavoritesCart({
             </button>
 
             <Link
-              href="/contact"
+              href={buildFavoritesContactHref()}
               className="inline-flex h-10 items-center justify-center rounded-xl bg-[#F4D03F] px-4 text-sm font-extrabold text-[#1B263B] transition hover:brightness-95"
             >
               {t.favoritesCart.requestSelected}

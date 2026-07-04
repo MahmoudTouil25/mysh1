@@ -33,6 +33,15 @@ export type EquipmentDetailContent = {
     dailyRate: string;
     weeklyRate: string;
     monthlyRate: string;
+    minimumRentalDays: string;
+    days: string;
+    operatingWeightKg: string;
+    enginePowerKw: string;
+    enginePowerHp: string;
+    payloadLoad: string;
+    bodyBucketBladeCapacity: string;
+    maxSpeed: string;
+    empty: string;
   };
   quote: {
     title: string;
@@ -42,6 +51,13 @@ export type EquipmentDetailContent = {
     email: string;
     projectLocation: string;
     rentalDuration: string;
+    rentalDates: string;
+    rentalPeriod: string;
+    startDate: string;
+    endDate: string;
+    months: string;
+    weeks: string;
+    days: string;
     message: string;
     messagePlaceholder: string;
     sendWhatsApp: string;
@@ -98,6 +114,15 @@ export const equipmentDetailContent: Record<Lang, EquipmentDetailContent> = {
       dailyRate: 'Daily Rate',
       weeklyRate: 'Weekly Rate',
       monthlyRate: 'Monthly Rate',
+      minimumRentalDays: 'Minimum Rental',
+      days: 'days',
+      operatingWeightKg: 'Operating Weight',
+      enginePowerKw: 'Engine Power',
+      enginePowerHp: 'Engine Power',
+      payloadLoad: 'Payload / Load',
+      bodyBucketBladeCapacity: 'Body / Bucket / Blade Capacity',
+      maxSpeed: 'Max Speed',
+      empty: 'No technical details are available for this equipment.',
     },
     quote: {
       title: 'Request a Quote',
@@ -108,6 +133,13 @@ export const equipmentDetailContent: Record<Lang, EquipmentDetailContent> = {
       email: 'Email',
       projectLocation: 'Project location',
       rentalDuration: 'Rental duration',
+      rentalDates: 'Start / End dates',
+      rentalPeriod: 'Rental period',
+      startDate: 'Start date',
+      endDate: 'End date',
+      months: 'Months',
+      weeks: 'Weeks',
+      days: 'Days',
       message: 'Additional message',
       messagePlaceholder:
         'Example: I need this equipment for a construction project in Dubai for 2 weeks.',
@@ -233,6 +265,15 @@ export const equipmentDetailContent: Record<Lang, EquipmentDetailContent> = {
       dailyRate: 'السعر اليومي',
       weeklyRate: 'السعر الأسبوعي',
       monthlyRate: 'السعر الشهري',
+      minimumRentalDays: 'الحد الأدنى للإيجار',
+      days: 'أيام',
+      operatingWeightKg: 'وزن التشغيل',
+      enginePowerKw: 'قوة المحرك',
+      enginePowerHp: 'قوة المحرك',
+      payloadLoad: 'الحمولة',
+      bodyBucketBladeCapacity: 'سعة الصندوق / الدلو / الشفرة',
+      maxSpeed: 'السرعة القصوى',
+      empty: 'لا توجد تفاصيل تقنية متاحة لهذه المعدة.',
     },
     quote: {
       title: 'طلب عرض سعر',
@@ -243,6 +284,13 @@ export const equipmentDetailContent: Record<Lang, EquipmentDetailContent> = {
       email: 'البريد الإلكتروني',
       projectLocation: 'موقع المشروع',
       rentalDuration: 'مدة الإيجار',
+      rentalDates: 'تاريخ البداية والنهاية',
+      rentalPeriod: 'فترة الإيجار',
+      startDate: 'تاريخ البداية',
+      endDate: 'تاريخ النهاية',
+      months: 'الأشهر',
+      weeks: 'الأسابيع',
+      days: 'الأيام',
       message: 'رسالة إضافية',
       messagePlaceholder:
         'مثال: أحتاج هذه المعدة لمشروع إنشاءات في دبي لمدة أسبوعين.',

@@ -132,16 +132,15 @@ export default function EquipmentDetailPage({
           availabilityLabel={getAvailabilityLabel(equipment.availability)}
           conditionLabel={getConditionLabel(equipment.condition)}
           formatCurrency={formatCurrency}
+          quoteSlot={
+            <EquipmentQuoteBox
+              lang={lang}
+              equipment={equipment}
+              categoryName={categoryLabel}
+              pageUrl={currentPageUrl}
+            />
+          }
         />
-
-        <div className="mt-10 max-w-3xl">
-          <EquipmentQuoteBox
-            lang={lang}
-            equipment={equipment}
-            categoryName={categoryLabel}
-            pageUrl={currentPageUrl}
-          />
-        </div>
 
         <EquipmentUseCases
           lang={lang}

@@ -13,27 +13,17 @@ export type FilterTag =
       value: number;
     }
   | {
-      type: 'availability';
+      type: 'brand';
       label: string;
       value: string;
     }
   | {
-      type: 'condition';
+      type: 'model';
       label: string;
       value: string;
     }
   | {
-      type: 'location';
-      label: string;
-      value: string;
-    }
-  | {
-      type: 'minDailyRate';
-      label: string;
-      value: string;
-    }
-  | {
-      type: 'maxDailyRate';
+      type: 'operatingWeight';
       label: string;
       value: string;
     };
@@ -41,11 +31,9 @@ export type FilterTag =
 export const defaultEquipmentFilters: EquipmentFilters = {
   search: '',
   categoryId: null,
-  availability: [],
-  condition: [],
-  location: '',
-  minDailyRate: '',
-  maxDailyRate: '',
+  brand: '',
+  model: '',
+  operatingWeight: '',
 };
 
 export function normalizeSearchValue(value: unknown): string {
@@ -55,18 +43,6 @@ export function normalizeSearchValue(value: unknown): string {
     .replace(/[\u064B-\u065F]/g, '')
     .toLowerCase()
     .trim();
-}
-
-function toNumber(value: string): number | null {
-  const cleanedValue = value.trim();
-
-  if (!cleanedValue) {
-    return null;
-  }
-
-  const parsedValue = Number(cleanedValue);
-
-  return Number.isFinite(parsedValue) ? parsedValue : null;
 }
 
 export function getFirstEquipmentImage(images?: string): string | null {
@@ -80,6 +56,68 @@ export function getFirstEquipmentImage(images?: string): string | null {
     .find(Boolean);
 
   return firstImage ?? null;
+}
+
+export function getEquipmentOperatingWeightValue(
+  item: Equipment,
+): string | null {
+  const excelWeight = item['Operating weight kg'];
+
+  if (excelWeight !== undefined && excelWeight !== null) {
+    const value = String(excelWeight).trim();
+
+    if (value) {
+      return value;
+    }
+  }
+
+  if (Number.isFinite(item.operatingWeight)) {
+    return String(item.operatingWeight);
+  }
+
+  return null;
+}
+
+export function formatEquipmentOperatingWeight(
+  item: Equipment,
+  fallbackText: string,
+): string {
+  const excelWeight = item['Operating weight kg'];
+
+  if (excelWeight !== undefined && excelWeight !== null) {
+    const value = String(excelWeight).trim();
+
+    if (value) {
+      return `${value} t`;
+    }
+  }
+
+  if (Number.isFinite(item.operatingWeight)) {
+    return `${item.operatingWeight} t`;
+  }
+
+  return fallbackText;
+}
+
+export function formatEquipmentEnginePower(
+  item: Equipment,
+  fallbackText: string,
+): string {
+  const excelPowerKw = item['Engine power kW'];
+
+  if (excelPowerKw !== undefined && excelPowerKw !== null) {
+    const value = String(excelPowerKw).trim();
+
+    if (value) {
+      return `${value} kW`;
+    }
+  }
+
+  if (Number.isFinite(item.enginePower)) {
+    return `${item.enginePower} kW`;
+  }
+
+  return fallbackText;
 }
 
 export function groupEquipmentByName(equipment: Equipment[]): Equipment[] {
@@ -112,11 +150,9 @@ export function hasActiveEquipmentFilters(filters: EquipmentFilters): boolean {
   return (
     filters.search.trim() !== '' ||
     filters.categoryId !== null ||
-    filters.availability.length > 0 ||
-    filters.condition.length > 0 ||
-    filters.location.trim() !== '' ||
-    filters.minDailyRate.trim() !== '' ||
-    filters.maxDailyRate.trim() !== ''
+    filters.brand.trim() !== '' ||
+    filters.model.trim() !== '' ||
+    filters.operatingWeight.trim() !== ''
   );
 }
 
@@ -127,11 +163,9 @@ export function getActiveEquipmentFilterCount(
 
   if (filters.search.trim()) count += 1;
   if (filters.categoryId !== null) count += 1;
-  count += filters.availability.length;
-  count += filters.condition.length;
-  if (filters.location.trim()) count += 1;
-  if (filters.minDailyRate.trim()) count += 1;
-  if (filters.maxDailyRate.trim()) count += 1;
+  if (filters.brand.trim()) count += 1;
+  if (filters.model.trim()) count += 1;
+  if (filters.operatingWeight.trim()) count += 1;
 
   return count;
 }
@@ -150,24 +184,20 @@ export function filterEquipment(
   filters: EquipmentFilters,
 ): Equipment[] {
   const search = normalizeSearchValue(filters.search);
-  const minDailyRate = toNumber(filters.minDailyRate);
-  const maxDailyRate = toNumber(filters.maxDailyRate);
-  const selectedLocation = normalizeSearchValue(filters.location);
+  const selectedBrand = normalizeSearchValue(filters.brand);
+  const selectedModel = normalizeSearchValue(filters.model);
+  const selectedOperatingWeight = normalizeSearchValue(filters.operatingWeight);
 
   return equipment.filter((item) => {
+    const operatingWeightValue = formatEquipmentOperatingWeight(item, '');
     const searchableText = normalizeSearchValue(
       [
         item.name,
         item.brand,
         item.model,
         item.year,
-        item.location,
+        operatingWeightValue,
         item.description,
-        item.availability,
-        item.condition,
-        item.dailyRate,
-        item.weeklyRate,
-        item.monthlyRate,
       ].join(' '),
     );
 
@@ -176,41 +206,50 @@ export function filterEquipment(
     const matchesCategory =
       filters.categoryId === null || item.categoryId === filters.categoryId;
 
-    const matchesAvailability =
-      filters.availability.length === 0 ||
-      (item.availability !== undefined &&
-        filters.availability.includes(item.availability));
+    const matchesBrand =
+      selectedBrand === '' || normalizeSearchValue(item.brand) === selectedBrand;
 
-    const matchesCondition =
-      filters.condition.length === 0 ||
-      (item.condition !== undefined && filters.condition.includes(item.condition));
+    const matchesModel =
+      selectedModel === '' || normalizeSearchValue(item.model) === selectedModel;
 
-    const matchesLocation =
-      selectedLocation === '' ||
-      normalizeSearchValue(item.location) === selectedLocation;
-
-    const matchesMinRate =
-      minDailyRate === null || Number(item.dailyRate) >= minDailyRate;
-
-    const matchesMaxRate =
-      maxDailyRate === null || Number(item.dailyRate) <= maxDailyRate;
+    const matchesOperatingWeight =
+      selectedOperatingWeight === '' ||
+      normalizeSearchValue(operatingWeightValue) === selectedOperatingWeight;
 
     return (
       matchesSearch &&
       matchesCategory &&
-      matchesAvailability &&
-      matchesCondition &&
-      matchesLocation &&
-      matchesMinRate &&
-      matchesMaxRate
+      matchesBrand &&
+      matchesModel &&
+      matchesOperatingWeight
     );
   });
 }
 
-export function getUniqueEquipmentLocations(equipment: Equipment[]): string[] {
-  const locations = equipment
-    .map((item) => item.location?.trim())
-    .filter((location): location is string => Boolean(location));
+export function getUniqueEquipmentBrands(equipment: Equipment[]): string[] {
+  const brands = equipment
+    .map((item) => item.brand?.trim())
+    .filter((brand): brand is string => Boolean(brand));
 
-  return Array.from(new Set(locations)).sort((a, b) => a.localeCompare(b));
+  return Array.from(new Set(brands)).sort((a, b) => a.localeCompare(b));
+}
+
+export function getUniqueEquipmentModels(equipment: Equipment[]): string[] {
+  const models = equipment
+    .map((item) => item.model?.trim())
+    .filter((model): model is string => Boolean(model));
+
+  return Array.from(new Set(models)).sort((a, b) => a.localeCompare(b));
+}
+
+export function getUniqueEquipmentOperatingWeights(
+  equipment: Equipment[],
+): string[] {
+  const operatingWeights = equipment
+    .map((item) => formatEquipmentOperatingWeight(item, ''))
+    .filter((value): value is string => Boolean(value));
+
+  return Array.from(new Set(operatingWeights)).sort((a, b) =>
+    a.localeCompare(b, undefined, { numeric: true }),
+  );
 }

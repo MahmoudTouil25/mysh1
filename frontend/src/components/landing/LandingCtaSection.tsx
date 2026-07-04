@@ -1,5 +1,6 @@
 import type { Lang } from '../../i18n/sharedContent';
 import { landingContent } from '../../i18n/landingContent';
+import Button from '../ui/Button';
 
 type LandingCtaSectionProps = {
   lang: Lang;
@@ -12,38 +13,40 @@ export default function LandingCtaSection({ lang }: LandingCtaSectionProps) {
   return (
     <section
       dir={isRtl ? 'rtl' : 'ltr'}
-      className="bg-[#F5FAFC] px-4 py-16 md:py-20"
+      className="bg-slate-50 px-4 py-section-mobile md:py-section"
     >
       <div className="mx-auto max-w-7xl">
-        <div className="rounded-2xl bg-[#F9A91A] px-6 py-12 text-center text-[#101719] shadow-[0_18px_45px_rgba(133,83,0,0.14)] md:px-10">
-          <h2 className="text-2xl font-black leading-tight md:text-4xl">
+        <div className="rounded-card bg-gradient-to-br from-yellow-300 to-brand-yellow px-6 py-12 text-center text-brand-darker shadow-xl shadow-yellow-900/10 md:px-10">
+          <h2 className="text-h2 md:text-h1">
             {t.cta.title}
           </h2>
 
-          <p className="mx-auto mt-4 max-w-2xl text-sm font-medium leading-6 text-[#101719]/75 md:text-base md:leading-7">
+          <p className="mx-auto mt-4 max-w-prose text-body text-brand-darker/75">
             {t.cta.description}
           </p>
 
           <div className="mt-7 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a
+            <Button
               href={t.cta.whatsappHref}
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#062D31] px-5 text-sm font-extrabold text-white transition hover:bg-[#0E3C43]"
+              variant="outline"
+              className="w-full border-brand-dark bg-brand-dark text-white hover:bg-brand-darker sm:w-auto"
             >
               <span
                 aria-hidden="true"
-                className="grid h-4 w-4 place-items-center rounded-sm border border-white/70 text-[10px] leading-none"
+                className="grid h-4 w-4 place-items-center rounded-sm border border-white/70 text-[0.625rem] leading-none"
               >
                 W
               </span>
               {t.cta.whatsappCta}
-            </a>
+            </Button>
 
-            <a
+            <Button
               href={t.cta.emailHref}
-              className="inline-flex min-h-11 items-center justify-center px-2 text-sm font-extrabold text-[#101719] underline-offset-4 transition hover:underline"
+              variant="outline"
+              className="w-full border-brand-dark text-brand-dark hover:bg-brand-dark/5 sm:w-auto"
             >
               {t.cta.emailCta}
-            </a>
+            </Button>
           </div>
         </div>
       </div>

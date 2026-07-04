@@ -20,13 +20,12 @@ type EquipmentContent = {
     mobileTitle: string;
     category: string;
     allCategories: string;
-    availability: string;
-    condition: string;
-    location: string;
-    allLocations: string;
-    dailyRate: string;
-    min: string;
-    max: string;
+    brand: string;
+    allBrands: string;
+    model: string;
+    allModels: string;
+    operatingWeight: string;
+    allOperatingWeights: string;
     clearAll: string;
     activeFilters: string;
     openFilters: string;
@@ -48,6 +47,7 @@ type EquipmentContent = {
     location: string;
     weight: string;
     power: string;
+    condition: string;
     noImage: string;
   };
   favoritesCart: {
@@ -62,11 +62,9 @@ type EquipmentContent = {
   tags: {
     search: string;
     category: string;
-    availability: string;
-    condition: string;
-    location: string;
-    minRate: string;
-    maxRate: string;
+    brand: string;
+    model: string;
+    operatingWeight: string;
   };
   categories: Record<string, string>;
 };
@@ -77,7 +75,7 @@ export const equipmentContent: Record<Lang, EquipmentContent>  = {
       eyebrow: 'Equipment Fleet',
       title: 'Browse Heavy Equipment',
       description:
-        'Search and filter construction equipment, machinery and plant solutions for your next project.',
+        'Find the machine your site is waiting for certified excavators, loaders, cranes and plant equipment, ready to mobilize anywhere in the UAE.',
       loading: 'Loading equipment...',
       error: 'Unable to load equipment. Please try again.',
       resultsFound: 'results found',
@@ -93,13 +91,12 @@ export const equipmentContent: Record<Lang, EquipmentContent>  = {
       mobileTitle: 'Filter Equipment',
       category: 'Category',
       allCategories: 'All categories',
-      availability: 'Availability',
-      condition: 'Condition',
-      location: 'Location',
-      allLocations: 'All locations',
-      dailyRate: 'Daily rate',
-      min: 'Min',
-      max: 'Max',
+      brand: 'Brand',
+      allBrands: 'All brands',
+      model: 'Model',
+      allModels: 'All models',
+      operatingWeight: 'Operating weight',
+      allOperatingWeights: 'All weights',
       clearAll: 'Clear all',
       activeFilters: 'Active filters',
       openFilters: 'Filters',
@@ -130,6 +127,7 @@ export const equipmentContent: Record<Lang, EquipmentContent>  = {
       location: 'Location',
       weight: 'Weight',
       power: 'Power',
+      condition: 'Condition',
       noImage: 'No image',
     },
     favoritesCart: {
@@ -144,11 +142,9 @@ export const equipmentContent: Record<Lang, EquipmentContent>  = {
     tags: {
       search: 'Search',
       category: 'Category',
-      availability: 'Availability',
-      condition: 'Condition',
-      location: 'Location',
-      minRate: 'Min rate',
-      maxRate: 'Max rate',
+      brand: 'Brand',
+      model: 'Model',
+      operatingWeight: 'Operating weight',
     },
     categories: {
       Earthmoving: 'Earthmoving',
@@ -194,7 +190,7 @@ export const equipmentContent: Record<Lang, EquipmentContent>  = {
       eyebrow: 'أسطول المعدات',
       title: 'تصفح المعدات الثقيلة',
       description:
-        'ابحث وقم بتصفية معدات البناء والآلات وحلول التشغيل المناسبة لمشروعك القادم.',
+        'اعثر على الآلة التي ينتظرها موقعك حفّارات ولوادر ورافعات وآليات إنشائية معتمدة، جاهزة للانطلاق إلى أي مكان في الإمارات.',
       loading: 'جاري تحميل المعدات...',
       error: 'تعذر تحميل المعدات. يرجى المحاولة مرة أخرى.',
       resultsFound: 'نتيجة',
@@ -210,13 +206,12 @@ export const equipmentContent: Record<Lang, EquipmentContent>  = {
       mobileTitle: 'تصفية المعدات',
       category: 'الفئة',
       allCategories: 'كل الفئات',
-      availability: 'التوفر',
-      condition: 'الحالة',
-      location: 'الموقع',
-      allLocations: 'كل المواقع',
-      dailyRate: 'السعر اليومي',
-      min: 'الأدنى',
-      max: 'الأقصى',
+      brand: 'العلامة',
+      allBrands: 'كل العلامات',
+      model: 'الموديل',
+      allModels: 'كل الموديلات',
+      operatingWeight: 'وزن التشغيل',
+      allOperatingWeights: 'كل الأوزان',
       clearAll: 'مسح الكل',
       activeFilters: 'الفلاتر النشطة',
       openFilters: 'الفلاتر',
@@ -247,6 +242,7 @@ export const equipmentContent: Record<Lang, EquipmentContent>  = {
       location: 'الموقع',
       weight: 'الوزن',
       power: 'القوة',
+      condition: 'الحالة',
       noImage: 'لا توجد صورة',
     },
     favoritesCart: {
@@ -261,11 +257,9 @@ export const equipmentContent: Record<Lang, EquipmentContent>  = {
     tags: {
       search: 'بحث',
       category: 'الفئة',
-      availability: 'التوفر',
-      condition: 'الحالة',
-      location: 'الموقع',
-      minRate: 'أقل سعر',
-      maxRate: 'أعلى سعر',
+      brand: 'العلامة',
+      model: 'الموديل',
+      operatingWeight: 'وزن التشغيل',
     },
     categories: {
       Earthmoving: 'معدات الحفر وتجهيز المواقع',

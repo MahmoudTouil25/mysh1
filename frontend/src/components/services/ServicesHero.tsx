@@ -32,10 +32,13 @@ export default function ServicesHero({ lang }: ServicesHeroProps) {
             {t.hero.eyebrow}
           </div>
 
-          <h1 className="mt-6 text-4xl font-black leading-[1.05] tracking-[-0.04em] md:text-7xl">
-            {t.hero.title}{' '}
-            <span className="text-[#F4D03F]">{t.hero.highlightedTitle}</span>
-          </h1>
+          <h1 className="mt-6 text-4xl font-black leading-[1.05] tracking-[-0.04em] md:text-6xl xl:text-7xl">
+  {t.hero.title}
+
+  <span className="mt-3 block text-3xl font-black leading-[1.08] tracking-[-0.04em] text-[#F4D03F] md:text-5xl xl:text-6xl">
+    {t.hero.highlightedTitle}
+  </span>
+</h1>
 
           <p className="mt-6 max-w-2xl text-base font-medium leading-7 text-white/75 md:text-lg md:leading-8">
             {t.hero.description}

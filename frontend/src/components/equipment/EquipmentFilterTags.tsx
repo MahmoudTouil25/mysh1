@@ -34,14 +34,6 @@ export default function EquipmentFilterTags({
     return t.categories[category.name] ?? category.name;
   };
 
-  const getAvailabilityLabel = (value: string): string => {
-    return t.availability[value] ?? value;
-  };
-
-  const getConditionLabel = (value: string): string => {
-    return t.condition[value] ?? value;
-  };
-
   return (
     <section
       className="mb-6 flex flex-wrap items-center gap-2"
@@ -65,40 +57,24 @@ export default function EquipmentFilterTags({
         />
       )}
 
-      {filters.availability.map((value) => (
+      {filters.brand.trim() && (
         <FilterChip
-          key={value}
-          label={`${t.tags.availability}: ${getAvailabilityLabel(value)}`}
-          onRemove={() => onRemoveFilter('availability', value)}
-        />
-      ))}
-
-      {filters.condition.map((value) => (
-        <FilterChip
-          key={value}
-          label={`${t.tags.condition}: ${getConditionLabel(value)}`}
-          onRemove={() => onRemoveFilter('condition', value)}
-        />
-      ))}
-
-      {filters.location.trim() && (
-        <FilterChip
-          label={`${t.tags.location}: ${filters.location}`}
-          onRemove={() => onRemoveFilter('location')}
+          label={`${t.tags.brand}: ${filters.brand}`}
+          onRemove={() => onRemoveFilter('brand')}
         />
       )}
 
-      {filters.minDailyRate.trim() && (
+      {filters.model.trim() && (
         <FilterChip
-          label={`${t.tags.minRate}: ${filters.minDailyRate}`}
-          onRemove={() => onRemoveFilter('minDailyRate')}
+          label={`${t.tags.model}: ${filters.model}`}
+          onRemove={() => onRemoveFilter('model')}
         />
       )}
 
-      {filters.maxDailyRate.trim() && (
+      {filters.operatingWeight.trim() && (
         <FilterChip
-          label={`${t.tags.maxRate}: ${filters.maxDailyRate}`}
-          onRemove={() => onRemoveFilter('maxDailyRate')}
+          label={`${t.tags.operatingWeight}: ${filters.operatingWeight}`}
+          onRemove={() => onRemoveFilter('operatingWeight')}
         />
       )}
 

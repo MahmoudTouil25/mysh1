@@ -28,15 +28,15 @@ export default function DeliveryMapSection({ lang }: DeliveryMapSectionProps) {
             isRtl ? 'text-right' : 'text-left',
           ].join(' ')}
         >
-          <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#F4D03F]">
+          <p className="text-eyebrow uppercase text-[#F4D03F]">
             {t.deliveryMap.eyebrow}
           </p>
 
-          <h2 className="mt-3 text-3xl font-black md:text-5xl">
+          <h2 className="mt-4 text-h2 md:text-h1">
             {t.deliveryMap.title}
           </h2>
 
-          <p className="mt-5 max-w-2xl text-base leading-7 text-white/70 md:text-lg md:leading-8">
+          <p className="mt-4 max-w-prose text-body-lg text-white/70">
             {t.deliveryMap.description}
           </p>
         </header>
@@ -125,7 +125,7 @@ export default function DeliveryMapSection({ lang }: DeliveryMapSectionProps) {
               <div
                 key={marker}
                 className={[
-                  'absolute z-10 flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-xs font-extrabold text-white shadow-lg backdrop-blur-md',
+                  'absolute z-10 flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-body-sm font-semibold text-white shadow-lg backdrop-blur-md',
                   markerPositions[index],
                   isRtl ? 'flex-row-reverse' : '',
                 ].join(' ')}
@@ -137,7 +137,7 @@ export default function DeliveryMapSection({ lang }: DeliveryMapSectionProps) {
 
             <div
               className={[
-                'absolute bottom-5 z-10 rounded-2xl border border-white/15 bg-black/25 px-4 py-3 text-sm font-bold text-white/85 backdrop-blur-md',
+                'absolute bottom-5 z-10 rounded-2xl border border-white/15 bg-black/25 px-4 py-3 text-body-sm font-medium text-white/85 backdrop-blur-md',
                 isRtl ? 'right-5 text-right' : 'left-5 text-left',
               ].join(' ')}
             >
@@ -145,38 +145,44 @@ export default function DeliveryMapSection({ lang }: DeliveryMapSectionProps) {
             </div>
           </div>
 
-          <aside className="grid gap-4">
-            <div
-              className={[
-                'rounded-3xl border border-white/15 bg-white/95 p-6 text-[#1B263B] shadow-[0_18px_50px_rgba(0,0,0,0.18)]',
-                isRtl ? 'text-right' : 'text-left',
-              ].join(' ')}
-            >
-              <p className="inline-flex rounded-full bg-[#68F589] px-3 py-1 text-xs font-black text-[#0E2A2C]">
-                {t.deliveryMap.status}
+          <aside
+            className={[
+              'flex flex-col justify-center',
+              isRtl ? 'text-right' : 'text-left',
+            ].join(' ')}
+          >
+            <div className="border-s-2 border-[#F4D03F] ps-5">
+              <p className="text-eyebrow uppercase text-[#F4D03F]">
+                {t.strength.eyebrow}
               </p>
-              <h3 className="mt-5 text-3xl font-black">
-                {t.deliveryMap.location}
+              <h3 className="mt-3 text-h3 text-white">
+                {t.strength.title}
               </h3>
-              <p className="mt-3 text-base leading-7 text-[#5C677D]">
-                {t.deliveryMap.note}
+              <p className="mt-4 text-body text-white/70">
+                {t.strength.note}
               </p>
             </div>
 
-            <div
-              className={[
-                'rounded-3xl border border-white/15 bg-white/10 p-6 text-white backdrop-blur',
-                isRtl ? 'text-right' : 'text-left',
-              ].join(' ')}
-            >
-              <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#F4D03F]">
-                MYSH
-              </p>
-              <p className="mt-3 text-base leading-7 text-white/75">
-                {lang === 'ar'
-                  ? 'يتم تحديث نطاق التوصيل تدريجياً حسب توفر الأسطول وجدولة المشاريع.'
-                  : 'Delivery coverage can expand as fleet availability and project schedules are confirmed.'}
-              </p>
+            <div className="mt-8 divide-y divide-[#F4D03F]/22">
+              {t.strength.stats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className={[
+                    'py-5 first:pt-0 last:pb-0',
+                    isRtl ? 'text-right' : 'text-left',
+                  ].join(' ')}
+                >
+                  <p className="font-heading text-h2 tabular-nums tracking-[-0.01em] text-[#F4D03F]">
+                    {stat.value}
+                  </p>
+                  <h4 className="mt-2 text-body font-semibold text-white">
+                    {stat.label}
+                  </h4>
+                  <p className="mt-2 text-body-sm text-white/62">
+                    {stat.description}
+                  </p>
+                </div>
+              ))}
             </div>
           </aside>
         </div>

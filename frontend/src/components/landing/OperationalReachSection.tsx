@@ -1,5 +1,7 @@
 import type { Lang } from '../../i18n/sharedContent';
 import { landingContent } from '../../i18n/landingContent';
+import Card from '../ui/Card';
+import SectionHeading from '../ui/SectionHeading';
 
 type OperationalReachSectionProps = {
   lang: Lang;
@@ -15,54 +17,51 @@ export default function OperationalReachSection({
     <section
       id="about"
       dir={isRtl ? 'rtl' : 'ltr'}
-      className="bg-white px-4 py-20 md:py-28"
+      className="bg-white px-4 py-section-mobile md:py-section"
     >
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
         <div className={isRtl ? 'text-right' : 'text-left'}>
-          <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#855300]">
-            {t.reach.eyebrow}
-          </p>
-
-          <h2 className="mt-3 text-3xl font-black tracking-[-0.03em] text-[#1B263B] md:text-5xl">
-            {t.reach.title}
-          </h2>
-
-          <p className="mt-5 max-w-xl text-lg leading-8 text-[#5C677D]">
-            {t.reach.description}
-          </p>
+          <SectionHeading
+            eyebrow={t.reach.eyebrow}
+            title={t.reach.title}
+            subtitle={t.reach.description}
+          />
         </div>
 
-        <div className="rounded-[2rem] border border-[#C2C7C9]/70 bg-[#F8F9FA] p-5 shadow-[0_20px_50px_rgba(27,38,59,0.08)] md:p-8">
+        <Card variant="light" className="bg-slate-50 p-5 md:p-8">
           <div className="grid gap-4 sm:grid-cols-3">
             {t.reach.stats.map((stat) => (
-              <div
+              <Card
                 key={stat.label}
-                className="rounded-3xl bg-white p-6 text-center shadow-sm"
+                variant="light"
+                interactive
+                className="p-6 text-center"
               >
-                <p className="text-3xl font-black text-[#1B263B]">
+                <p className="font-heading text-h3 tabular-nums text-[#062D31]">
                   {stat.value}
                 </p>
-                <p className="mt-2 text-sm font-semibold leading-6 text-[#5C677D]">
+                <p className="mt-2 text-body-sm font-semibold text-[#1B263B]/78">
                   {stat.label}
                 </p>
-              </div>
+              </Card>
             ))}
           </div>
 
-          <div
+          <Card
+            variant="dark"
             className={[
-              'mt-5 rounded-3xl bg-[#1B263B] p-6 text-white',
+              'mt-5 border-[#F4D03F]/22 bg-[#062D31] p-6 shadow-[0_18px_48px_rgba(6,45,49,0.18)]',
               isRtl ? 'text-right' : 'text-left',
             ].join(' ')}
           >
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#F4D03F]">
+            <p className="text-eyebrow uppercase text-[#F4D03F]">
               {t.reach.operationsTitle}
             </p>
-            <p className="mt-3 text-base leading-7 text-white/80">
+            <p className="mt-4 text-body font-medium text-black/88">
               {t.reach.operationsDescription}
             </p>
-          </div>
-        </div>
+          </Card>
+        </Card>
       </div>
     </section>
   );
