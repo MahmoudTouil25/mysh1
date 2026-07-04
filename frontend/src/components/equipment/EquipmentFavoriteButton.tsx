@@ -36,24 +36,26 @@ export default function EquipmentFavoriteButton({
         className,
       ].join(' ')}
     >
-      <HeartIcon filled={active} />
+      <CartIcon />
     </button>
   );
 }
 
-function HeartIcon({ filled }: { filled: boolean }) {
+function CartIcon() {
   return (
     <svg
       aria-hidden="true"
       className="h-5 w-5"
-      fill={filled ? 'currentColor' : 'none'}
+      fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <path d="M20.8 4.6a5.4 5.4 0 0 0-7.6 0L12 5.8l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 21l8.8-8.8a5.4 5.4 0 0 0 0-7.6Z" />
+      <circle cx="8" cy="21" r="1" />
+      <circle cx="19" cy="21" r="1" />
+      <path d="M2.5 3h2.2l2.5 12.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.4L22 8H6" />
     </svg>
   );
 }

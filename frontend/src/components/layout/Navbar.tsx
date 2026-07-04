@@ -105,7 +105,7 @@ export default function Navbar({ lang, setLang }: NavbarProps) {
               className="flex items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
             >
               <img
-                src="/mysh-logo-for-dark-navbar.png"
+                src="/logo-mysh-Footer.png"
                 alt="MYSH Heavy Equipment Rental"
                 className="h-11 w-auto object-contain md:h-12"
               />

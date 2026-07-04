@@ -75,7 +75,7 @@ export const equipmentContent: Record<Lang, EquipmentContent>  = {
       eyebrow: 'Equipment Fleet',
       title: 'Browse Heavy Equipment',
       description:
-        'Find the machine your site is waiting for certified excavators, loaders, cranes and plant equipment, ready to mobilize anywhere in the UAE.',
+        'Find the machine your site is waiting for certified excavators, and plant equipment, ready to mobilize anywhere in the UAE.',
       loading: 'Loading equipment...',
       error: 'Unable to load equipment. Please try again.',
       resultsFound: 'results found',
@@ -190,7 +190,7 @@ export const equipmentContent: Record<Lang, EquipmentContent>  = {
       eyebrow: 'أسطول المعدات',
       title: 'تصفح المعدات الثقيلة',
       description:
-        'اعثر على الآلة التي ينتظرها موقعك حفّارات ولوادر ورافعات وآليات إنشائية معتمدة، جاهزة للانطلاق إلى أي مكان في الإمارات.',
+        'اعثر على الآلة التي ينتظرها موقعك حفّارات ودمبرات وآليات إنشائية معتمدة، جاهزة للانطلاق إلى أي مكان في الإمارات.',
       loading: 'جاري تحميل المعدات...',
       error: 'تعذر تحميل المعدات. يرجى المحاولة مرة أخرى.',
       resultsFound: 'نتيجة',

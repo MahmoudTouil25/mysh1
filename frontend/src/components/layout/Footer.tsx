@@ -7,10 +7,31 @@ type FooterProps = {
   lang: Lang;
 };
 
+type FooterContactItem = {
+  label: string;
+  value: string;
+  href?: string;
+  valueDir?: 'ltr' | 'rtl' | 'auto';
+};
+
+function getPublicPhoneNumber() {
+  const phoneNumber = process.env.NEXT_PUBLIC_MYSH_WHATSAPP_NUMBER?.trim();
+
+  if (!phoneNumber || !/^\+?\d{7,15}$/.test(phoneNumber)) {
+    return null;
+  }
+
+  return phoneNumber.startsWith('+') ? phoneNumber : `+${phoneNumber}`;
+}
+
 export default function Footer({ lang }: FooterProps) {
   const t = sharedContent[lang];
   const year = new Date().getFullYear();
   const isRtl = lang === 'ar';
+  const publicPhoneNumber = getPublicPhoneNumber();
+  const publicEmail =
+    process.env.NEXT_PUBLIC_MYSH_SALES_EMAIL?.trim() ||
+    t.footer.contact.emailValue;
 
   const footerSections = [
     {
@@ -30,17 +51,35 @@ export default function Footer({ lang }: FooterProps) {
       ],
     },
   ];
+  const contactItems: FooterContactItem[] = [
+    {
+      label: t.footer.contact.address,
+      value: t.footer.contact.addressValue,
+    },
+    {
+      label: t.footer.contact.phone,
+      value: publicPhoneNumber ?? t.footer.contact.phoneValue,
+      href: publicPhoneNumber ? `tel:${publicPhoneNumber}` : undefined,
+      valueDir: 'ltr',
+    },
+    {
+      label: t.footer.contact.email,
+      value: publicEmail,
+      href: `mailto:${publicEmail}`,
+      valueDir: 'ltr',
+    },
+  ];
 
   return (
     <footer
       id="contact"
       dir={isRtl ? 'rtl' : 'ltr'}
       className={[
-        'bg-[#DEE3E5] px-4 py-12 md:py-16',
+        'bg-[#EEF4F6] px-4 py-12 md:py-16',
         isRtl ? 'text-right' : 'text-left',
       ].join(' ')}
     >
-      <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.4fr_1fr] lg:grid-cols-[1.6fr_1fr]">
+      <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.2fr_1fr] lg:grid-cols-[1.35fr_0.9fr_1fr]">
         <div>
           <Link
             href="/"
@@ -86,11 +125,45 @@ export default function Footer({ lang }: FooterProps) {
             </div>
           ))}
         </nav>
+
+        <section aria-labelledby="footer-contact-title">
+          <h2
+            id="footer-contact-title"
+            className="text-eyebrow uppercase text-[#1B263B]/60"
+          >
+            {t.footer.contact.title}
+          </h2>
+
+          <dl className="mt-4 space-y-4">
+            {contactItems.map((item) => (
+              <div key={item.label}>
+                <dt className="text-xs font-black uppercase tracking-[0.12em] text-[#855300]">
+                  {item.label}
+                </dt>
+                <dd className="mt-1 text-body-sm font-medium text-[#424849]">
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      dir={item.valueDir}
+                      className="inline-block transition hover:text-[#1B263B]"
+                    >
+                      {item.value}
+                    </a>
+                  ) : (
+                    <span dir={item.valueDir} className="inline-block">
+                      {item.value}
+                    </span>
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </section>
       </div>
 
-      <div className="mx-auto mt-10 max-w-7xl border-t border-[#C2C7C9] pt-6">
+      <div className="mx-auto mt-10 max-w-7xl border-t border-[#C2C7C9]/80 pt-6">
         <p className="text-eyebrow uppercase text-[#424849]">
-          © {year} MYSH Industrial Equipment Rental. {t.footer.rights}
+          &copy; {year} MYSH Industrial Equipment Rental. {t.footer.rights}
         </p>
       </div>
     </footer>

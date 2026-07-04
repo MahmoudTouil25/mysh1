@@ -1,5 +1,46 @@
 export type Lang = 'en' | 'ar';
 
+type SharedContent = {
+  nav: {
+    home: string;
+    equipment: string;
+    services: string;
+    projects: string;
+    blog: string;
+    csr: string;
+    about: string;
+    contact: string;
+    quote: string;
+    cart: string;
+    openMenu: string;
+    closeMenu: string;
+    changeLanguage: string;
+  };
+  footer: {
+    description: string;
+    company: string;
+    legal: string;
+    about: string;
+    services: string;
+    equipment: string;
+    privacy: string;
+    terms: string;
+    rights: string;
+    contact: {
+      title: string;
+      address: string;
+      addressValue: string;
+      phone: string;
+      phoneValue: string;
+      email: string;
+      emailValue: string;
+    };
+  };
+  whatsapp: {
+    label: string;
+  };
+};
+
 export const sharedContent = {
   en: {
     nav: {
@@ -28,6 +69,15 @@ export const sharedContent = {
       privacy: 'Privacy Policy',
       terms: 'Terms of Service',
       rights: 'All rights reserved.',
+      contact: {
+        title: 'Contact',
+        address: 'Address',
+        addressValue: 'Acico Business Park, Office 205-19, Deira, Dubai',
+        phone: 'Phone / WhatsApp',
+        phoneValue: '+971...',
+        email: 'Email',
+        emailValue: 'info@mysh-ae.com',
+      },
     },
     whatsapp: {
       label: 'Contact us on WhatsApp',
@@ -61,9 +111,18 @@ export const sharedContent = {
       privacy: 'سياسة الخصوصية',
       terms: 'شروط الخدمة',
       rights: 'جميع الحقوق محفوظة.',
+      contact: {
+        title: 'التواصل',
+        address: 'العنوان',
+        addressValue: 'أسيكو بيزنس بارك، مكتب 205-19، ديرة، دبي',
+        phone: 'الهاتف / واتساب',
+        phoneValue: '+971...',
+        email: 'البريد الإلكتروني',
+        emailValue: 'info@mysh-ae.com',
+      },
     },
     whatsapp: {
       label: 'تواصل معنا عبر واتساب',
     },
   },
-} satisfies Record<Lang, Record<string, unknown>>;
+} satisfies Record<Lang, SharedContent>;
