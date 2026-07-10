@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { ProjectLabels } from '@/i18n/contentPages';
 import type { ProjectItem } from '@/types/content';
+import { buildFavoritesContactHref } from '@/utils/contactQuote';
 
 type ProjectContentProps = {
   project: ProjectItem;
@@ -109,13 +110,13 @@ export default function ProjectContent({
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
-              href="/contact"
+              href={buildFavoritesContactHref()}
               className="inline-flex min-h-11 items-center justify-center rounded-lg bg-[#F4D03F] px-5 text-sm font-extrabold text-[#1B263B] transition hover:brightness-95"
             >
               {labels.discussProject}
             </Link>
             <Link
-              href="/equipment"
+              href={buildFavoritesContactHref()}
               className="inline-flex min-h-11 items-center justify-center rounded-lg border border-white/25 px-5 text-sm font-extrabold text-white transition hover:bg-white/10"
             >
               {labels.requestEquipment}

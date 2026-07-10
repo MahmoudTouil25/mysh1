@@ -316,6 +316,38 @@ function buildAutomaticMessage({
   return buildEquipmentLines({ lang, equipment }).join('\n');
 }
 
+function getEquipmentKey(item: QuoteEquipmentDetails): string {
+  if (item.id?.trim()) {
+    return `id:${item.id.trim()}`;
+  }
+
+  return [
+    item.name,
+    item.brand,
+    item.model,
+    item.year,
+  ]
+    .map((value) => value?.trim().toLowerCase() ?? '')
+    .join('|');
+}
+
+function mergeSelectedEquipment(
+  equipment: QuoteEquipmentDetails[],
+): QuoteEquipmentDetails[] {
+  const seenKeys = new Set<string>();
+
+  return equipment.filter((item) => {
+    const key = getEquipmentKey(item);
+
+    if (seenKeys.has(key)) {
+      return false;
+    }
+
+    seenKeys.add(key);
+    return true;
+  });
+}
+
 function buildContactMessage({
   lang,
   formValues,
@@ -393,16 +425,24 @@ export default function ContactPage() {
   const selectedEquipment = useMemo(() => {
     const currentSearchParams = new URLSearchParams(searchParamString);
     const quoteMode = currentSearchParams.get('quote');
+    const favoriteQuoteDetails = favoriteEquipment.map((item) =>
+      getEquipmentQuoteDetails({ item }),
+    );
 
     if (quoteMode === 'favorites') {
-      return favoriteEquipment.map((item) =>
-        getEquipmentQuoteDetails({ item }),
-      );
+      return favoriteQuoteDetails;
     }
 
     const equipmentFromParams = parseEquipmentFromParams(currentSearchParams);
 
-    return equipmentFromParams ? [equipmentFromParams] : [];
+    if (quoteMode === 'equipment' && equipmentFromParams) {
+      return mergeSelectedEquipment([
+        equipmentFromParams,
+        ...favoriteQuoteDetails,
+      ]);
+    }
+
+    return [];
   }, [favoriteEquipment, searchParamString]);
 
   const automaticMessage = useMemo(() => {

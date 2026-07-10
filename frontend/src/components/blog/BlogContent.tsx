@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { BlogLabels } from '@/i18n/contentPages';
 import type { BlogPost } from '@/types/content';
+import { buildFavoritesContactHref } from '@/utils/contactQuote';
 
 type BlogContentProps = {
   post: BlogPost;
@@ -91,7 +92,7 @@ export default function BlogContent({
                 {labels.viewEquipment}
               </Link>
               <Link
-                href="/contact"
+                href={buildFavoritesContactHref()}
                 className="inline-flex min-h-11 items-center justify-center rounded-lg bg-[#F4D03F] px-4 text-sm font-extrabold text-[#1B263B] transition hover:brightness-95"
               >
                 {labels.requestEquipment}
@@ -123,7 +124,7 @@ export default function BlogContent({
             {labels.ctaDescription}
           </p>
           <Link
-            href="/contact"
+            href={buildFavoritesContactHref()}
             className="mt-6 inline-flex min-h-11 items-center justify-center rounded-lg bg-[#F4D03F] px-5 text-sm font-extrabold text-[#1B263B] transition hover:brightness-95"
           >
             {labels.discussProject}

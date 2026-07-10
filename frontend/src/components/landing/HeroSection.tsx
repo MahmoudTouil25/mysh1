@@ -1,5 +1,6 @@
 import type { Lang } from '../../i18n/sharedContent';
 import { landingContent } from '../../i18n/landingContent';
+import { buildFavoritesContactHref } from '../../utils/contactQuote';
 import Button from '../ui/Button';
 
 type HeroSectionProps = {
@@ -55,7 +56,7 @@ export default function HeroSection({ lang }: HeroSectionProps) {
 
           <div className="mx-auto mt-8 flex w-full max-w-xs flex-col gap-4 sm:max-w-sm md:flex-row md:justify-center md:max-w-none">
             <Button
-              href="#contact"
+              href={buildFavoritesContactHref()}
               className="min-h-14 w-full px-8 shadow-[0_10px_22px_rgba(0,0,0,0.22)] md:w-auto"
             >
               {t.hero.primaryCta}

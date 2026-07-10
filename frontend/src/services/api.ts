@@ -1,7 +1,8 @@
 import type { Category, Equipment } from '../types/equipment';
 
 const API_URL =
-  process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001';
+
+  process.env.NEXT_PUBLIC_API_URL ?? 'https://mysh.onrender.com';
 
 async function apiGet<T>(endpoint: string): Promise<T> {
   const url = `${API_URL.replace(/\/$/, '')}${endpoint}`;

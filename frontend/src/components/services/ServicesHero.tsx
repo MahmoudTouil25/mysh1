@@ -1,5 +1,6 @@
 import type { Lang } from '../../i18n/sharedContent';
 import { servicesContent } from '../../i18n/servicesContent';
+import { buildFavoritesContactHref } from '../../utils/contactQuote';
 
 type ServicesHeroProps = {
   lang: Lang;
@@ -46,7 +47,7 @@ export default function ServicesHero({ lang }: ServicesHeroProps) {
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
-              href={t.hero.primaryHref}
+              href={buildFavoritesContactHref()}
               className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#F4D03F] px-6 text-sm font-extrabold text-[#1B263B] transition hover:brightness-95"
             >
               {t.hero.primaryCta}

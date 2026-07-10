@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import type { Lang } from '@/i18n/sharedContent';
 import { LanguageProvider } from '@/i18n/LanguageContext';
 import { EquipmentFavoritesProvider } from '@/contexts/EquipmentFavoritesContext';
@@ -14,7 +15,9 @@ type GlobalShellProps = {
 
 export default function GlobalShell({ children }: GlobalShellProps) {
   const [lang, setLang] = useState<Lang>('en');
+  const pathname = usePathname();
   const dir = lang === 'ar' ? 'rtl' : 'ltr';
+  const isFontTestPage = pathname === '/font-test';
 
   useEffect(() => {
     document.documentElement.lang = lang;
@@ -24,7 +27,15 @@ export default function GlobalShell({ children }: GlobalShellProps) {
   return (
     <LanguageProvider value={{ lang, setLang }}>
       <EquipmentFavoritesProvider>
-        <div lang={lang} dir={dir} className="min-h-screen bg-[#F8F9FA]">
+        <div
+          lang={lang}
+          dir={dir}
+          data-font-test={isFontTestPage ? 'active' : undefined}
+          className={[
+            'min-h-screen bg-[#F8F9FA]',
+            isFontTestPage ? 'font-test-landing' : '',
+          ].join(' ')}
+        >
           <Navbar lang={lang} setLang={setLang} />
           <main>{children}</main>
           <Footer lang={lang} />

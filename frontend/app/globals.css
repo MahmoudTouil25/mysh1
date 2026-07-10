@@ -15,6 +15,41 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+.font-test-landing {
+  --font-test-active: var(--font-test-playfair);
+  --font-test-weight: 400;
+
+  /*
+   * Font test options. Keep one active pair above and leave the rest commented.
+   *
+   * Cormorant Garamond Light:
+   * --font-test-active: var(--font-test-cormorant);
+   * --font-test-weight: 300;
+   *
+   * Boska Light:
+   * --font-test-active: "Boska";
+   * --font-test-weight: 300;
+   *
+   * Italiana Regular:
+   * --font-test-active: var(--font-test-italiana);
+   * --font-test-weight: 400;
+   *
+   * Playfair Display Regular:
+   * --font-test-active: var(--font-test-playfair);
+   * --font-test-weight: 400;
+   */
+
+  --font-body: var(--font-test-active), Georgia, serif;
+  --font-heading: var(--font-test-active), Georgia, serif;
+  --font-numbers: var(--font-test-active), Georgia, serif;
+}
+
+.font-test-landing,
+.font-test-landing * {
+  font-family: var(--font-test-active), Georgia, serif !important;
+  font-weight: var(--font-test-weight) !important;
+}
+
 * {
   box-sizing: border-box;
 }

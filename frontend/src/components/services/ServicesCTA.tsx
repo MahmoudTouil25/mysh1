@@ -1,5 +1,6 @@
 import type { Lang } from '../../i18n/sharedContent';
 import { servicesContent } from '../../i18n/servicesContent';
+import { buildFavoritesContactHref } from '../../utils/contactQuote';
 
 type ServicesCTAProps = {
   lang: Lang;
@@ -38,7 +39,7 @@ export default function ServicesCTA({ lang }: ServicesCTAProps) {
 
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
               <a
-                href={t.cta.primaryHref}
+                href={buildFavoritesContactHref()}
                 className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#F4D03F] px-6 text-sm font-extrabold text-[#1B263B] transition hover:brightness-95"
               >
                 {t.cta.primaryCta}

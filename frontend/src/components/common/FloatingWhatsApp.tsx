@@ -1,5 +1,6 @@
 import type { Lang } from '../../i18n/sharedContent';
 import { sharedContent } from '../../i18n/sharedContent';
+import { buildFavoritesContactHref } from '../../utils/contactQuote';
 
 type FloatingWhatsAppProps = {
   lang: Lang;
@@ -16,7 +17,7 @@ export default function FloatingWhatsApp({
 
   const href = phoneNumber
     ? `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
-    : '#contact';
+    : buildFavoritesContactHref();
 
   return (
     <a

@@ -1,5 +1,6 @@
 import type { Lang } from '../../i18n/sharedContent';
 import { landingContent } from '../../i18n/landingContent';
+import { buildFavoritesContactHref } from '../../utils/contactQuote';
 import Button from '../ui/Button';
 
 type LandingCtaSectionProps = {
@@ -27,7 +28,7 @@ export default function LandingCtaSection({ lang }: LandingCtaSectionProps) {
 
           <div className="mt-7 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button
-              href={t.cta.whatsappHref}
+              href={buildFavoritesContactHref()}
               variant="outline"
               className="w-full border-brand-dark bg-brand-dark text-white hover:bg-brand-darker sm:w-auto"
             >
@@ -41,7 +42,7 @@ export default function LandingCtaSection({ lang }: LandingCtaSectionProps) {
             </Button>
 
             <Button
-              href={t.cta.emailHref}
+              href={buildFavoritesContactHref()}
               variant="outline"
               className="w-full border-brand-dark text-brand-dark hover:bg-brand-dark/5 sm:w-auto"
             >

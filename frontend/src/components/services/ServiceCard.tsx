@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { ServiceCardContent } from '../../i18n/servicesContent';
 import type { Lang } from '../../i18n/sharedContent';
+import { buildFavoritesContactHref } from '../../utils/contactQuote';
 
 type ServiceCardProps = {
   lang: Lang;
@@ -35,7 +36,7 @@ export default function ServiceCard({ lang, service, href }: ServiceCardProps) {
         </p>
 
         <Link
-          href={href ?? '/contact'}
+          href={href ?? buildFavoritesContactHref()}
           className="mt-5 inline-flex items-center text-sm font-extrabold text-[#855300] transition hover:text-[#1B263B]"
         >
           {service.cta}

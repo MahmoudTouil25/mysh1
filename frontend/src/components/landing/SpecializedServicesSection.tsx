@@ -1,6 +1,7 @@
 import type { Lang } from '../../i18n/sharedContent';
 import { landingContent } from '../../i18n/landingContent';
 import { servicesContent } from '../../i18n/servicesContent';
+import { buildFavoritesContactHref } from '../../utils/contactQuote';
 import ServiceCard from '../services/ServiceCard';
 import SectionHeading from '../ui/SectionHeading';
 
@@ -38,7 +39,7 @@ export default function SpecializedServicesSection({
               key={service.title}
               lang={lang}
               service={service}
-              href="/equipment"
+              href={buildFavoritesContactHref()}
             />
           ))}
         </div>

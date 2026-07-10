@@ -142,7 +142,7 @@ export default function Navbar({ lang, setLang }: NavbarProps) {
               </button>
 
               <Link
-                href="/contact"
+                href={buildFavoritesContactHref()}
                 className="button-label inline-flex min-h-10 items-center justify-center rounded-full bg-[#F4D03F] px-5 text-sm font-semibold uppercase text-[#1B263B] transition hover:brightness-95"
               >
                 {t.nav.quote}
@@ -220,7 +220,7 @@ export default function Navbar({ lang, setLang }: NavbarProps) {
                 ))}
 
                 <Link
-                  href="/contact"
+                  href={buildFavoritesContactHref()}
                   onClick={closeMobileMenu}
                   className="button-label mt-2 inline-flex min-h-11 items-center justify-center rounded-xl bg-[#F4D03F] px-5 text-sm font-semibold uppercase text-[#1B263B]"
                 >
