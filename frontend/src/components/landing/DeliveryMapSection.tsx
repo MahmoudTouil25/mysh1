@@ -6,9 +6,13 @@ type DeliveryMapSectionProps = {
 };
 
 const markerPositions = [
-  'left-[49%] top-[32%]',
-  'left-[35%] top-[59%]',
-  'left-[62%] top-[43%]',
+  'left-[53%] top-[44%]',
+  'left-[42%] top-[57%]',
+  'left-[58%] top-[39%]',
+  'left-[29%] top-[72%]',
+  'left-[79%] top-[43%]',
+  'left-[64%] top-[34%]',
+  'left-[73%] top-[22%]',
 ];
 
 export default function DeliveryMapSection({ lang }: DeliveryMapSectionProps) {
@@ -91,29 +95,31 @@ export default function DeliveryMapSection({ lang }: DeliveryMapSectionProps) {
               />
 
               <path
-                d="M315 42 C353 36 399 49 425 80 C449 108 463 141 491 165 C522 191 551 217 559 252 C568 289 541 316 503 329 C460 344 421 338 386 358 C352 377 312 391 272 374 C233 358 213 323 217 282 C221 239 247 210 251 171 C256 121 274 68 315 42 Z"
+                d="M148 315 C174 278 208 250 250 226 C292 202 320 179 351 151 C390 116 439 86 489 63 C523 47 556 53 577 78 C594 98 588 116 569 129 C548 144 541 164 554 181 C571 205 618 199 637 224 C655 249 639 281 606 286 C574 291 548 276 514 279 C478 282 450 304 425 329 C394 360 350 379 300 379 C250 379 191 359 148 315 Z"
                 fill="rgba(244,208,63,0.08)"
                 stroke="#F4D03F"
                 strokeWidth="4"
+                strokeLinejoin="round"
                 filter="url(#delivery-map-glow)"
               />
               <path
-                d="M315 42 C353 36 399 49 425 80 C449 108 463 141 491 165 C522 191 551 217 559 252 C568 289 541 316 503 329 C460 344 421 338 386 358 C352 377 312 391 272 374 C233 358 213 323 217 282 C221 239 247 210 251 171 C256 121 274 68 315 42 Z"
+                d="M148 315 C174 278 208 250 250 226 C292 202 320 179 351 151 C390 116 439 86 489 63 C523 47 556 53 577 78 C594 98 588 116 569 129 C548 144 541 164 554 181 C571 205 618 199 637 224 C655 249 639 281 606 286 C574 291 548 276 514 279 C478 282 450 304 425 329 C394 360 350 379 300 379 C250 379 191 359 148 315 Z"
                 fill="none"
                 stroke="rgba(255,255,255,0.6)"
                 strokeDasharray="9 10"
                 strokeWidth="1.5"
+                strokeLinejoin="round"
               />
 
               <path
-                d="M280 86 C340 119 392 163 444 217 C475 249 505 275 534 294"
+                d="M202 310 C258 271 323 217 386 160 C438 112 497 78 556 82"
                 fill="none"
                 stroke="rgba(255,255,255,0.16)"
                 strokeLinecap="round"
                 strokeWidth="7"
               />
               <path
-                d="M249 285 C310 278 361 252 413 224 C466 197 513 194 559 208"
+                d="M355 207 C423 191 481 196 535 221 C561 233 586 254 604 276"
                 fill="none"
                 stroke="rgba(255,255,255,0.12)"
                 strokeLinecap="round"
@@ -125,7 +131,7 @@ export default function DeliveryMapSection({ lang }: DeliveryMapSectionProps) {
               <div
                 key={marker}
                 className={[
-                  'absolute z-10 flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-body-sm font-semibold text-white shadow-lg backdrop-blur-md',
+                  'absolute z-10 flex -translate-x-1/2 -translate-y-1/2 items-center gap-1.5 whitespace-nowrap rounded-full border border-white/20 bg-white/10 px-2.5 py-1.5 text-xs font-semibold text-white shadow-lg backdrop-blur-md md:gap-2 md:px-3 md:py-2 md:text-body-sm',
                   markerPositions[index],
                   isRtl ? 'flex-row-reverse' : '',
                 ].join(' ')}

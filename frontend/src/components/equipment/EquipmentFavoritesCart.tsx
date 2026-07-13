@@ -9,12 +9,10 @@ import { buildFavoritesContactHref } from '../../utils/contactQuote';
 
 type EquipmentFavoritesCartProps = {
   lang: Lang;
-  formatCurrency: (value: number) => string;
 };
 
 export default function EquipmentFavoritesCart({
   lang,
-  formatCurrency,
 }: EquipmentFavoritesCartProps) {
   const t = equipmentContent[lang];
   const { favoriteEquipment, favoriteCount, removeFavorite, clearFavorites } =
@@ -105,13 +103,6 @@ export default function EquipmentFavoritesCart({
                   </Link>
                   <p className="mt-1 truncate text-xs font-semibold text-[#5C677D]">
                     {item.brand} / {item.model} / {item.year}
-                  </p>
-                  <p className="mt-1 text-xs font-black text-[#1B263B]">
-                    {Number.isFinite(item.dailyRate)
-                      ? `${formatCurrency(Number(item.dailyRate))} / ${
-                          t.card.daily
-                        }`
-                      : t.card.requestQuote}
                   </p>
                 </div>
 

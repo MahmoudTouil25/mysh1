@@ -16,8 +16,8 @@ body {
 }
 
 .font-test-landing {
-  --font-test-active: var(--font-test-playfair);
-  --font-test-weight: 400;
+  --font-test-active: "Boska";
+  --font-test-weight: 300;
 
   /*
    * Font test options. Keep one active pair above and leave the rest commented.
@@ -96,7 +96,6 @@ body {
 
   [dir='rtl'],
   [dir='rtl'] * {
-    @apply font-arabic;
     letter-spacing: 0;
   }
 
@@ -134,6 +133,13 @@ body {
   [dir='rtl'] p {
     line-height: 1.78;
   }
+}
+
+[dir='rtl'],
+[dir='rtl'] * {
+  font-family: var(--font-arabic), sans-serif;
+  line-height: 1.20;
+
 }
 
 @keyframes trusted-logo-marquee {

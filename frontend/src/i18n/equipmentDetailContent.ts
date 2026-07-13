@@ -241,7 +241,7 @@ export const equipmentDetailContent: Record<Lang, EquipmentDetailContent> = {
       backToEquipment: 'العودة إلى المعدات',
     },
     hero: {
-      eyebrow: 'تفاصيل المعدة',
+      eyebrow: 'تفاصيل الآلـة',
       descriptionTitle: 'الوصف',
       category: 'الفئة',
       availability: 'التوفر',

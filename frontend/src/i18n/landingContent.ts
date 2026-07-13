@@ -5,6 +5,7 @@ type LandingContent = {
     eyebrow: string;
     title: string;
     description: string;
+    subdescription?: string;
     primaryCta: string;
     secondaryCta: string;
   };
@@ -93,354 +94,405 @@ type LandingContent = {
 export const landingContent = {
   en: {
     hero: {
-      eyebrow: 'Heavy Equipment Rental - Dubai, UAE',
-      title: 'Your Partner on Every Site.',
+      eyebrow: 'Heavy Equipment Rental in Dubai, UAE',
+      title: 'Reliable Heavy Equipment Rental for Projects Across the UAE',
       description:
-        'Premium heavy machinery, plant equipment and specialized logistics for construction, infrastructure and industrial projects across the UAE.',
-      primaryCta: 'Request Quote',
-      secondaryCta: 'View Equipment',
+        'Project-ready heavy equipment for construction, infrastructure, earthmoving and industrial operations, supported by responsive rental coordination and equipment mobilization.',
+      subdescription: '',
+      primaryCta: 'Request a Quote',
+      secondaryCta: 'View Our Fleet',
     },
+
     services: {
-      eyebrow: 'Our Fleet',
-      title: 'Specialized Services',
-      action: 'Explore Fleet',
+      eyebrow: 'Industries We Support',
+      title: 'Heavy Equipment Solutions for Major Project Sectors',
+      action: 'Explore Our Services',
       items: [
         {
-          title: 'Earthmoving Equipment',
+          title: 'Marine and Port Projects',
           description:
-            'High-capacity excavators, loaders and site preparation equipment for demanding construction projects.',
+            'Heavy equipment rental for port development, quay works, coastal construction, marine infrastructure and waterfront project operations.',
           image: '/images/services/earthmoving.png',
-          badge: 'Earthmoving',
+          badge: 'Marine',
           cta: 'Request Equipment',
         },
         {
-          title: 'Lifting Solutions',
+          title: 'Airport and Aviation Infrastructure',
           description:
-            'Mobile cranes, lifting equipment and handling adapted solutions for urban and open-site operations.',
+            'Equipment rental support for airport expansion, runway works, terminal infrastructure, ground preparation and aviation-related construction.',
           image: '/images/services/infrastructure-maintenance.png',
-          badge: 'Lifting',
+          badge: 'Aviation',
           cta: 'Request Equipment',
         },
         {
-          title: 'Power Generation',
+          title: 'Road, Bridge and Rail Infrastructure',
           description:
-            'Generators and mobile power solutions for off-grid operations, temporary sites and backup needs.',
+            'Heavy equipment for roadworks, bridge construction, rail projects, access routes, site preparation and transport infrastructure.',
           image: '/images/services/resilience.png',
-          badge: 'Power',
+          badge: 'Infrastructure',
           cta: 'Request Equipment',
         },
       ],
     },
+
     trust: {
       clients: {
-        eyebrow: 'Trusted Clients',
-        title: 'Chosen by project teams that need dependable site support.',
+        eyebrow: 'Trusted by Project Teams',
+        title: 'Supporting contractors and project teams with dependable equipment rental.',
         description:
-          'MYSH supports contractors, industrial operators and infrastructure teams with practical rental coordination and fleet access.',
+          'MYSH works with construction companies, infrastructure contractors, industrial operators and project teams that require responsive coordination and reliable equipment availability.',
         items: [
+          'Construction companies',
           'Infrastructure contractors',
           'Industrial operators',
-          'Road maintenance teams',
           'Marine and logistics projects',
         ],
       },
+
       brands: {
-        eyebrow: 'Equipment Brands',
-        title: 'Fleet brands ready for demanding construction work.',
+        eyebrow: 'Trusted Equipment Brands',
+        title: 'Proven machinery from globally recognized manufacturers.',
         description:
-          'Our equipment selection includes proven heavy machinery brands used across earthmoving, hauling, excavation and site preparation.',
+          'Our fleet includes established heavy equipment brands selected for excavation, earthmoving, hauling, site preparation and demanding project operations.',
         items: ['CAT', 'KOMATSU', 'VOLVO', 'SANY', 'HITACHI'],
       },
     },
+
     strength: {
-      eyebrow: 'Operational Scale',
-      title: 'Built to support demanding project sites.',
+      eyebrow: 'Operational Capability',
+      title: 'A project-ready fleet backed by responsive coordination.',
       description:
-        'MYSH supports contractors, industrial operators and infrastructure teams with reliable heavy equipment rental, fleet coordination and field-ready machinery across Dubai and the UAE.',
-      note: 'Fleet scale, responsive coordination and practical site support for B2B project teams.',
+        'MYSH provides reliable heavy equipment rental for contractors, infrastructure companies and industrial operators, with machinery prepared to meet demanding site requirements in Dubai and across the UAE.',
+      note:
+        'Flexible rental support, efficient equipment coordination and practical solutions for B2B project requirements.',
       stats: [
         {
           value: '49+',
-          label: 'Years of industry legacy',
+          label: 'Years of industry experience',
           description:
-            'Established experience supporting heavy equipment operations.',
+            'Decades of experience in heavy equipment, industrial operations and project support.',
         },
         {
           value: '30+',
           label: 'Machines and support units',
           description:
-            'A rental fleet covering earthmoving, lifting, hauling and site support.',
+            'A growing rental fleet supporting excavation, earthmoving, hauling and site operations.',
         },
         {
           value: '4+',
           label: 'Equipment categories',
           description:
-            'From excavators and loaders to cranes, trucks, tankers and generators.',
+            'Equipment options for excavation, earthmoving, transport and specialized site requirements.',
         },
         {
           value: '24/7',
           label: 'Rental coordination support',
           description:
-            'Responsive assistance for urgent project needs and mobilization planning.',
+            'Responsive coordination for urgent requirements, dispatch planning and project support.',
         },
       ],
     },
+
     reach: {
       eyebrow: 'Operational Reach',
-      title: 'Built for fast-moving project sites across the UAE.',
+      title: 'Equipment rental support for projects in Dubai and across the UAE.',
       description:
-        'From Dubai-based operations to construction sites, industrial zones and infrastructure projects, MYSH supports reliable equipment access and rental coordination.',
+        'From construction sites and industrial zones to infrastructure and marine projects, MYSH coordinates the equipment required to keep operations moving.',
       stats: [
         { value: 'Dubai', label: 'Operational base' },
-        { value: 'UAE', label: 'Rental coverage' },
+        { value: 'UAE', label: 'Project coverage' },
         { value: 'B2B', label: 'Contractor focused' },
       ],
-      operationsTitle: 'MYSH Operations',
+      operationsTitle: 'MYSH Rental Operations',
       operationsDescription:
-        'Equipment rental support for contractors, project managers and industrial operators needing reliable machinery access.',
+        'Heavy equipment rental support for contractors, project managers, construction companies and industrial operators.',
     },
+
     story: {
       eyebrow: 'Our Story',
-      title: 'A Legacy of Strength and Reliability',
+      title: 'Decades of Experience in Heavy Equipment and Industrial Operations',
       description:
-        'Founded in 1977 with deep roots in Jordan, MYSH began as a vision to revolutionize the industrial landscape. Our journey is defined by unwavering commitment to equipment excellence and operational trust.',
+        'Founded in Jordan in 1977, MYSH has built decades of experience in heavy equipment and industrial operations. Today, we bring this expertise to the UAE, supporting projects with reliable machinery, practical coordination and a strong commitment to operational quality.',
       image: '/images/story.png',
       statValue: '49+',
-      statLabel: 'Years of Heritage',
-      primaryCta: 'Read Our Full History',
+      statLabel: 'Years of Experience',
+      primaryCta: 'Discover Our Story',
       items: [
         {
-          title: '1977 Origins',
+          title: 'Founded in 1977',
           description:
-            'Established in Jordan, laying the foundation for heavy industrial specialization.',
+            'Established in Jordan with a strong foundation in heavy equipment and industrial operations.',
         },
         {
-          title: 'UAE Expansion',
+          title: 'Expansion into the UAE',
           description:
-            "Bringing decades of expertise to the UAE's rapid infrastructure growth.",
+            'Bringing decades of equipment experience to construction, infrastructure and industrial projects in the UAE.',
         },
       ],
     },
+
     deliveryMap: {
-      eyebrow: 'Delivery Map',
-      title: 'Dubai delivery borders for current fleet dispatch.',
+      eyebrow: 'Equipment Delivery Coverage',
+      title: 'Equipment dispatch coverage across the UAE.',
       description:
-        'Our active delivery boundary is focused on Dubai for now, helping the team coordinate equipment movement, site access and dispatch timing with clearer coverage expectations.',
-      mapLabel: 'Dubai delivery boundary',
-      status: 'Current coverage',
-      location: 'Dubai, UAE',
-      note: 'Additional emirates can be reviewed by request.',
-      markers: ['Dubai Hub', 'Jebel Ali', 'Al Qusais'],
+        'Our dispatch operations cover major project locations across the UAE, allowing us to coordinate equipment transport, site access and delivery schedules efficiently.',
+      mapLabel: 'Current UAE dispatch coverage',
+      status: 'Current service area',
+      location: 'UAE',
+      note:
+        'Equipment delivery to other emirates can be arranged subject to fleet availability and project requirements.',
+      markers: [
+        'Dubai Operations Hub',
+        'Jebel Ali',
+        'Al Qusais',
+        'Abu Dhabi',
+        'Fujairah',
+        'Sharjah',
+        'Ras Al Khaimah',
+      ],
       updateNote:
-        'Delivery coverage can expand as fleet availability and project schedules are confirmed.',
+        'Final delivery availability is confirmed according to equipment type, project location and rental schedule.',
     },
+
     faq: {
-      eyebrow: 'FAQ',
-      title: 'Frequently Asked Questions',
+      eyebrow: 'Frequently Asked Questions',
+      title: 'Heavy Equipment Rental FAQs',
       description:
-        'Everything you need to know about our rental process and logistics.',
+        'Answers to common questions about equipment availability, quotations, operators and delivery.',
       items: [
         {
-          question: 'How to request a quote?',
+          question: 'How can I request an equipment rental quote?',
           answer:
-            'You can request a quote directly through our website by clicking the Request Quote button, or by contacting our team via WhatsApp. Please provide details about your project location and the specific machinery required.',
+            'Click Request a Quote or contact our team through WhatsApp. Please include the required equipment type, project location, expected rental period and preferred start date so we can prepare an accurate quotation.',
         },
         {
-          question: 'What are your delivery areas?',
+          question: 'Where do you deliver heavy equipment?',
           answer:
-            'Current delivery coordination is focused on Dubai, with additional UAE locations reviewed by request depending on equipment availability, site access and schedule.',
+            'Our current standard dispatch coverage focuses on Dubai. Delivery to other locations across the UAE may be arranged depending on equipment availability, site access, transport requirements and project schedule.',
         },
         {
-          question: 'Do you provide equipment operators?',
+          question: 'Can you provide equipment with an operator?',
           answer:
-            'Operator support can be arranged for selected equipment depending on machine type, project location, availability and rental conditions.',
+            'Operators can be arranged for selected equipment, subject to machine type, project location, operator availability and agreed rental conditions.',
+        },
+        {
+          question: 'Do you offer short-term and long-term equipment rental?',
+          answer:
+            'Yes. Rental periods can be arranged according to project requirements, including short-term, monthly and longer-term rental agreements, subject to equipment availability.',
         },
       ],
     },
+
     cta: {
-      title: 'Ready to Power Your Next Project?',
+      title: 'Need Heavy Equipment for Your Next Project?',
       description:
-        'Contact our experts today for a customized quote or technical consultation. We are available to support your operational needs.',
-      whatsappCta: 'Message on WhatsApp',
-      emailCta: 'Send an Email',
+        'Send us your equipment requirements, project location and rental period to receive a quotation tailored to your operational needs.',
+      whatsappCta: 'Request via WhatsApp',
+      emailCta: 'Request by Email',
       whatsappHref: '/contact?quote=favorites',
-      emailHref: 'mailto:info@mysh.com',
+      emailHref: 'mailto:sales@mysh.ae',
     },
   },
 
   ar: {
     hero: {
-      eyebrow: 'تأجير المعدات الثقيلة  - دبي، الإمارات',
-      title: 'شريكك في كل موقع.',
+      eyebrow: ' mysh لتأجير المعدات الثقيلة في دبي والإمارات ',
+      title: 'شـريكـك فـي كـل مشــروع',
       description:
-        'معدات ثقيلة وحلول تشغيل ولوجستيات متخصصة لمشاريع البناء والبنية التحتية والصناعة في دولة الإمارات.',
-      primaryCta: 'طلب عرض سعر',
+        'أسطول من المعدات الثقيلة الحديثة، نوفر لكم حلول خاصة بمشاريع البناء وأعمال البنية التحتية والعمليات الصناعية .',
+      subdescription: 'بتغطيةٍ تشمل جميع أنحاء دولة الإمارات',
+      primaryCta: 'اطلب عرض سعر',
       secondaryCta: 'عرض المعدات',
     },
+
     services: {
-      eyebrow: 'أسطولنا',
-      title: 'خدمات متخصصة',
-      action: 'استكشف الأسطول',
+      eyebrow: 'القطاعات التي نخدمها',
+      title: 'معـدات ثقيـلة لمختلف القطاعـات',
+      action: 'استعرض خدماتنا',
       items: [
         {
-          title: 'معدات تحريك التربة',
+          title: 'مشاريع الموانئ والأعمال البحرية',
           description:
-            'حفارات ولوادر ومعدات تجهيز مواقع عالية القدرة لمشاريع البناء والأعمال الثقيلة.',
+            'من تطوير الموانئ والأرصفة إلى الإنشاءات الساحلية ومشاريع الواجهات المائية — آليات ثقيلة مجهّزة لبيئة العمل البحرية، حيث تلتقي دقة التشغيل بقسوة الظروف',
           image: '/images/services/earthmoving.png',
-          badge: 'تحريك التربة',
-          cta: 'طلب المعدات',
+          badge: 'الأعمال البحرية',
+          cta: 'عرض المعدات',
         },
         {
-          title: 'حلول الرفع',
+          title: 'مشاريع المطارات والبنية التحتية للطيران',
           description:
-            'رافعات ومعدات رفع ومناولة للمواقع الحضرية والمشاريع المفتوحة ومتطلبات التشغيل الثقيلة.',
+            'دعم مشاريع توسعة المطارات وأعمال المدارج ومرافق المحطات وتجهيز المواقع والمشاريع الإنشائية المرتبطة بقطاع الطيران.',
           image: '/images/services/infrastructure-maintenance.png',
-          badge: 'الرفع',
-          cta: 'طلب المعدات',
+          badge: 'المطارات',
+          cta: 'عرض المعدات',
         },
         {
-          title: 'توليد الطاقة',
+          title: 'مشاريع الطرق والجسور ',
           description:
-            'مولدات وحلول طاقة متنقلة للمواقع المؤقتة والتشغيل خارج الشبكة واحتياجات الطوارئ.',
+            'معدات ثقيلة لأعمال الطرق وإنشاء الجسور ومشاريع السكك الحديدية وتجهيز المواقع ومسارات الوصول وشبكات النقل.',
           image: '/images/services/resilience.png',
-          badge: 'الطاقة',
-          cta: 'طلب المعدات',
+          badge: 'أعمال البنية التحتية',
+          cta: 'اطلب المعدات',
         },
       ],
     },
+
     trust: {
       clients: {
-        eyebrow: 'عملاؤنا',
-        title: 'اختيار فرق المشاريع التي تحتاج إلى دعم موثوق في الموقع.',
+        eyebrow: 'مـوثـوقـون لـدى فـرق المـشـاريـع',
+        title: 'ندعـم شـركات المقـاولات بخدمات تأجيـر موثوقـة.',
         description:
-          'تدعم MYSH المقاولين والمشغلين الصناعيين وفرق البنية التحتية من خلال تنسيق عملي للتأجير وإتاحة الأسطول.',
+          'تتعاون MYSH مع شركات الإنشاءات ومقاولي أعمال البنية التحتية والمشغلين الصناعيين وفرق المشاريع التي تحتاج إلى سرعة التنسيق وتوفر المعدات.',
         items: [
-          'مقاولو البنية التحتية',
+          'شركات الإنشاءات',
+          'مقاولو أعمال البنية التحتية',
           'المشغلون الصناعيون',
-          'فرق صيانة الطرق',
-          'مشاريع النقل البحري واللوجستيات',
+          'مشاريع الأعمال البحرية والخدمات اللوجستية',
         ],
       },
+
       brands: {
-        eyebrow: 'علامات المعدات',
-        title: 'علامات أسطول جاهزة لأعمال البناء الثقيلة.',
+        eyebrow: 'عـلامـات تجـاريـة مـوثـوقــة',
+        title: 'معــدات مــن شـركات عـالميـة مشهـود بـكـفـاءتـهـا فـي مـواقــع العـمل.',
         description:
-          'يشمل أسطولنا علامات معدات ثقيلة موثوقة لأعمال الحفر والنقل وتحريك التربة وتجهيز المواقع.',
+          'يضم أسطولنا معـدات ثقيلة من علامات تجارية موثوقة، مناسبة لأعمال الحفر وتحريك التربة والنقل وتجهيز المواقع ومتطلبات المشاريع الكبرى.',
         items: ['CAT', 'KOMATSU', 'VOLVO', 'SANY', 'HITACHI'],
       },
     },
+
     strength: {
-      eyebrow: 'قوة تشغيلية',
-      title: 'جاهزون لدعم مواقع المشاريع الأكثر تطلبا.',
+      eyebrow: 'قدراتنا التشغيلية',
+      title: 'أسطول جاهز للمشاريع مدعوم بتنسيق سريع وفعال.',
       description:
-        'تدعم MYSH المقاولين والمشغلين الصناعيين وفرق البنية التحتية من خلال تأجير معدات ثقيلة موثوقة، وتنسيق الأسطول، وتوفير آليات جاهزة للعمل في دبي ودولة الإمارات.',
-      note: 'حجم أسطول موثوق، تنسيق سريع، ودعم عملي لفرق المشاريع.',
+        'توفر MYSH خدمات موثوقة لتأجير المعدات الثقيلة لشركات المقاولات وشركات أعمال البنية التحتية والمشغلين الصناعيين، مع آليات جاهزة لتلبية متطلبات مواقع العمل في دبي ومختلف أنحاء دولة الإمارات.',
+      note:
+        'حلول تأجير مرنة، وتنسيق فعال للمعدات، ودعم عملي لمتطلبات المشاريع بين الشركات.',
       stats: [
         {
           value: '+49',
-          label: 'سنة من الخبرة الصناعية',
-          description: 'خبرة راسخة في دعم عمليات المعدات الثقيلة.',
+          label: 'عامًا من الخبرة في القطاع',
+          description:
+            'خبرة تمتد لعقود في المعدات الثقيلة والعمليات الصناعية ودعم المشاريع.',
         },
         {
           value: '+30',
-          label: 'آلة ومعدة دعم',
+          label: 'آلية ووحدة دعم',
           description:
-            'أسطول تأجير يغطي أعمال الحفر، الرفع، النقل، ودعم المواقع.',
+            'أسطول متنامٍ يخدم أعمال الحفر وتحريك التربة والنقل وتشغيل المواقع.',
         },
         {
           value: '+4',
-          label: 'فئة من المعدات',
+          label: 'فئات من المعدات',
           description:
-            'من الحفارات واللوادر إلى الرافعات، الشاحنات، الصهاريج والمولدات.',
+            'خيارات متعددة لأعمال الحفر وتحريك التربة والنقل ومتطلبات المواقع المتخصصة.',
         },
         {
           value: '24/7',
-          label: 'دعم وتنسيق التأجير',
+          label: 'دعم تنسيق خدمات التأجير',
           description:
-            'استجابة مرنة لاحتياجات المشاريع العاجلة وتخطيط التعبئة.',
+            'تنسيق سريع للطلبات العاجلة وخطط نقل المعدات ودعم احتياجات المشاريع.',
         },
       ],
     },
+
     reach: {
-      eyebrow: 'نطاق التشغيل',
-      title: 'جاهزون لمواقع المشاريع السريعة في الإمارات.',
+      eyebrow: 'نطاق عملياتنا',
+      title: 'نوفر معـدات للمشـاريع في دبـي ومختلف أنحاء الإمــــارات.',
       description:
-        'من عمليات دبي إلى مواقع البناء والمناطق الصناعية ومشاريع البنية التحتية، تدعم MYSH وصولا منظما وموثوقا للمعدات.',
+        'من مواقع الإنشاءات والمناطق الصناعية إلى مشاريع أعمال البنية التحتية والأعمال البحرية، تنسق MYSH توفير المعدات اللازمة لاستمرار المشاريع بكفاءة.',
       stats: [
-        { value: 'دبي', label: 'قاعدة التشغيل' },
-        { value: 'الإمارات', label: 'نطاق التأجير' },
-        { value: 'B2B', label: 'موجه للمقاولين' },
+        { value: 'دبي', label: 'قاعدة العمليات' },
+        { value: 'الإمارات', label: 'نطاق الخدمات الموجهة للمشاريع' },
+        { value: 'B2B', label: 'خدمات موجهة للشركات' },
       ],
-      operationsTitle: 'عمليات MYSH',
+      operationsTitle: 'عمليات التأجير لدى MYSH',
       operationsDescription:
-        'دعم تأجير المعدات للمقاولين ومديري المشاريع والمشغلين الصناعيين الذين يحتاجون إلى وصول موثوق للآلات.',
+        'دعم متكامل لتأجير المعدات الثقيلة لشركات المقاولات ومديري المشاريع وشركات الإنشاءات والمشغلين الصناعيين.',
     },
+
     story: {
       eyebrow: 'قصتنا',
-      title: 'إرث من القوة والموثوقية',
+      title: 'عقود من الخبرة في المعدات الثقيلة والعمليات الصناعية',
       description:
-        'تأسست MYSH عام 1977 بجذور راسخة في الأردن، وانطلقت برؤية لتطوير قطاع المعدات الصناعية. تقوم رحلتنا على الالتزام بجودة المعدات والثقة التشغيلية.',
+        'تأسست  MYSH في الأردن عام 1977، وراكمت خبرة طويلة في قطاع المعدات الثقيلة والعمليات الصناعية. واليوم، نضع هذه الخبرة في خدمة المشاريع داخل دولة الإمارات من خلال معدات موثوقة، وتنسيق عملي، والتزام مستمر بجودة الخدمات.',
       image: '/images/story.png',
-      statValue: '47+',
-      statLabel: 'عاما من الخبرة',
-      primaryCta: 'اقرأ تاريخنا الكامل',
+      statValue: '+49',
+      statLabel: 'عامًا من الخبرة',
+      primaryCta: 'تعرّف على قصتنا',
       items: [
         {
-          title: 'بدايات 1977',
+          title: 'التأسيس عام 1977',
           description:
-            'تأسست في الأردن لتضع أساسا قويا للتخصص في المعدات الصناعية الثقيلة.',
+            'انطلقت الشركة من الأردن على أساس متين من الخبرة في المعدات الثقيلة والعمليات الصناعية.',
         },
         {
-          title: 'التوسع في الإمارات',
+          title: 'التوسع في دولة الإمارات',
           description:
-            'نقل عقود من الخبرة لدعم نمو البنية التحتية السريع في دولة الإمارات.',
+            'نقل خبرة تمتد لعقود لدعم مشاريع الإنشاءات وأعمال البنية التحتية والمشاريع الصناعية في دولة الإمارات.',
         },
       ],
     },
+
     deliveryMap: {
-      eyebrow: 'خريطة التوصيل',
-      title: 'حدود التوصيل الحالية داخل دبي.',
+      eyebrow: 'نطاق توصيل المعدات',
+      title: 'نطاق توصيل المعدات في مختلف أنحاء دولة الإمارات.',
       description:
-        'يركز نطاق التوصيل الحالي على دبي لمساعدة الفريق على تنسيق حركة المعدات والوصول إلى المواقع ومواعيد الإرسال بوضوح أكبر.',
-      mapLabel: 'حدود التوصيل في دبي',
-      status: 'التغطية الحالية',
-      location: 'دبي، الإمارات',
-      note: 'يمكن مراجعة التوصيل إلى إمارات أخرى عند الطلب.',
-      markers: ['مركز دبي', 'جبل علي', 'القصيص'],
+        'تشمل خدماتنا توصيل المعدات إلى مواقع المشاريع في مختلف أنحاء دولة الإمارات، مع تنسيق فعّال للنقل والوصول إلى الموقع والالتزام بمواعيد التسليم.',
+      mapLabel: 'نطاق الإرسال الحالي داخل دولة الإمارات',
+      status: 'نطاق الخدمة الحالي',
+      location: 'الإمارات',
+      note:
+        'يمكن ترتيب توصيل المعدات إلى إمارات أخرى وفقًا لتوفر الأسطول ومتطلبات المشروع.',
+      markers: [
+        ' دبي',
+        'جبل علي',
+        'القصيص',
+        'أبوظبي',
+        'الفجيرة',
+        'الشارقة',
+        'رأس الخيمة',
+      ],
       updateNote:
-        'يمكن توسيع نطاق التوصيل حسب توفر الأسطول وجدولة المشاريع.',
+        'يتم تأكيد إمكانية التوصيل النهائية بناءً على نوع المعدات وموقع المشروع ومدة التأجير والجدول التشغيلي.',
     },
+
     faq: {
       eyebrow: 'الأسئلة الشائعة',
-      title: 'الأسئلة الأكثر تكرارا',
+      title: 'أسئلة شائعة حول تأجير المعدات الثقيلة',
       description:
-        'كل ما تحتاج إلى معرفته عن عملية التأجير والخدمات اللوجستية.',
+        'إجابات عن أكثر الأسئلة شيوعًا حول توفر المعدات وعروض الأسعار والمشغلين وخدمات التوصيل.',
       items: [
         {
-          question: 'كيف أطلب عرض سعر؟',
+          question: 'كيف يمكنني طلب عرض سعر لتأجير المعدات؟',
           answer:
-            'يمكنك طلب عرض سعر من خلال زر طلب عرض سعر أو التواصل مع فريقنا عبر واتساب. يرجى تزويدنا بموقع المشروع ونوع المعدات المطلوبة.',
+            'اضغط على زر «اطلب عرض سعر» أو تواصل مع فريقنا عبر واتساب. يرجى تزويدنا بنوع المعدات المطلوبة وموقع المشروع ومدة التأجير المتوقعة وتاريخ بدء العمل، حتى نتمكن من إعداد عرض سعر دقيق.',
         },
         {
-          question: 'ما هي مناطق التوصيل؟',
+          question: 'إلى أي مناطق يمكنكم توصيل المعدات؟',
           answer:
-            'يركز تنسيق التوصيل حاليا على دبي، ويمكن مراجعة المواقع الأخرى داخل الإمارات حسب توفر المعدات وإمكانية الوصول والجدول الزمني.',
+            'يركز نطاق الإرسال الاعتيادي حاليًا على دبي. ويمكن ترتيب التوصيل إلى مواقع أخرى داخل دولة الإمارات وفقًا لتوفر المعدات وإمكانية الوصول إلى الموقع ومتطلبات النقل والجدول التشغيلي للمشروع.',
         },
         {
-          question: 'هل توفرون مشغلي معدات؟',
+          question: 'هل يمكن توفير المعدات مع مشغل؟',
           answer:
-            'يمكن ترتيب دعم المشغلين لبعض أنواع المعدات حسب نوع الآلة وموقع المشروع والتوفر وشروط التأجير.',
+            'يمكن توفير مشغلين لبعض أنواع المعدات وفقًا لنوع الآلية وموقع المشروع وتوفر المشغلين وشروط عقد التأجير المتفق عليها.',
+        },
+        {
+          question: 'هل توفرون تأجيرًا قصير الأجل وطويل الأجل؟',
+          answer:
+            'نعم، يمكن تحديد مدة التأجير وفقًا لمتطلبات المشروع، بما يشمل التأجير قصير الأجل والتأجير الشهري والعقود طويلة الأجل، وذلك حسب توفر المعدات.',
         },
       ],
     },
+
     cta: {
-      title: 'جاهز لدعم مشروعك القادم؟',
+      title: 'هل تحتاج إلى معدات ثقيلة لمشروعك القادم؟',
       description:
-        'تواصل مع خبرائنا للحصول على عرض مخصص أو استشارة فنية تناسب احتياجاتك التشغيلية.',
-      whatsappCta: 'راسلنا عبر واتساب',
-      emailCta: 'أرسل بريدا إلكترونيا',
+        'أرسل إلينا نوع المعدات المطلوبة وموقع المشروع ومدة التأجير للحصول على عرض سعر يناسب احتياجاتكم التشغيلية.',
+      whatsappCta: 'اطلب عبر واتساب',
+      emailCta: 'اطلب عبر البريد الإلكتروني',
       whatsappHref: '/contact?quote=favorites',
-      emailHref: 'mailto:info@mysh.com',
+      emailHref: 'mailto:sales@mysh.ae',
     },
   },
 } satisfies Record<Lang, LandingContent>;

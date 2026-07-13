@@ -56,14 +56,6 @@ export default function Navbar({ lang, setLang }: NavbarProps) {
     setIsFavoritesOpen(false);
   };
 
-  const formatCurrency = (value: number): string => {
-    return new Intl.NumberFormat(lang === 'ar' ? 'ar-AE' : 'en-AE', {
-      style: 'currency',
-      currency: 'AED',
-      maximumFractionDigits: 0,
-    }).format(value);
-  };
-
   const getLinkClass = (href: string) =>
     [
       'text-sm font-semibold transition hover:text-white',
@@ -237,7 +229,6 @@ export default function Navbar({ lang, setLang }: NavbarProps) {
             favoriteCount={favoriteCount}
             labels={equipmentText}
             isRtl={isRtl}
-            formatCurrency={formatCurrency}
             onClose={closeFavoritesPanel}
             onRemove={removeFavorite}
             onClear={clearFavorites}
@@ -253,7 +244,6 @@ type FavoritesGlassPanelProps = {
   favoriteCount: number;
   labels: (typeof equipmentContent)[Lang];
   isRtl: boolean;
-  formatCurrency: (value: number) => string;
   onClose: () => void;
   onRemove: (equipmentId: number) => void;
   onClear: () => void;
@@ -264,7 +254,6 @@ function FavoritesGlassPanel({
   favoriteCount,
   labels,
   isRtl,
-  formatCurrency,
   onClose,
   onRemove,
   onClear,
@@ -348,13 +337,6 @@ function FavoritesGlassPanel({
                         </Link>
                         <p className="mt-1 truncate text-[0.75rem] text-white/58">
                           {item.brand} / {item.model} / {item.year}
-                        </p>
-                        <p className="mt-1 text-[0.75rem] font-semibold text-white/82">
-                          {Number.isFinite(item.dailyRate)
-                            ? `${formatCurrency(Number(item.dailyRate))} / ${
-                                labels.card.daily
-                              }`
-                            : labels.card.requestQuote}
                         </p>
                       </div>
 

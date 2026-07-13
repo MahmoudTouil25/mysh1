@@ -75,16 +75,25 @@ export default function Footer({ lang }: FooterProps) {
       id="contact"
       dir={isRtl ? 'rtl' : 'ltr'}
       className={[
-        'bg-[#EEF4F6] px-4 py-12 md:py-16',
+        'relative isolate overflow-hidden bg-[#062D31]/90 px-4 py-12 text-white backdrop-blur-xl supports-[backdrop-filter]:bg-[#062D31]/82 md:py-16',
         isRtl ? 'text-right' : 'text-left',
       ].join(' ')}
     >
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-[#062D31]/35"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(244,208,63,0.16),transparent_34%),linear-gradient(180deg,rgba(6,45,49,0.28),rgba(6,45,49,0.88))]"
+      />
+
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.2fr_1fr] lg:grid-cols-[1.35fr_0.9fr_1fr]">
         <div>
           <Link
             href="/"
             aria-label="MYSH homepage"
-            className="inline-flex rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1B263B]"
+            className="inline-flex rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             <Image
               src="/logo-mysh-Footer.png"
@@ -95,7 +104,7 @@ export default function Footer({ lang }: FooterProps) {
             />
           </Link>
 
-          <p className="mt-5 max-w-prose text-body text-[#424849]">
+          <p className="mt-5 max-w-prose text-body text-white/72">
             {t.footer.description}
           </p>
         </div>
@@ -106,7 +115,7 @@ export default function Footer({ lang }: FooterProps) {
         >
           {footerSections.map((section) => (
             <div key={section.title}>
-              <h2 className="text-eyebrow uppercase text-[#1B263B]/60">
+              <h2 className="text-eyebrow uppercase text-white/55">
                 {section.title}
               </h2>
 
@@ -115,7 +124,7 @@ export default function Footer({ lang }: FooterProps) {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="text-body-sm font-medium text-[#424849] transition hover:text-[#1B263B]"
+                      className="text-body-sm font-medium text-white/72 transition hover:text-white"
                     >
                       {item.label}
                     </Link>
@@ -129,7 +138,7 @@ export default function Footer({ lang }: FooterProps) {
         <section aria-labelledby="footer-contact-title">
           <h2
             id="footer-contact-title"
-            className="text-eyebrow uppercase text-[#1B263B]/60"
+            className="text-eyebrow uppercase text-white/55"
           >
             {t.footer.contact.title}
           </h2>
@@ -137,15 +146,15 @@ export default function Footer({ lang }: FooterProps) {
           <dl className="mt-4 space-y-4">
             {contactItems.map((item) => (
               <div key={item.label}>
-                <dt className="text-xs font-black uppercase tracking-[0.12em] text-[#855300]">
+                <dt className="text-xs font-black uppercase tracking-[0.12em] text-[#F4D03F]">
                   {item.label}
                 </dt>
-                <dd className="mt-1 text-body-sm font-medium text-[#424849]">
+                <dd className="mt-1 text-body-sm font-medium text-white/72">
                   {item.href ? (
                     <a
                       href={item.href}
                       dir={item.valueDir}
-                      className="inline-block transition hover:text-[#1B263B]"
+                      className="inline-block transition hover:text-white"
                     >
                       {item.value}
                     </a>
@@ -161,8 +170,8 @@ export default function Footer({ lang }: FooterProps) {
         </section>
       </div>
 
-      <div className="mx-auto mt-10 max-w-7xl border-t border-[#C2C7C9]/80 pt-6">
-        <p className="text-eyebrow uppercase text-[#424849]">
+      <div className="mx-auto mt-10 max-w-7xl border-t border-white/16 pt-6">
+        <p className="text-eyebrow uppercase text-white/58">
           &copy; {year} MYSH Industrial Equipment Rental. {t.footer.rights}
         </p>
       </div>

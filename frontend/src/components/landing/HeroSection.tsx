@@ -50,9 +50,10 @@ export default function HeroSection({ lang }: HeroSectionProps) {
             {t.hero.title}
           </h1>
 
-          <p className="mx-auto mt-6 max-w-prose text-body-lg text-white/80">
-            {t.hero.description}
-          </p>
+          <div className="mx-auto mt-6 max-w-prose space-y-3 text-body-lg text-white/80">
+            <p>{t.hero.description}</p>
+            {t.hero.subdescription ? <p>{t.hero.subdescription}</p> : null}
+          </div>
 
           <div className="mx-auto mt-8 flex w-full max-w-xs flex-col gap-4 sm:max-w-sm md:flex-row md:justify-center md:max-w-none">
             <Button

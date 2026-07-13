@@ -81,7 +81,7 @@ export default function StorySection({ lang }: StorySectionProps) {
                 key={item.title}
                 className={[
                   'flex gap-4',
-                  isRtl ? 'flex-row-reverse text-right' : '',
+                  isRtl ? 'text-right' : '',
                 ].join(' ')}
               >
                 <div className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-brand-dark text-body-sm font-semibold text-white">
