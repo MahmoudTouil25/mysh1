@@ -45,7 +45,7 @@ lerna-debug.log*
 # Large hero videos hosted on Vercel Blob
 frontend/public/mysh.mp4
 frontend/public/mysh1.2.1.mp4
-frontend/public/mysh-optimized.mp4
+#frontend/public/mysh-optimized.mp4
 frontend/public/mysh-optimized-small.mp4
 frontend/public/videos/*.mp4
 frontend/public/videos/*.webm
