@@ -2,6 +2,7 @@ import type { Lang } from '../../i18n/sharedContent';
 import { landingContent } from '../../i18n/landingContent';
 import { buildFavoritesContactHref } from '../../utils/contactQuote';
 import Button from '../ui/Button';
+import HeroVideoBackground from './HeroVideoBackground';
 
 type HeroSectionProps = {
   lang: Lang;
@@ -17,18 +18,7 @@ export default function HeroSection({ lang }: HeroSectionProps) {
       dir={isRtl ? 'rtl' : 'ltr'}
       className="relative isolate min-h-[760px] overflow-hidden bg-brand-dark px-4 pt-28 text-white md:min-h-[820px] md:pt-36"
     >
-      <video
-        aria-hidden="true"
-        className="absolute inset-0 z-0 h-full w-full object-cover"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        poster="/images/hero-equipment.jpg"
-      >
-        <source src="/mysh.mp4" type="video/mp4" />
-      </video>
+      <HeroVideoBackground />
 
       <div
         aria-hidden="true"
@@ -52,10 +42,13 @@ export default function HeroSection({ lang }: HeroSectionProps) {
 
           <div className="mx-auto mt-6 max-w-prose space-y-3 text-body-lg text-white/80">
             <p>{t.hero.description}</p>
-            {t.hero.subdescription ? <p>{t.hero.subdescription}</p> : null}
+
+            {t.hero.subdescription ? (
+              <p>{t.hero.subdescription}</p>
+            ) : null}
           </div>
 
-          <div className="mx-auto mt-8 flex w-full max-w-xs flex-col gap-4 sm:max-w-sm md:flex-row md:justify-center md:max-w-none">
+          <div className="mx-auto mt-8 flex w-full max-w-xs flex-col gap-4 sm:max-w-sm md:max-w-none md:flex-row md:justify-center">
             <Button
               href={buildFavoritesContactHref()}
               className="min-h-14 w-full px-8 shadow-[0_10px_22px_rgba(0,0,0,0.22)] md:w-auto"

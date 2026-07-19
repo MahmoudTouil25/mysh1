@@ -42,6 +42,14 @@ lerna-debug.log*
 .env.production.local
 .env.local
 
+# Large hero videos hosted on Vercel Blob
+frontend/public/mysh.mp4
+frontend/public/mysh1.2.1.mp4
+frontend/public/mysh-optimized.mp4
+frontend/public/mysh-optimized-small.mp4
+frontend/public/videos/*.mp4
+frontend/public/videos/*.webm
+
 # temp directory
 .temp
 .tmp
@@ -52,5 +60,5 @@ pids
 *.seed
 *.pid.lock
 
-# Diagnostic reports (https://nodejs.org/api/report.html)
+# Diagnostic reports
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
